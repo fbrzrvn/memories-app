@@ -1,7 +1,14 @@
-import React from 'react';
+import { Container } from '@material-ui/core';
+
+import Header from '../../components/Header';
 
 const Main = ({ children }) => {
-  return <main>{children}</main>;
+  return (
+    <>
+      <Header />
+      <Container>{children}</Container>
+    </>
+  );
 };
 
 export default Main;
