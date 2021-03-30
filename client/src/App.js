@@ -1,18 +1,12 @@
-import { useEffect, useState } from 'react';
+import { Route, Switch } from 'react-router-dom';
+
+import Home from './pages/Home';
 
 const App = () => {
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    fetch('/api')
-      .then(res => res.json())
-      .then(data => setData(data.message));
-  }, []);
-
   return (
-    <div>
-      <h1>{!data ? 'loading...' : data}</h1>
-    </div>
+    <Switch>
+      <Route path="/" component={Home} />
+    </Switch>
   );
 };
 
