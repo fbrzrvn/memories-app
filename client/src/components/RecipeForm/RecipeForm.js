@@ -1,7 +1,10 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import FileBase from 'react-file-base64';
 
 import { Button, Grid, Paper, TextField, Typography } from '@material-ui/core';
+
+import { createRecipe } from '../../actions/recipe';
 
 import useStyles from './styles';
 
@@ -24,6 +27,7 @@ const initialState = {
 
 const RecipeForm = () => {
   const [formData, setFormData] = useState(initialState);
+  const dispatch = useDispatch();
   const classes = useStyles();
 
   const clear = () => {
@@ -44,6 +48,8 @@ const RecipeForm = () => {
       !formData.serves
     )
       return;
+
+    dispatch(createRecipe({ ...formData }));
 
     clear();
   };
