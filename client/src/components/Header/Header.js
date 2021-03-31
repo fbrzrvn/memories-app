@@ -18,7 +18,8 @@ import useStyles from './styles';
 
 const navLinks = [
   { title: `Home`, path: `/` },
-  { title: `Favorite`, path: `/favorite` },
+  { title: `Create`, path: `/recipes/create` },
+  { title: `Favorite`, path: `/recipes/favorite` },
 ];
 
 const Header = () => {
