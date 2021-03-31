@@ -12,7 +12,7 @@ const App = () => {
     <ReduxProvider store={store}>
       <Switch>
         <Route path="/recipes/favorite" component={Favorite} />
-        <Route path="/recipes/create" component={NewRecipe} />
+        <Route path="/recipes" component={NewRecipe} />
         <Route path="/" component={Home} />
       </Switch>
     </ReduxProvider>
