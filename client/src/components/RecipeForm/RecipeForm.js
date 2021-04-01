@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import FileBase from 'react-file-base64';
 
 import { Button, Grid, Paper, TextField, Typography } from '@material-ui/core';
@@ -28,6 +29,7 @@ const initialState = {
 const RecipeForm = () => {
   const [formData, setFormData] = useState(initialState);
   const dispatch = useDispatch();
+  const history = useHistory();
   const classes = useStyles();
 
   const clear = () => {
@@ -50,8 +52,8 @@ const RecipeForm = () => {
       return;
 
     dispatch(createRecipe({ ...formData }));
-
     clear();
+    history.push('/');
   };
 
   return (
@@ -93,7 +95,12 @@ const RecipeForm = () => {
               label="ingridients"
               fullWidth
               value={formData.ingridients}
-              onChange={handleChange}
+              onChange={e =>
+                setFormData({
+                  ...formData,
+                  ingridients: e.target.value.split(','),
+                })
+              }
               required
             />
           </Grid>
