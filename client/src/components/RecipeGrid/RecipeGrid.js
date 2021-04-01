@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { Link } from 'react-router-dom';
 import {
   Button,
@@ -13,6 +14,7 @@ import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAltOutlined';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 import useStyles from './styles';
 
@@ -27,16 +29,29 @@ const RecipeGrid = ({ recipe }) => {
         title={recipe.title}
         className={recipe.cardImage}
       />
-      <CardContent className={classes.cardBody}>
-        <Typography variant="h6" color="textPrimary">
-          {recipe.description}
+      <Grid item className={classes.cardOverlay}>
+        <Typography variant="h6">{recipe.author}</Typography>
+        <Typography variant="body2">
+          {moment(recipe.createdAt).fromNow()}
         </Typography>
+      </Grid>
+      <Grid item className={classes.cardOverlay2}>
+        <Button className={classes.cardFavorite}>
+          <FavoriteBorderIcon />
+        </Button>
+      </Grid>
+      <CardContent className={classes.cardBody}>
         <Link to={`/recipes/${recipe._id}`} className={classes.cardLink}>
           <Typography variant="h4" color="primary" gutterBottom>
             {recipe.title}
           </Typography>
         </Link>
-        <Grid container direction="row" justify="space-between">
+        <Grid
+          container
+          className={classes.flexBetween}
+          direction="row"
+          justify="space-between"
+        >
           <Grid item>
             <Typography variant="subtitle1" color="textPrimary">
               Serves
@@ -64,12 +79,14 @@ const RecipeGrid = ({ recipe }) => {
           </Grid>
         </Grid>
       </CardContent>
-      <CardActions className={classes.cardAction}>
+      <CardActions className={classes.flexBetween}>
         <Button color="primary">
-          <ThumbUpAltOutlined />
+          <ThumbUpAltOutlined fontSize="small" />
+          &nbsp;Like
         </Button>
-        <Button className={classes.cardFavorite}>
-          <FavoriteBorderIcon />
+        <Button size="small" color="primary">
+          <DeleteIcon fontSize="small" />
+          &nbsp;Delete
         </Button>
       </CardActions>
     </Grid>
