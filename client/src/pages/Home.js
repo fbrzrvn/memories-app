@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { CircularProgress, Grid, Typography } from '@material-ui/core';
 
-import { getRecipe } from '../actions/recipe';
+import { getRecipes } from '../actions/recipe';
 import Main from '../layout/Main';
 import RecipeGrid from '../components/RecipeGrid';
 
@@ -12,7 +12,7 @@ const Home = () => {
   const recipes = useSelector(state => state.recipe);
 
   useEffect(() => {
-    dispatch(getRecipe());
+    dispatch(getRecipes());
   }, [dispatch]);
 
   return (

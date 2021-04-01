@@ -5,8 +5,18 @@ const getRecipes = async (req, res) => {
   try {
     const recipes = await Recipe.find();
     res.status(200).json(recipes);
-  } catch (err) {
-    res.status(404).json({ message: err.message });
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
+const getRecipe = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const recipeId = await Recipe.findOne({ _id: id });
+    res.status(200).json(recipeId);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
   }
 };
 
@@ -16,8 +26,8 @@ const createRecipe = async (req, res) => {
   try {
     await newRecipe.save();
     res.status(201).json(newRecipe);
-  } catch (err) {
-    res.status(409).json({ message: err.message });
+  } catch (error) {
+    res.status(409).json({ message: error.message });
   }
 };
 
@@ -33,4 +43,4 @@ const deleteRecipe = async (req, res) => {
   res.json({ message: 'Recipe was successfully deleted!' });
 };
 
-module.exports = { getRecipes, createRecipe, deleteRecipe };
+module.exports = { getRecipes, createRecipe, deleteRecipe, getRecipe };

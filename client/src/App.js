@@ -4,8 +4,9 @@ import { Provider as ReduxProvider } from 'react-redux';
 import store from './store';
 
 import Home from './pages/Home';
-import NewRecipe from './pages/NewRecipe';
 import Favorite from './pages/Favorite';
+import NewRecipe from './pages/NewRecipe';
+import Recipe from './pages/Recipe';
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
       <Switch>
         <Route path="/recipes/favorite" component={Favorite} />
         <Route path="/recipes/api" component={NewRecipe} />
+        <Route path="/recipes/:recipeId" component={Recipe} />
         <Route path="/" component={Home} />
       </Switch>
     </ReduxProvider>

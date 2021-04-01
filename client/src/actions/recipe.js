@@ -1,12 +1,24 @@
 import * as api from '../api';
-import { CREATE, FETCH_ALL, DELETE } from '../constants/actionTypes';
+import { CREATE, FETCH_ALL, DELETE, FETCH_ONE } from '../constants/actionTypes';
 
-export const getRecipe = () => async dispatch => {
+export const getRecipes = () => async dispatch => {
   try {
-    const { data } = await api.fetchRecipe();
+    const { data } = await api.fetchRecipes();
     dispatch({
       type: FETCH_ALL,
       payload: data,
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const getRecipe = id => async dispatch => {
+  try {
+    await api.fetchRecipeById(id);
+    dispatch({
+      type: FETCH_ONE,
+      payload: id,
     });
   } catch (error) {
     console.log(error.message);

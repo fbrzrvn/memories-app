@@ -1,9 +1,11 @@
-import { FETCH_ALL, CREATE, DELETE } from '../constants/actionTypes';
+import { FETCH_ALL, FETCH_ONE, CREATE, DELETE } from '../constants/actionTypes';
 
 const recipeReducer = (recipes = [], action) => {
   switch (action.type) {
     case FETCH_ALL:
       return action.payload;
+    case FETCH_ONE:
+      return recipes.find(recipe => recipe._id === action.payload);
     case CREATE:
       return [...recipes, action.payload];
     case DELETE:
