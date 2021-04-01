@@ -1,5 +1,5 @@
 import * as api from '../api';
-import { CREATE, FETCH_ALL } from '../constants/actionTypes';
+import { CREATE, FETCH_ALL, DELETE } from '../constants/actionTypes';
 
 export const getRecipe = () => async dispatch => {
   try {
@@ -19,6 +19,18 @@ export const createRecipe = recipe => async dispatch => {
     dispatch({
       type: CREATE,
       payload: data,
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const deleteRecipe = id => async dispatch => {
+  try {
+    await api.deleteRecipe(id);
+    dispatch({
+      type: DELETE,
+      payload: id,
     });
   } catch (error) {
     console.log(error.message);

@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const Recipe = require('../models/recipe');
 
 const getRecipes = async (req, res) => {
@@ -11,7 +12,7 @@ const getRecipes = async (req, res) => {
 
 const createRecipe = async (req, res) => {
   const recipe = req.body;
-  const newRecipe = new Recipe({ ...recipe });
+  const newRecipe = new Recipe({ ...recipe, author: 'faber' });
   try {
     await newRecipe.save();
     res.status(201).json(newRecipe);
@@ -20,4 +21,16 @@ const createRecipe = async (req, res) => {
   }
 };
 
-module.exports = { getRecipes, createRecipe };
+const deleteRecipe = async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).send(`No recipe was gfound with id: ${id}`);
+  }
+
+  await Recipe.findByIdAndDelete(id);
+
+  res.json({ message: 'Recipe was successfully deleted!' });
+};
+
+module.exports = { getRecipes, createRecipe, deleteRecipe };

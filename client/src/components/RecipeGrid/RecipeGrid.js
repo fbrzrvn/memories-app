@@ -1,5 +1,6 @@
 import moment from 'moment';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import {
   Button,
   Card,
@@ -16,9 +17,12 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import DeleteIcon from '@material-ui/icons/Delete';
 
+import { deleteRecipe } from '../../actions/recipe';
+
 import useStyles from './styles';
 
 const RecipeGrid = ({ recipe }) => {
+  const dispatch = useDispatch();
   const classes = useStyles();
 
   return (
@@ -84,7 +88,11 @@ const RecipeGrid = ({ recipe }) => {
           <ThumbUpAltOutlined fontSize="small" />
           &nbsp;Like
         </Button>
-        <Button size="small" color="primary">
+        <Button
+          size="small"
+          color="primary"
+          onClick={() => dispatch(deleteRecipe(recipe._id))}
+        >
           <DeleteIcon fontSize="small" />
           &nbsp;Delete
         </Button>
