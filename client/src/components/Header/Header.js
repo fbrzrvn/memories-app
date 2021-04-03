@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import {
   AppBar,
+  Avatar,
   Button,
   Container,
   Hidden,
@@ -17,10 +18,11 @@ import SideDrawer from '../SideDrawer';
 import useStyles from './styles';
 
 const navLinks = [
-  { title: `Home`, path: `/` },
   { title: `Create`, path: `/recipes/api` },
   { title: `Favorite`, path: `/recipes/favorite` },
 ];
+
+const user = null;
 
 const Header = () => {
   const classes = useStyles();
@@ -43,22 +45,42 @@ const Header = () => {
               aria-labelledby="main navigation"
               className={classes.navDisplayFlex}
             >
-              {navLinks.map(({ title, path }) => (
-                <Link to={path} key={title} className={classes.linkText}>
-                  <ListItem button>
-                    <ListItemText primary={title} />
-                  </ListItem>
-                </Link>
-              ))}
+              {user
+                ? navLinks.map(({ title, path }) => (
+                    <Link to={path} key={title} className={classes.linkText}>
+                      <ListItem button>
+                        <ListItemText primary={title} />
+                      </ListItem>
+                    </Link>
+                  ))
+                : null}
+
               <ListItem>
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  component={Link}
-                  to={'/logout'}
-                >
-                  Logout
-                </Button>
+                {user ? (
+                  <div className={classes.profile}>
+                    <Avatar />
+                    <ListItemText
+                      primary="username"
+                      className={classes.userName}
+                    />
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      className={classes.logout}
+                    >
+                      Logout
+                    </Button>
+                  </div>
+                ) : (
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    component={Link}
+                    to={'/auth'}
+                  >
+                    Sign In
+                  </Button>
+                )}
               </ListItem>
             </List>
           </Hidden>

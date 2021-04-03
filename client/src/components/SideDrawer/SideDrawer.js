@@ -16,6 +16,8 @@ const SideDrawer = ({ navLinks }) => {
   const [state, setState] = useState({ right: false });
   const classes = useStyles();
 
+  const user = null;
+
   const toggleDrawer = (anchor, open) => event => {
     if (
       event.type === 'keydown' &&
@@ -34,22 +36,36 @@ const SideDrawer = ({ navLinks }) => {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List component="nav">
-        {navLinks.map(({ title, path }) => (
-          <Link to={path} key={title} className={classes.linkText}>
-            <ListItem button>
-              <ListItemText primary={title} />
-            </ListItem>
-          </Link>
-        ))}
+        {user
+          ? navLinks.map(({ title, path }) => (
+              <Link to={path} key={title} className={classes.linkText}>
+                <ListItem button>
+                  <ListItemText primary={title} />
+                </ListItem>
+              </Link>
+            ))
+          : null}
         <ListItem>
-          <Button
-            variant="contained"
-            color="secondary"
-            component={Link}
-            to={'/logout'}
-          >
-            Logout
-          </Button>
+          {user ? (
+            <div className={classes.profile}>
+              <Button
+                variant="contained"
+                color="secondary"
+                className={classes.logout}
+              >
+                Logout
+              </Button>
+            </div>
+          ) : (
+            <Button
+              variant="contained"
+              color="secondary"
+              component={Link}
+              to={'/auth'}
+            >
+              Sign In
+            </Button>
+          )}
         </ListItem>
       </List>
     </div>
