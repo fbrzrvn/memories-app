@@ -32,6 +32,8 @@ const RecipeForm = () => {
   const history = useHistory();
   const classes = useStyles();
 
+  const user = JSON.parse(localStorage.getItem('userProfile'));
+
   const clear = () => {
     setFormData(initialState);
   };
@@ -51,7 +53,7 @@ const RecipeForm = () => {
     )
       return;
 
-    dispatch(createRecipe({ ...formData }));
+    dispatch(createRecipe({ ...formData, name: user?.result?.name }));
     clear();
     history.push('/');
   };

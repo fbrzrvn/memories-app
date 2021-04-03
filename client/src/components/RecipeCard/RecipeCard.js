@@ -1,4 +1,5 @@
 import moment from 'moment';
+import { useDispatch } from 'react-redux';
 import {
   Button,
   Card,
@@ -8,16 +9,18 @@ import {
   ListItem,
   Typography,
 } from '@material-ui/core';
-import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
-import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAltOutlined';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+
+import { likeRecipe } from '../../actions/recipe';
+import Like from '../Like';
 
 import Comments from './Comments';
 
 import useStyles from './styles';
 
 const RecipeCard = ({ recipe }) => {
+  const dispatch = useDispatch();
   const classes = useStyles();
 
   return (
@@ -30,7 +33,7 @@ const RecipeCard = ({ recipe }) => {
           className={classes.cardMedia}
         />
         <Grid item className={classes.cardOverlay}>
-          <Typography variant="h6">{recipe.author}</Typography>
+          <Typography variant="h6">{recipe.name}</Typography>
           <Typography variant="body2">
             {moment(recipe.createdAt).fromNow()}
           </Typography>
@@ -52,9 +55,12 @@ const RecipeCard = ({ recipe }) => {
           </Typography>
         </Grid>
         <Grid item>
-          <Button color="primary" size="small">
-            <ThumbUpAltOutlined />
-            &nbsp;Like
+          <Button
+            size="small"
+            color="primary"
+            onClick={() => dispatch(likeRecipe(recipe._id))}
+          >
+            <Like recipe={recipe} />
           </Button>
         </Grid>
       </Grid>

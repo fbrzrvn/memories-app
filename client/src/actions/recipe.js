@@ -1,5 +1,11 @@
 import * as api from '../api';
-import { CREATE, FETCH_ALL, DELETE, FETCH_ONE } from '../constants/actionTypes';
+import {
+  CREATE,
+  FETCH_ALL,
+  DELETE,
+  FETCH_ONE,
+  UPDATE,
+} from '../constants/actionTypes';
 
 export const getRecipes = () => async dispatch => {
   try {
@@ -44,6 +50,15 @@ export const deleteRecipe = id => async dispatch => {
       type: DELETE,
       payload: id,
     });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const likeRecipe = id => async dispatch => {
+  const { data } = await api.likeRecipe(id);
+  try {
+    dispatch({ type: UPDATE, payload: data });
   } catch (error) {
     console.log(error.message);
   }

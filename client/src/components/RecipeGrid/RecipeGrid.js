@@ -10,14 +10,12 @@ import {
   Grid,
   Typography,
 } from '@material-ui/core';
-
-import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
-import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAltOutlined';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-import { deleteRecipe } from '../../actions/recipe';
+import { deleteRecipe, likeRecipe } from '../../actions/recipe';
+import Like from '../Like';
 
 import useStyles from './styles';
 
@@ -34,13 +32,13 @@ const RecipeGrid = ({ recipe }) => {
         className={recipe.cardImage}
       />
       <Grid item className={classes.cardOverlay}>
-        <Typography variant="h6">{recipe.author}</Typography>
+        <Typography variant="h6">{recipe.name}</Typography>
         <Typography variant="body2">
           {moment(recipe.createdAt).fromNow()}
         </Typography>
       </Grid>
       <Grid item className={classes.cardOverlay2}>
-        <Button className={classes.cardFavorite}>
+        <Button color="secondary">
           <FavoriteBorderIcon />
         </Button>
       </Grid>
@@ -84,9 +82,12 @@ const RecipeGrid = ({ recipe }) => {
         </Grid>
       </CardContent>
       <CardActions className={classes.flexBetween}>
-        <Button color="primary">
-          <ThumbUpAltOutlined fontSize="small" />
-          &nbsp;Like
+        <Button
+          size="small"
+          color="primary"
+          onClick={() => dispatch(likeRecipe(recipe._id))}
+        >
+          <Like recipe={recipe} />
         </Button>
         <Button
           size="small"

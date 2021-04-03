@@ -14,6 +14,7 @@ const recipeSchema = new mongoose.Schema({
   hoursToPrep: { type: Number, default: 0 },
   minutesToPrep: { type: Number, min: 0, max: 60, default: 0 },
   author: { type: String, ref: 'user' },
+  name: { type: String },
   comments: { type: [String], ref: 'comment' },
   likes: { type: [String], default: [] },
   createdAt: { type: Date, default: new Date() },

@@ -22,7 +22,11 @@ const getRecipe = async (req, res) => {
 
 const createRecipe = async (req, res) => {
   const recipe = req.body;
-  const newRecipe = new Recipe({ ...recipe, author: 'faber' });
+  const newRecipe = new Recipe({
+    ...recipe,
+    author: req.userId,
+    createdAt: new Date().toISOString(),
+  });
   try {
     await newRecipe.save();
     res.status(201).json(newRecipe);
@@ -43,4 +47,36 @@ const deleteRecipe = async (req, res) => {
   res.json({ message: 'Recipe was successfully deleted!' });
 };
 
-module.exports = { getRecipes, createRecipe, deleteRecipe, getRecipe };
+const likeRecipe = async (req, res) => {
+  const { id } = req.params;
+
+  if (!req.userId) {
+    return res.json({ message: 'Unauthenticated' });
+  }
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).send(`No recipe was found with id: ${id}`);
+  }
+
+  const recipe = await Recipe.findById(id);
+  const index = recipe.likes.findIndex(id => id === String(req.userId));
+
+  if (index === -1) {
+    recipe.likes.push(req.userId);
+  } else {
+    recipe.likes = recipe.likes.filter(id => id !== String(req.userId));
+  }
+
+  const likedRecipe = await Recipe.findByIdAndUpdate(id, recipe, {
+    new: true,
+  });
+  res.status(200).json(likedRecipe);
+};
+
+module.exports = {
+  getRecipes,
+  createRecipe,
+  deleteRecipe,
+  getRecipe,
+  likeRecipe,
+};
