@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import {
   Button,
   Drawer,
@@ -10,6 +11,8 @@ import {
 } from '@material-ui/core';
 import { Menu } from '@material-ui/icons';
 
+import { LOGOUT } from '../../constants/actionTypes';
+
 import useStyles from './styles';
 
 const SideDrawer = ({ navLinks }) => {
@@ -17,6 +20,9 @@ const SideDrawer = ({ navLinks }) => {
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem('userProfile'))
   );
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const location = useLocation();
   const classes = useStyles();
 
   const toggleDrawer = (anchor, open) => event => {
@@ -29,10 +35,16 @@ const SideDrawer = ({ navLinks }) => {
     setState({ [anchor]: open });
   };
 
+  const logout = () => {
+    dispatch({ type: LOGOUT });
+    setUser(null);
+    history.push('/auth');
+  };
+
   useEffect(() => {
     const token = user?.token;
     setUser(JSON.parse(localStorage.getItem('userProfile')));
-  }, []);
+  }, [location]);
 
   const sideDrawerList = anchor => (
     <div
@@ -58,6 +70,7 @@ const SideDrawer = ({ navLinks }) => {
                 variant="contained"
                 color="secondary"
                 className={classes.logout}
+                onClick={logout}
               >
                 Logout
               </Button>

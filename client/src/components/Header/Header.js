@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import {
   AppBar,
   Avatar,
@@ -14,6 +15,8 @@ import {
 } from '@material-ui/core';
 import { Home } from '@material-ui/icons';
 
+import { LOGOUT } from '../../constants/actionTypes';
+
 import SideDrawer from '../SideDrawer';
 
 import useStyles from './styles';
@@ -27,12 +30,21 @@ const Header = () => {
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem('userProfile'))
   );
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const location = useLocation();
   const classes = useStyles();
+
+  const logout = () => {
+    dispatch({ type: LOGOUT });
+    setUser(null);
+    history.push('/auth');
+  };
 
   useEffect(() => {
     const token = user?.token;
     setUser(JSON.parse(localStorage.getItem('userProfile')));
-  }, []);
+  }, [location]);
 
   return (
     <AppBar position="static">
@@ -77,6 +89,7 @@ const Header = () => {
                       variant="contained"
                       color="secondary"
                       className={classes.logout}
+                      onClick={logout}
                     >
                       Logout
                     </Button>
