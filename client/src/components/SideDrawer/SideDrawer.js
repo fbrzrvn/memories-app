@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useHistory, useLocation } from 'react-router-dom';
+import decode from 'jwt-decode';
 import {
   Button,
   Drawer,
@@ -43,6 +44,14 @@ const SideDrawer = ({ navLinks }) => {
 
   useEffect(() => {
     const token = user?.token;
+    try {
+      const decodedToken = decode(token);
+      if (decodedToken.exp * 1000 < new Date().getTime()) {
+        logout();
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
     setUser(JSON.parse(localStorage.getItem('userProfile')));
   }, [location]);
 
@@ -54,6 +63,11 @@ const SideDrawer = ({ navLinks }) => {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List component="nav">
+        <Link to="/" className={classes.linkText}>
+          <ListItem button>
+            <ListItemText primary="home" />
+          </ListItem>
+        </Link>
         {user
           ? navLinks.map(({ title, path }) => (
               <Link to={path} key={title} className={classes.linkText}>

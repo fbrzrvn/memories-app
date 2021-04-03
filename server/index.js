@@ -4,6 +4,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 
 const recipeRoute = require('./routes/recipes.js');
+const authRoute = require('./routes/auth.js');
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.use(express.urlencoded({ limit: '30mb', extended: true }));
 app.use(cors());
 
 app.use('/recipes', recipeRoute);
+app.use('/', authRoute);
 
 const PORT = process.env.PORT || 5000;
 
@@ -26,3 +28,4 @@ mongoose
   .catch(err => console.log(err.message));
 
 mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);

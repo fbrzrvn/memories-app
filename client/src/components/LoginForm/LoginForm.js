@@ -12,10 +12,11 @@ import {
 } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
+import { AUTH } from '../../constants/actionTypes';
+import { signIn, signUp } from '../../actions/auth';
+
 import Input from './Input';
 import Icon from './GoogleIcon';
-
-import { AUTH } from '../../constants/actionTypes';
 
 import useStyle from './styles';
 
@@ -48,6 +49,12 @@ const LoginForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+
+    if (isSignUp) {
+      dispatch(signUp(formData, history));
+    } else {
+      dispatch(signIn(formData, history));
+    }
   };
 
   const switchMode = () => {

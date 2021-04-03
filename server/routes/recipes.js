@@ -1,4 +1,5 @@
 const express = require('express');
+const { auth } = require('../middleware/auth.js');
 const {
   getRecipes,
   createRecipe,
@@ -10,7 +11,7 @@ const router = express.Router();
 
 router.get('/', getRecipes);
 router.get('/:id', getRecipe);
-router.post('/api', createRecipe);
-router.delete('/api/:id', deleteRecipe);
+router.post('/api', auth, createRecipe);
+router.delete('/api/:id', auth, deleteRecipe);
 
 module.exports = router;

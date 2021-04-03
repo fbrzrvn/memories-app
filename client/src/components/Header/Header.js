@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useHistory, useLocation } from 'react-router-dom';
+import decode from 'jwt-decode';
 import {
   AppBar,
   Avatar,
@@ -43,6 +44,14 @@ const Header = () => {
 
   useEffect(() => {
     const token = user?.token;
+    try {
+      const decodedToken = decode(token);
+      if (decodedToken.exp * 1000 < new Date().getTime()) {
+        logout();
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
     setUser(JSON.parse(localStorage.getItem('userProfile')));
   }, [location]);
 
