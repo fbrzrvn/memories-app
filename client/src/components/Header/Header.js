@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
   AppBar,
@@ -22,10 +23,17 @@ const navLinks = [
   { title: `Favorite`, path: `/recipes/favorite` },
 ];
 
-const user = null;
-
 const Header = () => {
+  const [user, setUser] = useState(
+    JSON.parse(localStorage.getItem('userProfile'))
+  );
   const classes = useStyles();
+
+  useEffect(() => {
+    const token = user?.token;
+    setUser(JSON.parse(localStorage.getItem('userProfile')));
+  }, []);
+
   return (
     <AppBar position="static">
       <Toolbar>
@@ -58,9 +66,11 @@ const Header = () => {
               <ListItem>
                 {user ? (
                   <div className={classes.profile}>
-                    <Avatar />
+                    <Avatar alt={user?.result.name} src={user?.result.imageUrl}>
+                      {user?.result.name.charAt(0)}
+                    </Avatar>
                     <ListItemText
-                      primary="username"
+                      primary={user?.result.name}
                       className={classes.userName}
                     />
                     <Button

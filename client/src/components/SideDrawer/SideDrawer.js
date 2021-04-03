@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Button,
@@ -14,9 +14,10 @@ import useStyles from './styles';
 
 const SideDrawer = ({ navLinks }) => {
   const [state, setState] = useState({ right: false });
+  const [user, setUser] = useState(
+    JSON.parse(localStorage.getItem('userProfile'))
+  );
   const classes = useStyles();
-
-  const user = null;
 
   const toggleDrawer = (anchor, open) => event => {
     if (
@@ -27,6 +28,11 @@ const SideDrawer = ({ navLinks }) => {
     }
     setState({ [anchor]: open });
   };
+
+  useEffect(() => {
+    const token = user?.token;
+    setUser(JSON.parse(localStorage.getItem('userProfile')));
+  }, []);
 
   const sideDrawerList = anchor => (
     <div
