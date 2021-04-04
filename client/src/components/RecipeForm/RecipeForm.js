@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import FileBase from 'react-file-base64';
 
 import { Button, Grid, Paper, TextField, Typography } from '@material-ui/core';
 
-import { createRecipe } from '../../actions/recipe';
+import { createRecipe, updateRecipe } from '../../actions/recipe';
+import { RecipeContext } from '../../hooks/context';
 
 import useStyles from './styles';
 
@@ -28,13 +29,19 @@ const initialState = {
 
 const RecipeForm = () => {
   const [formData, setFormData] = useState(initialState);
+  const [currentRecipe, setCurrentRecipe] = useContext(RecipeContext);
   const dispatch = useDispatch();
   const history = useHistory();
   const classes = useStyles();
 
   const user = JSON.parse(localStorage.getItem('userProfile'));
 
+  useEffect(() => {
+    if (currentRecipe) setFormData(currentRecipe);
+  }, [currentRecipe]);
+
   const clear = () => {
+    setCurrentRecipe(null);
     setFormData(initialState);
   };
 
@@ -53,19 +60,28 @@ const RecipeForm = () => {
     )
       return;
 
-    dispatch(createRecipe({ ...formData, name: user?.result?.name }));
+    !currentRecipe
+      ? dispatch(createRecipe({ ...formData, name: user?.result?.name }))
+      : dispatch(
+          updateRecipe(currentRecipe._id, {
+            ...formData,
+            name: user?.result?.name,
+          })
+        );
     clear();
-    history.push('/');
+    history.push('/recipes');
   };
 
   return (
-    <Paper className={classes.paper} elevation="6">
+    <Paper className={classes.paper} elevation={6}>
       <form
         autoComplete="off"
         className={`${classes.root} ${classes.form}`}
         onSubmit={handleSubmit}
       >
-        <Typography variant="h6">Create a new recipe</Typography>
+        <Typography variant="h6">
+          {currentRecipe ? 'Update' : 'Create a new'} recipe
+        </Typography>
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <TextField
@@ -179,7 +195,7 @@ const RecipeForm = () => {
             type="submit"
             className={classes.btnForm}
           >
-            Submit
+            {currentRecipe ? 'Update' : 'Create'}
           </Button>
           <Button
             variant="contained"

@@ -1,4 +1,6 @@
 import moment from 'moment';
+import { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import {
   Button,
@@ -11,7 +13,9 @@ import {
 } from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
+import { RecipeContext } from '../../hooks/context';
 import { likeRecipe } from '../../actions/recipe';
 import Like from '../Like';
 
@@ -20,10 +24,16 @@ import Comments from './Comments';
 import useStyles from './styles';
 
 const RecipeCard = ({ recipe }) => {
+  const user = JSON.parse(localStorage.getItem('userProfile'));
+  const [, setCurrentRecipe] = useContext(RecipeContext);
+  const history = useHistory();
   const dispatch = useDispatch();
   const classes = useStyles();
 
-  const user = JSON.parse(localStorage.getItem('userProfile'));
+  const handleClick = recipe => {
+    setCurrentRecipe(recipe);
+    history.push('/recipes/api');
+  };
 
   return (
     <Grid container component={Card} className={classes.root}>
@@ -42,9 +52,16 @@ const RecipeCard = ({ recipe }) => {
           </Typography>
         </Grid>
         <Grid item className={classes.cardOverlay2}>
-          <Button color="secondary" disabled={!user}>
-            <FavoriteBorderIcon />
-          </Button>
+          {(user?.result?.googleId === recipe?.author ||
+            user?.result?._id === recipe?.author) && (
+            <Button
+              size="small"
+              style={{ color: 'white' }}
+              onClick={() => handleClick(recipe)}
+            >
+              <MoreHorizIcon />
+            </Button>
+          )}
         </Grid>
       </Grid>
 
@@ -57,15 +74,22 @@ const RecipeCard = ({ recipe }) => {
             {recipe.description}
           </Typography>
         </Grid>
-        <Grid item>
-          <Button
-            size="small"
-            color="primary"
-            disabled={!user}
-            onClick={() => dispatch(likeRecipe(recipe._id))}
-          >
-            <Like recipe={recipe} />
-          </Button>
+        <Grid container justify="space-between">
+          <Grid item>
+            <Button
+              size="small"
+              color="primary"
+              disabled={!user}
+              onClick={() => dispatch(likeRecipe(recipe._id))}
+            >
+              <Like recipe={recipe} />
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button color="secondary" disabled={!user}>
+              <FavoriteBorderIcon />
+            </Button>
+          </Grid>
         </Grid>
       </Grid>
 

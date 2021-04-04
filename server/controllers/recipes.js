@@ -47,6 +47,21 @@ const deleteRecipe = async (req, res) => {
   res.json({ message: 'Recipe was successfully deleted!' });
 };
 
+const updateRecipe = async (req, res) => {
+  const { id } = req.params;
+  const recipe = req.body;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).send(`No post was found with id: ${id}`);
+  }
+
+  const updatedRecipe = { ...recipe, _id: id };
+
+  await Recipe.findByIdAndUpdate(id, updatedRecipe, { new: true });
+
+  res.json(updatedRecipe);
+};
+
 const likeRecipe = async (req, res) => {
   const { id } = req.params;
 
@@ -78,5 +93,6 @@ module.exports = {
   createRecipe,
   deleteRecipe,
   getRecipe,
+  updateRecipe,
   likeRecipe,
 };

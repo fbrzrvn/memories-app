@@ -12,7 +12,7 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getRecipes());
-  }, [dispatch]);
+  }, [recipes, dispatch]);
 
   return (
     <Main>

@@ -55,6 +55,18 @@ export const deleteRecipe = id => async dispatch => {
   }
 };
 
+export const updateRecipe = (id, recipe) => async dispatch => {
+  try {
+    const { data } = await api.updateRecipe(id, recipe);
+    dispatch({
+      type: UPDATE,
+      payload: data,
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 export const likeRecipe = id => async dispatch => {
   const { data } = await api.likeRecipe(id);
   try {
