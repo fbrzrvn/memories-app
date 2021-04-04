@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { CircularProgress, Grid, Typography } from '@material-ui/core';
 
 import { getRecipes } from '../actions/recipe';

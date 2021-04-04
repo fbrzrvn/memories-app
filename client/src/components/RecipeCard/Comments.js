@@ -7,6 +7,8 @@ const Comments = ({ comments }) => {
   const [isComment, setIsComment] = useState(false);
   const classes = useStyles();
 
+  const user = JSON.parse(localStorage.getItem('userProfile'));
+
   return (
     <>
       <Grid container className={classes.cardComments}>
@@ -14,6 +16,7 @@ const Comments = ({ comments }) => {
         <Button
           color="primary"
           variant="outlined"
+          disabled={!user}
           onClick={() => setIsComment(!isComment)}
         >
           Add a comment

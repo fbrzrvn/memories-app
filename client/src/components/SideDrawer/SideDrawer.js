@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link, useHistory, useLocation } from 'react-router-dom';
-import decode from 'jwt-decode';
+import { Link, useHistory } from 'react-router-dom';
 import {
   Button,
   Drawer,
@@ -23,7 +22,6 @@ const SideDrawer = ({ navLinks }) => {
   );
   const dispatch = useDispatch();
   const history = useHistory();
-  const location = useLocation();
   const classes = useStyles();
 
   const toggleDrawer = (anchor, open) => event => {
@@ -41,19 +39,6 @@ const SideDrawer = ({ navLinks }) => {
     setUser(null);
     history.push('/auth');
   };
-
-  useEffect(() => {
-    const token = user?.token;
-    try {
-      const decodedToken = decode(token);
-      if (decodedToken.exp * 1000 < new Date().getTime()) {
-        logout();
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
-    setUser(JSON.parse(localStorage.getItem('userProfile')));
-  }, [location]);
 
   const sideDrawerList = anchor => (
     <div

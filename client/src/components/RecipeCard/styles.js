@@ -1,5 +1,4 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { red } from '@material-ui/core/colors';
 
 export default makeStyles(theme => ({
   root: {
@@ -11,10 +10,9 @@ export default makeStyles(theme => ({
     position: 'relative',
   },
   cardMedia: {
-    width: '100%',
+    width: '400',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     backgroundBlendMode: 'darken',
-    marginBottom: theme.spacing(2),
   },
   cardOverlay: {
     position: 'absolute',

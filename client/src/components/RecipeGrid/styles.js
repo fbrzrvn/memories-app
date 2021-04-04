@@ -1,5 +1,4 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { red } from '@material-ui/core/colors';
 
 export default makeStyles(theme => ({
   card: {
@@ -11,7 +10,6 @@ export default makeStyles(theme => ({
     position: 'relative',
   },
   cardImage: {
-    height: 0,
     paddingTop: '56.25%', // 16:9
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     backgroundBlendMode: 'darken',
@@ -29,10 +27,7 @@ export default makeStyles(theme => ({
     color: 'white',
   },
   cardBody: {
-    padding: theme.spacing(2),
-  },
-  cardFavorite: {
-    color: red[500],
+    padding: theme.spacing(1, 2, 2),
   },
   cardLink: {
     textDecoration: 'none',
@@ -40,5 +35,6 @@ export default makeStyles(theme => ({
   flexBetween: {
     display: 'flex',
     justifyContent: 'space-between',
+    padding: theme.spacing(0, 2, 1),
   },
 }));

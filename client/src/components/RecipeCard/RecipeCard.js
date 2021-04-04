@@ -23,11 +23,14 @@ const RecipeCard = ({ recipe }) => {
   const dispatch = useDispatch();
   const classes = useStyles();
 
+  const user = JSON.parse(localStorage.getItem('userProfile'));
+
   return (
     <Grid container component={Card} className={classes.root}>
       <Grid item xs={12} sm={12} md={6} className={classes.cardImage}>
         <CardMedia
           component="img"
+          height="400"
           image={recipe.image}
           title={recipe.title}
           className={classes.cardMedia}
@@ -39,7 +42,7 @@ const RecipeCard = ({ recipe }) => {
           </Typography>
         </Grid>
         <Grid item className={classes.cardOverlay2}>
-          <Button color="secondary">
+          <Button color="secondary" disabled={!user}>
             <FavoriteBorderIcon />
           </Button>
         </Grid>
@@ -58,6 +61,7 @@ const RecipeCard = ({ recipe }) => {
           <Button
             size="small"
             color="primary"
+            disabled={!user}
             onClick={() => dispatch(likeRecipe(recipe._id))}
           >
             <Like recipe={recipe} />

@@ -6,7 +6,7 @@ const Main = ({ children }) => {
   return (
     <>
       <Header />
-      <Container>{children}</Container>
+      <Container style={{ margin: '32px auto' }}>{children}</Container>
     </>
   );
 };

@@ -23,8 +23,8 @@ import SideDrawer from '../SideDrawer';
 import useStyles from './styles';
 
 const navLinks = [
-  { title: `Create`, path: `/recipes/api` },
-  { title: `Favorite`, path: `/recipes/favorite` },
+  { title: 'Create', path: `/recipes/api` },
+  { title: 'Favorite', path: `/recipes/favorite` },
 ];
 
 const Header = () => {
@@ -43,9 +43,8 @@ const Header = () => {
   };
 
   useEffect(() => {
-    const token = user?.token;
     try {
-      const decodedToken = decode(token);
+      const decodedToken = decode(user.token);
       if (decodedToken.exp * 1000 < new Date().getTime()) {
         logout();
       }

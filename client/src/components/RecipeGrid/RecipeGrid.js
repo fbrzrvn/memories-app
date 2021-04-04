@@ -23,10 +23,13 @@ const RecipeGrid = ({ recipe }) => {
   const dispatch = useDispatch();
   const classes = useStyles();
 
+  const user = JSON.parse(localStorage.getItem('userProfile'));
+
   return (
     <Grid item component={Card} className={classes.card}>
       <CardMedia
         component="img"
+        height="300"
         image={recipe.image}
         title={recipe.title}
         className={recipe.cardImage}
@@ -38,7 +41,7 @@ const RecipeGrid = ({ recipe }) => {
         </Typography>
       </Grid>
       <Grid item className={classes.cardOverlay2}>
-        <Button color="secondary">
+        <Button color="secondary" disabled={!user}>
           <FavoriteBorderIcon />
         </Button>
       </Grid>
@@ -85,18 +88,22 @@ const RecipeGrid = ({ recipe }) => {
         <Button
           size="small"
           color="primary"
+          disabled={!user}
           onClick={() => dispatch(likeRecipe(recipe._id))}
         >
           <Like recipe={recipe} />
         </Button>
-        <Button
-          size="small"
-          color="primary"
-          onClick={() => dispatch(deleteRecipe(recipe._id))}
-        >
-          <DeleteIcon fontSize="small" />
-          &nbsp;Delete
-        </Button>
+        {(user?.result?.googleId === recipe?.author ||
+          user?.result?._id === recipe?.author) && (
+          <Button
+            size="small"
+            color="primary"
+            onClick={() => dispatch(deleteRecipe(recipe._id))}
+          >
+            <DeleteIcon fontSize="small" />
+            &nbsp;Delete
+          </Button>
+        )}
       </CardActions>
     </Grid>
   );

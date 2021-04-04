@@ -59,7 +59,7 @@ const RecipeForm = () => {
   };
 
   return (
-    <Paper className={classes.paper}>
+    <Paper className={classes.paper} elevation="6">
       <form
         autoComplete="off"
         className={`${classes.root} ${classes.form}`}
