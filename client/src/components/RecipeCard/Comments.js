@@ -1,13 +1,29 @@
 import { useState } from 'react';
-import { Button, Divider, Grid, Typography } from '@material-ui/core';
+import {
+  Button,
+  Divider,
+  Grid,
+  IconButton,
+  InputBase,
+  Paper,
+  Typography,
+} from '@material-ui/core';
+import SendIcon from '@material-ui/icons/Send';
 
 import useStyles from './styles';
 
 const Comments = ({ comments }) => {
+  const user = JSON.parse(localStorage.getItem('userProfile'));
   const [isComment, setIsComment] = useState(false);
+  const [comment, setComment] = useState('');
   const classes = useStyles();
 
-  const user = JSON.parse(localStorage.getItem('userProfile'));
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (!comment) return;
+    console.log(comment);
+    setComment('');
+  };
 
   return (
     <>
@@ -22,14 +38,6 @@ const Comments = ({ comments }) => {
           Add a comment
         </Button>
       </Grid>
-
-      {isComment ? (
-        <Grid container className={classes.cardComment}>
-          <Typography variant="h2" color="primary" gutterBottom>
-            Comment Form
-          </Typography>
-        </Grid>
-      ) : null}
 
       <Grid container className={classes.cardComment}>
         {comments?.length ? (
@@ -48,6 +56,33 @@ const Comments = ({ comments }) => {
           </Grid>
         )}
       </Grid>
+
+      {isComment ? (
+        <Grid container className={classes.cardComment}>
+          <Paper
+            component="form"
+            className={classes.commentForm}
+            onSubmit={handleSubmit}
+          >
+            <InputBase
+              placeholder="Type a comment"
+              inputProps={{ 'aria-label': 'type a comment' }}
+              value={comment}
+              onChange={e => setComment(e.target.value)}
+              className={classes.commentInput}
+            />
+            <Divider orientation="vertical" className={classes.divider} />
+            <IconButton
+              color="primary"
+              aria-label="send"
+              type="submit"
+              className={classes.iconButton}
+            >
+              <SendIcon />
+            </IconButton>
+          </Paper>
+        </Grid>
+      ) : null}
     </>
   );
 };
