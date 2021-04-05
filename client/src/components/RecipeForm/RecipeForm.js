@@ -28,13 +28,12 @@ const initialState = {
 };
 
 const RecipeForm = () => {
+  const user = JSON.parse(localStorage.getItem('userProfile'));
   const [formData, setFormData] = useState(initialState);
   const [currentRecipe, setCurrentRecipe] = useContext(RecipeContext);
   const dispatch = useDispatch();
   const history = useHistory();
   const classes = useStyles();
-
-  const user = JSON.parse(localStorage.getItem('userProfile'));
 
   useEffect(() => {
     if (currentRecipe) setFormData(currentRecipe);
@@ -60,14 +59,16 @@ const RecipeForm = () => {
     )
       return;
 
-    !currentRecipe
-      ? dispatch(createRecipe({ ...formData, name: user?.result?.name }))
-      : dispatch(
-          updateRecipe(currentRecipe._id, {
-            ...formData,
-            name: user?.result?.name,
-          })
-        );
+    if (!currentRecipe) {
+      dispatch(createRecipe({ ...formData, name: user?.result?.name }));
+    } else {
+      dispatch(
+        updateRecipe(currentRecipe._id, {
+          ...formData,
+          name: user?.result?.name,
+        })
+      );
+    }
     clear();
     history.push('/recipes');
   };

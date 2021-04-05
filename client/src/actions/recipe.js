@@ -5,6 +5,7 @@ import {
   DELETE,
   FETCH_ONE,
   UPDATE,
+  LIKE,
 } from '../constants/actionTypes';
 
 export const getRecipes = () => async dispatch => {
@@ -70,7 +71,7 @@ export const updateRecipe = (id, recipe) => async dispatch => {
 export const likeRecipe = id => async dispatch => {
   const { data } = await api.likeRecipe(id);
   try {
-    dispatch({ type: UPDATE, payload: data });
+    dispatch({ type: LIKE, payload: data });
   } catch (error) {
     console.log(error.message);
   }

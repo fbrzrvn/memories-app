@@ -17,6 +17,7 @@ const App = () => {
       <RecipeProvider>
         <Switch>
           <Route path="/recipes/favorite" component={Favorite} />
+          <Route path="/recipes/api/:recipeId" component={NewRecipe} />
           <Route path="/recipes/api" component={NewRecipe} />
           <Route path="/recipes/:recipeId" component={Recipe} />
           <Route path="/auth" component={Auth} />

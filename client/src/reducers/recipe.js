@@ -4,6 +4,7 @@ import {
   CREATE,
   DELETE,
   UPDATE,
+  LIKE,
 } from '../constants/actionTypes';
 
 const recipeReducer = (recipes = [], action) => {
@@ -17,11 +18,11 @@ const recipeReducer = (recipes = [], action) => {
     case DELETE:
       return recipes.filter(recipe => recipe._id !== action.payload);
     case UPDATE:
-      return recipes.length > 0
-        ? recipes.map(recipe =>
-            recipe._id === action.payload._id ? action.payload : recipe
-          )
-        : action.payload;
+      return action.payload;
+    case LIKE:
+      return recipes.map(recipe =>
+        recipe._id === action.payload._id ? action.payload : recipe
+      );
     default:
       return recipes;
   }

@@ -20,10 +20,9 @@ import Like from '../Like';
 import useStyles from './styles';
 
 const RecipeGrid = ({ recipe }) => {
+  const user = JSON.parse(localStorage.getItem('userProfile'));
   const dispatch = useDispatch();
   const classes = useStyles();
-
-  const user = JSON.parse(localStorage.getItem('userProfile'));
 
   return (
     <Grid item component={Card} className={classes.card}>
