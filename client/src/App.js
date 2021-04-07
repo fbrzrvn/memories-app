@@ -7,7 +7,7 @@ import store from './store';
 
 import Home from './pages/Home';
 import Auth from './pages/Auth';
-import Favorite from './pages/Favorite';
+import Favourite from './pages/Favourite';
 import NewRecipe from './pages/NewRecipe';
 import Recipe from './pages/Recipe';
 
@@ -16,7 +16,7 @@ const App = () => {
     <ReduxProvider store={store}>
       <RecipeProvider>
         <Switch>
-          <Route path="/recipes/favorite" component={Favorite} />
+          <Route path="/recipes/favourite" component={Favourite} />
           <Route path="/recipes/api/:recipeId" component={NewRecipe} />
           <Route path="/recipes/api" component={NewRecipe} />
           <Route path="/recipes/:recipeId" component={Recipe} />

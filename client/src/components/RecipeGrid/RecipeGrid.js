@@ -14,6 +14,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import DeleteIcon from '@material-ui/icons/Delete';
 
+import useFavourite from '../../hooks/useFavourite';
 import { deleteRecipe, likeRecipe } from '../../actions/recipe';
 import Like from '../Like';
 
@@ -21,6 +22,7 @@ import useStyles from './styles';
 
 const RecipeGrid = ({ recipe }) => {
   const user = JSON.parse(localStorage.getItem('userProfile'));
+  const { favourite, toggleFavourite } = useFavourite();
   const dispatch = useDispatch();
   const classes = useStyles();
 
@@ -40,8 +42,12 @@ const RecipeGrid = ({ recipe }) => {
         </Typography>
       </Grid>
       <Grid item className={classes.cardOverlay2}>
-        <Button color="secondary" disabled={!user}>
-          <FavoriteBorderIcon />
+        <Button
+          color="secondary"
+          disabled={!user}
+          onClick={() => toggleFavourite(recipe)}
+        >
+          {favourite[recipe._id] ? <FavoriteIcon /> : <FavoriteBorderIcon />}
         </Button>
       </Grid>
       <CardContent className={classes.cardBody}>

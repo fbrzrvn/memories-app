@@ -24,7 +24,7 @@ import useStyles from './styles';
 
 const navLinks = [
   { title: 'Create', path: `/recipes/api` },
-  { title: 'Favorite', path: `/recipes/favorite` },
+  { title: 'Favourite', path: `/recipes/favourite` },
 ];
 
 const Header = () => {
