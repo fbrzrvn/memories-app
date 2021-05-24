@@ -1,0 +1,26 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "fab-rvn",
+      "name": "Fabrizio Ervini",
+      "avatar_url": "https://avatars.githubusercontent.com/u/66378887?v=4",
+      "profile": "https://faberdev.netlify.app/",
+      "contributions": [
+        "code",
+        "test",
+        "documentation",
+      ]
+    },
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "",
+  "projectOwner": "",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
