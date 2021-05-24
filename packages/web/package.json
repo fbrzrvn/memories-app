@@ -22,7 +22,7 @@
     {
       "name": "Fabrizio Ervini",
       "email": "fabri.es018@gmail.com",
-      "url": "https://faberdev.netlify.app/"
+      "url": "https://fabrizioervini.com/"
     }
   ],
   "license": "MIT",
@@ -53,10 +53,13 @@
     "@testing-library/react": "^11.2.3",
     "@testing-library/user-event": "^12.6.2",
     "axios": "^0.21.1",
+    "moment": "^2.29.1",
     "normalizr": "^3.6.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-file-base64": "^1.0.3",
+    "react-google-login": "^5.2.2",
     "react-helmet": "^6.1.0",
     "react-intl": "^5.13.2",
     "react-redux": "^7.2.2",
@@ -68,6 +71,7 @@
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
+    "styled-components": "^5.3.0",
     "web-vitals": "^0.2.4"
   },
   "devDependencies": {
