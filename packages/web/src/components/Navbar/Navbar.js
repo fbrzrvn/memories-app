@@ -1,9 +1,12 @@
 import { func } from "prop-types";
 import React from "react";
 import { AiOutlineMenu } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import useWindowSize from "../../hooks/useWindowSize";
+import { signOut } from "../../redux/auth/authActions";
+import { authSelector } from "../../redux/auth/authSelector";
 import * as ROUTES from "../../routes";
-// import { authSelector } from "../../redux/auth/authSelector";
 import Button from "../Button";
 import SearchBar from "../SearchBar";
 import {
@@ -12,20 +15,18 @@ import {
   NavbarBtn,
   NavbarLink,
   NavContainer,
-  NavItem,
   NavLogo,
   NavMenu,
 } from "./styles";
 
 const Navbar = ({ toggleNavbar }) => {
   const width = useWindowSize();
-  // const { isAuthenticated } = useSelector(authSelector);
-  // const history = useHistory();
-  // const dispatch = useDispatch();
+  const { isAuthenticated } = useSelector(authSelector);
+  const history = useHistory();
+  const dispatch = useDispatch();
 
   const handleClick = () => {
-    // isAuthenticated ? dispatch(signOut()) : history.push(ROUTES.SIGN_IN);
-    console.log("click");
+    isAuthenticated ? dispatch(signOut()) : history.push(ROUTES.SIGN_IN);
   };
 
   return (
@@ -41,22 +42,9 @@ const Navbar = ({ toggleNavbar }) => {
           </NavbarLink>
         )}
         <NavMenu>
-          <NavItem>
-            <NavbarLink to="">Gifs</NavbarLink>
-          </NavItem>
-          <NavItem>
-            <NavbarLink to="">Jokes</NavbarLink>
-          </NavItem>
-          <NavItem>
-            <NavbarLink to="">Memes</NavbarLink>
-          </NavItem>
-          <NavItem>
-            <NavbarLink to="">Upload</NavbarLink>
-          </NavItem>
           <NavbarBtn>
             <Button primary onClick={handleClick}>
-              {/* {isAuthenticated ? "Logout" : "Sign In"} */}
-              login
+              {isAuthenticated ? "Logout" : "Sign In"}
             </Button>
           </NavbarBtn>
         </NavMenu>

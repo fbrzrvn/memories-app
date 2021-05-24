@@ -1,9 +1,10 @@
 import { bool, func } from "prop-types";
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { signOut } from "../../redux/auth/authActions";
+import { authSelector } from "../../redux/auth/authSelector";
 import * as ROUTES from "../../routes";
-// import { useDispatch, useSelector } from "react-redux";
-// import { useHistory } from "react-router-dom";
-// import { authSelector } from "../../redux/auth/authSelector";
 import Button from "../Button";
 import SearchBar from "../SearchBar";
 import {
@@ -17,13 +18,12 @@ import {
 } from "./styles";
 
 const Sidebar = ({ toggleNavbar, isOpen }) => {
-  // const { isAuthenticated } = useSelector(authSelector);
-  // const history = useHistory();
-  // const dispatch = useDispatch();
+  const { isAuthenticated } = useSelector(authSelector);
+  const history = useHistory();
+  const dispatch = useDispatch();
 
   const handleClick = () => {
-    // isAuthenticated ? dispatch(signOut()) : history.push(ROUTES.SIGN_IN);
-    console.log("click");
+    isAuthenticated ? dispatch(signOut()) : history.push(ROUTES.SIGN_IN);
   };
 
   return (
@@ -36,22 +36,9 @@ const Sidebar = ({ toggleNavbar, isOpen }) => {
           <SearchBar />
         </SidebarLink>
         <SidebarMenu>
-          <SidebarLink to="" onClick={toggleNavbar}>
-            Gifs
-          </SidebarLink>
-          <SidebarLink to="" onClick={toggleNavbar}>
-            Jokes
-          </SidebarLink>
-          <SidebarLink to="" onClick={toggleNavbar}>
-            Memes
-          </SidebarLink>
-          <SidebarLink to="" onClick={toggleNavbar}>
-            Upload
-          </SidebarLink>
           <SidebarBtn>
             <Button primary onClick={handleClick}>
-              {/* {isAuthenticated ? "Logout" : "Login"} */}
-              login
+              {isAuthenticated ? "Logout" : "Login"}
             </Button>
           </SidebarBtn>
         </SidebarMenu>
