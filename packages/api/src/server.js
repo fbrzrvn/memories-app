@@ -4,6 +4,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 
 const { config } = require("./config");
+const { userRouter } = require("./routes");
 
 const app = express();
 
@@ -17,11 +18,7 @@ app.use(
   }),
 );
 
-app.get("/", (req, res) => {
-  res.status(200).send({
-    data: "hello-world",
-  });
-});
+app.use(userRouter);
 
 module.exports = {
   app: app,
