@@ -45,7 +45,7 @@ export const MobileIcon = styled.div`
     position: absolute;
     top: 0;
     right: 0;
-    transform: translate(-100%, 60%);
+    transform: translate(-100%, 87%);
     font-size: 1.8rem;
     color: ${COLOR.text};
     cursor: pointer;
@@ -65,6 +65,9 @@ export const NavMenu = styled.ul`
 
 export const NavItem = styled.li`
   height: 80px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
 `;
 
 export const NavbarLink = styled(NavLink)`

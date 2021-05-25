@@ -1,3 +1,4 @@
+import { Avatar } from "@material-ui/core";
 import { func } from "prop-types";
 import React from "react";
 import { AiOutlineMenu } from "react-icons/ai";
@@ -15,13 +16,14 @@ import {
   NavbarBtn,
   NavbarLink,
   NavContainer,
+  NavItem,
   NavLogo,
   NavMenu,
 } from "./styles";
 
 const Navbar = ({ toggleNavbar }) => {
   const width = useWindowSize();
-  const { isAuthenticated } = useSelector(authSelector);
+  const { isAuthenticated, currentUser } = useSelector(authSelector);
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -32,7 +34,7 @@ const Navbar = ({ toggleNavbar }) => {
   return (
     <Nav>
       <NavContainer>
-        <NavLogo to="/">Jokes App</NavLogo>
+        <NavLogo to="/">Memories App</NavLogo>
         <MobileIcon onClick={toggleNavbar}>
           <AiOutlineMenu />
         </MobileIcon>
@@ -42,6 +44,17 @@ const Navbar = ({ toggleNavbar }) => {
           </NavbarLink>
         )}
         <NavMenu>
+          {isAuthenticated && (
+            <NavItem>
+              <Avatar
+                alt={currentUser?.user?.name}
+                src={currentUser?.user?.imageUrl}
+              >
+                {currentUser?.user?.name.charAt(0)}
+              </Avatar>
+            </NavItem>
+          )}
+          <NavItem>{currentUser?.user?.name}</NavItem>
           <NavbarBtn>
             <Button primary onClick={handleClick}>
               {isAuthenticated ? "Logout" : "Sign In"}
