@@ -1,3 +1,4 @@
+import { FcGoogle } from "react-icons/fc";
 import styled from "styled-components";
 import { COLOR } from "../../styles/colors";
 
@@ -99,4 +100,32 @@ export const ErrorMsg = styled.p`
     margin-top: -24px;
     margin-bottom: 32px;
   }
+`;
+
+export const GoogleBtn = styled.button`
+  background: ${COLOR.background};
+  color: ${COLOR.deepPurple400};
+  border: 1px solid ${COLOR.deepPurple400};
+  border-radius: 10px;
+  padding: 8px 30px;
+  margin-top: 8px;
+  font-size: 16px;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+  &:hover {
+    transition: all 300ms ease-in-out;
+    border: 1px solid ${COLOR.deepPurple700};
+    color: ${COLOR.deepPurple700};
+    background: ${COLOR.navbar};
+  }
+`;
+
+export const GoogleIcon = styled(FcGoogle)`
+  margin-right: 12px;
+  font-size: 24px;
 `;

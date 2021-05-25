@@ -1,8 +1,14 @@
 import React, { useEffect } from "react";
+import { GoogleLogin } from "react-google-login";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
-import { resetAuthState, signUp } from "../../redux/auth/authActions";
+import {
+  resetAuthState,
+  signUp,
+  signUpError,
+  signUpSuccess,
+} from "../../redux/auth/authActions";
 import { authSelector } from "../../redux/auth/authSelector";
 import * as ROUTES from "../../routes";
 import Button from "../Button";
@@ -15,12 +21,14 @@ import {
   FormLabel,
   FormWrap,
   FormWrapper,
+  GoogleBtn,
+  GoogleIcon,
   LinkWrap,
 } from "./styles";
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
-  const { isSigningUp, signUpError, isAuthenticated } = useSelector(
+  const { isSigningUp, isSignUpError, isAuthenticated } = useSelector(
     authSelector,
   );
   const {
@@ -38,6 +46,16 @@ const SignUpForm = () => {
 
   const onSubmit = (data) => {
     dispatch(signUp(data));
+  };
+
+  const googleSuccess = async (res) => {
+    const user = res.profileObj;
+    const token = res.tokenId;
+    dispatch(signUpSuccess({ user, token }));
+  };
+
+  const googleFailure = () => {
+    dispatch(signUpError("Google Sign Up was unsuccessful. Try again later."));
   };
 
   if (isAuthenticated) {
@@ -128,10 +146,25 @@ const SignUpForm = () => {
             {errors.confirmPassword && (
               <ErrorMsg>{errors.confirmPassword.message}</ErrorMsg>
             )}
-            {signUpError && <ErrorMsg>{signUpError}</ErrorMsg>}
+            {isSignUpError && <ErrorMsg>{isSignUpError}</ErrorMsg>}
             <Button primary disabled={isSigningUp}>
-              Sign In
+              Sign Up
             </Button>
+            <GoogleLogin
+              clientId={process.env.REACT_APP_GOOGLE_AUTH_ID}
+              render={(renderProps) => (
+                <GoogleBtn
+                  onClick={renderProps.onClick}
+                  disabled={renderProps.disabled}
+                >
+                  <GoogleIcon />
+                  Sign Up with Google
+                </GoogleBtn>
+              )}
+              onSuccess={googleSuccess}
+              onFailure={googleFailure}
+              cookiePolicy="single_host_origin"
+            />
             <LinkWrap>
               <Link to={ROUTES.SIGN_IN}>Already have an account? Sign In</Link>
             </LinkWrap>

@@ -2,7 +2,7 @@ import * as AuthTypes from "./authTypes";
 
 export const AuthInitialState = {
   isSigningUp: false,
-  signUpError: null,
+  isSignUpError: null,
   isAuthenticated: false,
   currentUser: {},
 };
@@ -13,14 +13,14 @@ const AuthReducer = (state = AuthInitialState, action) => {
       return {
         ...state,
         isSigningUp: true,
-        signUpError: null,
+        isSignUpError: null,
       };
     }
     case AuthTypes.SIGN_UP_ERROR: {
       return {
         ...state,
         isSigningUp: false,
-        signUpError: action.payload,
+        isSignUpError: action.payload,
       };
     }
     case AuthTypes.SIGN_UP_SUCCESS: {
@@ -28,7 +28,7 @@ const AuthReducer = (state = AuthInitialState, action) => {
         ...state,
         isAuthenticated: true,
         isSigningUp: false,
-        signUpError: null,
+        isSignUpError: null,
         currentUser: action.payload,
       };
     }
@@ -43,7 +43,7 @@ const AuthReducer = (state = AuthInitialState, action) => {
       return {
         ...state,
         isSigningUp: false,
-        signUpError: null,
+        isSignUpError: null,
       };
     }
     default: {
