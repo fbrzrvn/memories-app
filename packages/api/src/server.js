@@ -4,7 +4,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 
 const { config } = require("./config");
-const { userRouter } = require("./routes");
+const { userRouter, postRouter } = require("./routes");
 
 const app = express();
 
@@ -19,6 +19,7 @@ app.use(
 );
 
 app.use(userRouter);
+app.use(postRouter);
 
 module.exports = {
   app: app,
