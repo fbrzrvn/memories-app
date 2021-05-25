@@ -20,4 +20,6 @@ export const MainContainer = styled.div`
 export const MainWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 `;

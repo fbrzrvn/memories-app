@@ -1,7 +1,7 @@
 import { Avatar } from "@material-ui/core";
 import { func } from "prop-types";
 import React from "react";
-import { AiOutlineMenu } from "react-icons/ai";
+import { AiOutlineMenu, AiOutlinePlus } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import useWindowSize from "../../hooks/useWindowSize";
@@ -44,6 +44,11 @@ const Navbar = ({ toggleNavbar }) => {
           </NavbarLink>
         )}
         <NavMenu>
+          <NavItem>
+            <NavbarLink to={ROUTES.CREATE}>
+              <AiOutlinePlus />
+            </NavbarLink>
+          </NavItem>
           {isAuthenticated && (
             <NavItem>
               <Avatar
