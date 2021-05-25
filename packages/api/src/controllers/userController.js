@@ -2,6 +2,39 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { User } = require("../models");
 
+const signUp = async (req, res) => {
+  const { firstName, lastName, email, password, confirmPassword } = req.body;
+
+  try {
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ message: "User already exist!" });
+    }
+
+    if (password !== confirmPassword) {
+      return res.status(400).json({ message: "Password don't match!" });
+    }
+
+    const hashPassword = await bcrypt.hash(password, 12);
+
+    const user = await User.create({
+      name: `${firstName} ${lastName}`,
+      email: email,
+      password: hashPassword,
+    });
+
+    const token = jwt.sign(
+      { email: user.email, id: user._id },
+      process.env.SECRET,
+      { expiresIn: "1h" },
+    );
+
+    return res.status(201).json({ user: user, token });
+  } catch (error) {
+    res.status(500).json({ message: "Something went wrong! Try again later." });
+  }
+};
+
 const signIn = async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -25,39 +58,6 @@ const signIn = async (req, res) => {
     );
 
     res.status(200).json({ user: existingUser, token });
-  } catch (error) {
-    res.status(500).json({ message: "Something went wrong! Try again later." });
-  }
-};
-
-const signUp = async (req, res) => {
-  const { firstName, lastName, email, password, confirmPassword } = req.body;
-
-  try {
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      return res.status(400).json({ message: "User already exist!" });
-    }
-
-    if (password !== confirmPassword) {
-      return res.status(400).json({ message: "Password don't match!" });
-    }
-
-    const hashPassword = await bcrypt.hash(password, 12);
-    const user = await User.create({
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      password: hashPassword,
-    });
-
-    const token = jwt.sign(
-      { email: user.email, id: user._id },
-      process.env.SECRET,
-      { expiresIn: "1h" },
-    );
-
-    return res.status(201).json({ user, token });
   } catch (error) {
     res.status(500).json({ message: "Something went wrong! Try again later." });
   }
