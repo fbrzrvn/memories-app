@@ -25,5 +25,20 @@ export const createPost = (post) => async (dispatch) => {
   } catch (error) {
     dispatch(postError(error.message));
   }
-  return dispatch(resetPostState());
+  dispatch(resetPostState());
+};
+
+export const fetchSuccess = (posts) => ({
+  type: postTypes.FETCH_SUCCESS,
+  payload: posts,
+});
+
+export const fetchPosts = () => async (dispatch) => {
+  dispatch(postRequest());
+  try {
+    const { data } = await API.getPosts();
+    dispatch(fetchSuccess(data));
+  } catch (error) {
+    dispatch(postError(error.message));
+  }
 };

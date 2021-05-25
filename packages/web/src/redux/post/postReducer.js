@@ -30,6 +30,14 @@ const postReducer = (state = postInitialState, action) => {
         posts: [...state.posts, action.payload],
       };
     }
+    case postTypes.FETCH_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
+        isLoaded: true,
+        posts: action.payload,
+      };
+    }
     case postTypes.RESET_POST_STATE: {
       return {
         ...postInitialState,
