@@ -4,7 +4,7 @@ const { postController } = require("../controllers");
 
 const postRouter = Router();
 
-// postRouter.get("/", postController.fetchPosts);
+postRouter.get("/", postController.fetchPosts);
 postRouter.post("/create", postController.createPost);
 
 module.exports = {
