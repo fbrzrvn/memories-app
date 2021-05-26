@@ -24,7 +24,7 @@ const UploadForm = () => {
     description: "",
     media: "",
     tags: [],
-    author: currentUser.user.name.split(" ")[0],
+    name: currentUser.user.name.split(" ")[0],
   };
 
   const [formData, setFormData] = useState(initialState);

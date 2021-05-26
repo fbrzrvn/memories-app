@@ -24,6 +24,10 @@ const AuthReducer = (state = AuthInitialState, action) => {
       };
     }
     case AuthTypes.SIGN_UP_SUCCESS: {
+      localStorage.setItem(
+        "USER_PROFILE",
+        JSON.stringify({ ...action.payload }),
+      );
       return {
         ...state,
         isAuthenticated: true,
@@ -33,6 +37,7 @@ const AuthReducer = (state = AuthInitialState, action) => {
       };
     }
     case AuthTypes.SIGN_OUT: {
+      localStorage.removeItem("USER_PROFILE");
       return {
         ...state,
         isAuthenticated: false,

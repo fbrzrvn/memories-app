@@ -2,7 +2,10 @@ const { Post } = require("../models");
 
 const createPost = async (req, res) => {
   const postData = req.body;
-  const newPost = new Post(postData);
+  const newPost = new Post({
+    ...postData,
+    author: req.userId,
+  });
 
   try {
     await newPost.save();

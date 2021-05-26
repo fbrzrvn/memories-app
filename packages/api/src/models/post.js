@@ -19,9 +19,11 @@ const PostSchema = new mongoose.Schema(
       type: [String],
       default: [],
     },
+    name: {
+      type: String,
+    },
     author: {
       type: String,
-      required: [true, "You must be looged in to create post"],
     },
   },
   {
