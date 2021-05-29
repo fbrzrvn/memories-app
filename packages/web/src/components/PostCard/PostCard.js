@@ -5,8 +5,11 @@ import ThumbUpAltOutlined from "@material-ui/icons/ThumbUpAltOutlined";
 import moment from "moment";
 import { object } from "prop-types";
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { authSelector } from "../../redux/auth/authSelector";
+import { getPostId } from "../../redux/post/postActions";
+import * as ROUTES from "../../routes";
 import {
   Card,
   PostFooter,
@@ -21,6 +24,13 @@ import {
 
 const PostCard = ({ post }) => {
   const { currentUser } = useSelector(authSelector);
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const handleClick = (postId) => {
+    dispatch(getPostId(postId));
+    history.push(ROUTES.UPDATE);
+  };
 
   return (
     <Card>
@@ -32,7 +42,11 @@ const PostCard = ({ post }) => {
       <PostOverlay2>
         {(currentUser?.user?.googleId === post?.author ||
           currentUser?.user?._id === post?.author) && (
-          <Button style={{ color: "#F5F6F7" }} size="small">
+          <Button
+            style={{ color: "#F5F6F7" }}
+            size="small"
+            onClick={() => handleClick(post._id)}
+          >
             <MoreVertIcon />
           </Button>
         )}

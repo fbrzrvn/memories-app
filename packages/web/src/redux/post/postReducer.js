@@ -5,6 +5,7 @@ export const postInitialState = {
   isLoading: false,
   error: null,
   posts: [],
+  currentPostId: null,
 };
 
 const postReducer = (state = postInitialState, action) => {
@@ -38,9 +39,31 @@ const postReducer = (state = postInitialState, action) => {
         posts: action.payload,
       };
     }
+    case postTypes.GET_POST_ID: {
+      return {
+        ...state,
+        currentPostId: action.payload,
+      };
+    }
+    case postTypes.RESET_POST_ID: {
+      return {
+        ...state,
+        currentPostId: null,
+      };
+    }
     case postTypes.RESET_POST_STATE: {
       return {
         ...postInitialState,
+      };
+    }
+    case postTypes.UPDATE_POST: {
+      return {
+        ...state,
+        isLoading: false,
+        isLoaded: true,
+        posts: state.posts.map((post) =>
+          post._id === action.payload._id ? action.payload : post,
+        ),
       };
     }
     default:
