@@ -1,4 +1,5 @@
 const { Post } = require("../models");
+const mongoose = require("mongoose");
 
 const createPost = async (req, res) => {
   const postData = req.body;
@@ -24,4 +25,19 @@ const fetchPosts = async (req, res) => {
   }
 };
 
-module.exports = { createPost, fetchPosts };
+const updatePost = async (req, res) => {
+  const { id } = req.params;
+  const { name, title, description, tags, media } = req.body;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).send(`No post was found with id: ${id}`);
+  }
+
+  const updatedPost = { name, title, description, tags, media, _id: id };
+
+  await Post.findByIdAndUpdate(id, updatedPost, { new: true });
+
+  res.json(updatedPost);
+};
+
+module.exports = { createPost, fetchPosts, updatePost };
