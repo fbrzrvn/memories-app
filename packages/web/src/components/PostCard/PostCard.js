@@ -23,7 +23,7 @@ import {
 } from "./styles";
 
 const PostCard = ({ post }) => {
-  const { currentUser } = useSelector(authSelector);
+  const { isAuthenticated, currentUser } = useSelector(authSelector);
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -55,10 +55,12 @@ const PostCard = ({ post }) => {
         <PostP>{post.tags.map((tag) => `#${tag} `)}</PostP>
         <PostH2>{post.title}</PostH2>
         <PostFooter>
-          <Button size="small" color="primary">
-            <ThumbUpAltOutlined fontSize="small" />
-            &nbsp; Like
-          </Button>
+          {isAuthenticated && (
+            <Button size="small" color="primary">
+              <ThumbUpAltOutlined fontSize="small" />
+              &nbsp; Like
+            </Button>
+          )}
           {(currentUser?.user?.googleId === post?.author ||
             currentUser?.user?._id === post?.author) && (
             <Button
