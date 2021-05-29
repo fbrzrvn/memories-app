@@ -8,7 +8,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { authSelector } from "../../redux/auth/authSelector";
-import { getPostId } from "../../redux/post/postActions";
+import { deletePost, getPostId } from "../../redux/post/postActions";
 import * as ROUTES from "../../routes";
 import {
   Card,
@@ -61,7 +61,11 @@ const PostCard = ({ post }) => {
           </Button>
           {(currentUser?.user?.googleId === post?.author ||
             currentUser?.user?._id === post?.author) && (
-            <Button size="small" color="primary">
+            <Button
+              size="small"
+              color="primary"
+              onClick={() => dispatch(deletePost(post._id))}
+            >
               <DeleteIcon fontSize="small" />
               &nbsp; Delete
             </Button>

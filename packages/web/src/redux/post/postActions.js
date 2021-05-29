@@ -43,6 +43,15 @@ export const fetchPosts = () => async (dispatch) => {
   }
 };
 
+export const getPostId = (postId) => ({
+  type: postTypes.GET_POST_ID,
+  payload: postId,
+});
+
+export const ResetPostId = () => ({
+  type: postTypes.RESET_POST_ID,
+});
+
 export const updatePost = (id, post) => async (dispatch) => {
   dispatch(postRequest());
   try {
@@ -56,11 +65,15 @@ export const updatePost = (id, post) => async (dispatch) => {
   }
 };
 
-export const getPostId = (postId) => ({
-  type: postTypes.GET_POST_ID,
-  payload: postId,
-});
-
-export const ResetPostId = () => ({
-  type: postTypes.RESET_POST_ID,
-});
+export const deletePost = (id) => async (dispatch) => {
+  dispatch(postRequest());
+  try {
+    await API.deletePost(id);
+    dispatch({
+      type: postTypes.DELETE_POST,
+      payload: id,
+    });
+  } catch (error) {
+    dispatch(postError(error.message));
+  }
+};

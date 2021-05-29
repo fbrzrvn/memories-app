@@ -66,6 +66,14 @@ const postReducer = (state = postInitialState, action) => {
         ),
       };
     }
+    case postTypes.DELETE_POST: {
+      return {
+        ...state,
+        isLoading: false,
+        isLoaded: true,
+        posts: state.posts.filter((post) => post._id !== action.payload),
+      };
+    }
     default:
       return state;
   }
