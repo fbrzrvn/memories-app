@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
 export const MainWrapper = styled.div`
-  display: flex;
+  display: inline-flex;
   flex-wrap: wrap;
+  gap: 16px;
   align-items: center;
-  @media screen and (max-width: 625px) {
+  @media screen and (max-width: 968px) {
     justify-content: center;
   }
 `;
