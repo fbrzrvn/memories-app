@@ -42,10 +42,10 @@ const Navbar = ({ toggleNavbar }) => {
             </NavbarLink>
           </NavItem>
           <NavItem>
-            <NavbarLink to={ROUTES.SEARCH}>Search</NavbarLink>
+            <NavbarLink to={ROUTES.CREATE}>Create</NavbarLink>
           </NavItem>
           <NavItem>
-            <NavbarLink to={ROUTES.CREATE}>Create</NavbarLink>
+            <NavbarLink to={ROUTES.SEARCH}>Search</NavbarLink>
           </NavItem>
           {isAuthenticated && (
             <NavItem>

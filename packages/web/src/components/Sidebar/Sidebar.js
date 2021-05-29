@@ -33,8 +33,8 @@ const Sidebar = ({ toggleNavbar, isOpen }) => {
       <SidebarWrapper>
         <SidebarMenu>
           <SidebarLink to={ROUTES.HOME}>Home</SidebarLink>
-          <SidebarLink to={ROUTES.SEARCH}>Search</SidebarLink>
           <SidebarLink to={ROUTES.CREATE}>Create</SidebarLink>
+          <SidebarLink to={ROUTES.SEARCH}>Search</SidebarLink>
           <SidebarBtn>
             <Button primary onClick={handleClick}>
               {isAuthenticated ? "Logout" : "Login"}
