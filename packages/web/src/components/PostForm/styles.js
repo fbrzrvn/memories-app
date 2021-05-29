@@ -13,9 +13,6 @@ export const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  @media screen and (max-width: 648px) {
-    width: 100%;
-  }
 `;
 
 export const FormContent = styled.div`
@@ -40,15 +37,12 @@ export const FormH1 = styled.h1`
 `;
 
 export const FormWrap = styled.form`
+  width: 100%;
   max-width: 400px;
   height: auto;
-  width: 100%;
   z-index: 1;
   display: grid;
   margin: 0 auto;
-  @media screen and (max-width: 480px) {
-    padding: 32px 16px;
-  }
 `;
 
 export const FormLabel = styled.label`
