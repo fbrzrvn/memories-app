@@ -2,6 +2,21 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { COLOR } from "../../styles/colors";
 
+export const Container = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 460px;
+  width: 100%;
+  padding: 32px;
+  margin: 24px auto;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+  @media screen and (max-width: 480px) {
+    box-shadow: none;
+  }
+`;
+
 export const Card = styled.div`
   display: flex;
   flex-direction: column;
@@ -44,12 +59,6 @@ export const LinkWrap = styled.div`
   @media screen and (max-width: 480px) {
     text-align: center;
   }
-`;
-
-export const Container = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 24px;
 `;
 
 export const NavbarLink = styled(Link)`

@@ -1,9 +1,15 @@
-import React, { useState } from "react";
+import { string } from "prop-types";
+import React, { useEffect, useState } from "react";
 import FileBase from "react-file-base64";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { authSelector } from "../../redux/auth/authSelector";
-import { createPost } from "../../redux/post/postActions";
+import {
+  createPost,
+  ResetPostId,
+  updatePost,
+} from "../../redux/post/postActions";
+import { postSelector } from "../../redux/post/postSelector";
 import Button from "../Button";
 import {
   Container,
@@ -17,8 +23,11 @@ import {
   FormWrapper,
 } from "./styles";
 
-const UploadForm = () => {
+const PostForm = ({ action }) => {
   const { currentUser } = useSelector(authSelector);
+  const { posts, currentPostId } = useSelector(postSelector);
+  const currentPost = posts.find((post) => post._id === currentPostId);
+
   const initialState = {
     title: "",
     description: "",
@@ -31,18 +40,31 @@ const UploadForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  useEffect(() => {
+    if (currentPost) setFormData(currentPost);
+  }, [currentPost]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(createPost(formData));
-    history.push("/");
+    if (currentPostId === null) {
+      dispatch(createPost(formData));
+    } else {
+      dispatch(updatePost(currentPostId, formData));
+    }
+    clear();
+  };
+
+  const clear = () => {
     setFormData(initialState);
+    dispatch(ResetPostId());
+    history.push("/");
   };
 
   return (
     <Container>
       <FormWrapper>
         <FormContent>
-          <FormH1>Create a new post</FormH1>
+          <FormH1>{action} a new post</FormH1>
           <FormWrap onSubmit={handleSubmit}>
             <FormLabel>Title</FormLabel>
             <FormInput
@@ -88,7 +110,7 @@ const UploadForm = () => {
                 }
               />
             </FileInputWrap>
-            <Button primary>Send</Button>
+            <Button primary>{action}</Button>
           </FormWrap>
         </FormContent>
       </FormWrapper>
@@ -96,4 +118,8 @@ const UploadForm = () => {
   );
 };
 
-export default UploadForm;
+PostForm.propTypes = {
+  action: string.isRequired,
+};
+
+export default PostForm;

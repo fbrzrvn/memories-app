@@ -8,7 +8,7 @@ import { authSelector } from "../../redux/auth/authSelector";
 import * as ROUTES from "../../routes";
 import { Card, CardBody, CardTitle, Container, LinkWrap } from "./styles";
 
-const FormPost = () => {
+const CreatePost = () => {
   const { isAuthenticated } = useSelector(authSelector);
   const history = useHistory();
 
@@ -20,9 +20,7 @@ const FormPost = () => {
     <MainLayout>
       {isAuthenticated ? (
         <Container>
-          <Card>
-            <PostForm />
-          </Card>
+          <PostForm action="Create" />
         </Container>
       ) : (
         <Card>
@@ -42,4 +40,4 @@ const FormPost = () => {
   );
 };
 
-export default FormPost;
+export default CreatePost;
