@@ -1,15 +1,13 @@
 import { Avatar } from "@material-ui/core";
 import { func } from "prop-types";
 import React from "react";
-import { AiOutlineMenu, AiOutlinePlus } from "react-icons/ai";
+import { AiOutlineMenu } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import useWindowSize from "../../hooks/useWindowSize";
 import { signOut } from "../../redux/auth/authActions";
 import { authSelector } from "../../redux/auth/authSelector";
 import * as ROUTES from "../../routes";
 import Button from "../Button";
-import SearchBar from "../SearchBar";
 import {
   MobileIcon,
   Nav,
@@ -22,7 +20,6 @@ import {
 } from "./styles";
 
 const Navbar = ({ toggleNavbar }) => {
-  const width = useWindowSize();
   const { isAuthenticated, currentUser } = useSelector(authSelector);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -34,20 +31,21 @@ const Navbar = ({ toggleNavbar }) => {
   return (
     <Nav>
       <NavContainer>
-        <NavLogo to="/">Memories App</NavLogo>
+        <NavLogo to="/">Memories</NavLogo>
         <MobileIcon onClick={toggleNavbar}>
           <AiOutlineMenu />
         </MobileIcon>
-        {width > 768 && (
-          <NavbarLink to={ROUTES.SEARCH}>
-            <SearchBar />
-          </NavbarLink>
-        )}
         <NavMenu>
           <NavItem>
-            <NavbarLink to={ROUTES.CREATE}>
-              <AiOutlinePlus />
+            <NavbarLink to={ROUTES.HOME} exact>
+              Home
             </NavbarLink>
+          </NavItem>
+          <NavItem>
+            <NavbarLink to={ROUTES.SEARCH}>Search</NavbarLink>
+          </NavItem>
+          <NavItem>
+            <NavbarLink to={ROUTES.CREATE}>Create</NavbarLink>
           </NavItem>
           {isAuthenticated && (
             <NavItem>
@@ -59,7 +57,7 @@ const Navbar = ({ toggleNavbar }) => {
               </Avatar>
             </NavItem>
           )}
-          <NavItem>{currentUser?.user?.name}</NavItem>
+          {/* <NavItem>{currentUser?.user?.name}</NavItem> */}
           <NavbarBtn>
             <Button primary onClick={handleClick}>
               {isAuthenticated ? "Logout" : "Sign In"}

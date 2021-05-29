@@ -6,7 +6,6 @@ import { signOut } from "../../redux/auth/authActions";
 import { authSelector } from "../../redux/auth/authSelector";
 import * as ROUTES from "../../routes";
 import Button from "../Button";
-import SearchBar from "../SearchBar";
 import {
   CloseIcon,
   Icon,
@@ -32,10 +31,10 @@ const Sidebar = ({ toggleNavbar, isOpen }) => {
         <CloseIcon />
       </Icon>
       <SidebarWrapper>
-        <SidebarLink to={ROUTES.SEARCH}>
-          <SearchBar />
-        </SidebarLink>
         <SidebarMenu>
+          <SidebarLink to={ROUTES.HOME}>Home</SidebarLink>
+          <SidebarLink to={ROUTES.SEARCH}>Search</SidebarLink>
+          <SidebarLink to={ROUTES.CREATE}>Create</SidebarLink>
           <SidebarBtn>
             <Button primary onClick={handleClick}>
               {isAuthenticated ? "Logout" : "Login"}

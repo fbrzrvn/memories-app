@@ -56,10 +56,10 @@ export const SidebarLink = styled(Link)`
   text-decoration: none;
   color: ${COLOR.text};
   cursor: pointer;
-  transition: all 300ms ease-in-out;
+  transition: all 200ms ease-in-out;
   &:hover {
-    color: ${COLOR.deepPurple700};
-    transition: all 300ms ease-in-out;
+    color: ${COLOR.deepPurple500};
+    transition: all 200ms ease-in-out;
   }
 `;
 

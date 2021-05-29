@@ -74,7 +74,8 @@ export const NavbarLink = styled(NavLink)`
   color: ${COLOR.text};
   display: flex;
   align-items: center;
-  font-size: 1.5rem;
+  font-weight: 500;
+  text-transform: uppercase;
   text-decoration: none;
   padding: 0 10px;
   height: 100%;
