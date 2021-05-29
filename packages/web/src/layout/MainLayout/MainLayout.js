@@ -3,7 +3,7 @@ import React from "react";
 import Navbar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import useNavbar from "../../hooks/useNavbar";
-import { MainContainer, MainWrapper } from "./styles";
+import { MainContainer } from "./styles";
 
 const MainLayout = ({ children }) => {
   const [isOpen, toggleNavbar] = useNavbar();
@@ -11,9 +11,7 @@ const MainLayout = ({ children }) => {
     <>
       <Sidebar isOpen={isOpen} toggleNavbar={toggleNavbar} />
       <Navbar toggleNavbar={toggleNavbar} />
-      <MainContainer>
-        <MainWrapper>{children}</MainWrapper>
-      </MainContainer>
+      <MainContainer>{children}</MainContainer>
     </>
   );
 };

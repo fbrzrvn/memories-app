@@ -10,7 +10,6 @@ export const Container = styled.div`
 
 export const FormWrapper = styled.div`
   margin: auto;
-  width: 400px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -34,7 +33,7 @@ export const FormH1 = styled.h1`
   font-size: 42px;
   font-weight: 700;
   text-align: center;
-  margin: 24px auto;
+  margin: 0 auto 24px;
   @media screen and (max-width: 480px) {
     font-size: 32px;
   }

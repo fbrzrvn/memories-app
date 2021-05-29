@@ -4,6 +4,7 @@ import PostCard from "../../components/PostCard";
 import MainLayout from "../../layout/MainLayout";
 import { fetchPosts } from "../../redux/post/postActions";
 import { postSelector } from "../../redux/post/postSelector";
+import { MainWrapper } from "./styles";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -15,9 +16,11 @@ const Home = () => {
 
   return (
     <MainLayout>
-      {posts.map((post) => (
-        <PostCard key={post._id} post={post} />
-      ))}
+      <MainWrapper>
+        {posts.map((post) => (
+          <PostCard key={post._id} post={post} />
+        ))}
+      </MainWrapper>
     </MainLayout>
   );
 };
