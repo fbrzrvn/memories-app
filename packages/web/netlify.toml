@@ -14,3 +14,9 @@
   NETLIFY_USE_YARN = "true"
   NETLIFY_YARN_WORKSPACES = "true"
   YARN_VERSION = "1.22.10"
+
+[[headers]]
+# Define which paths this specific [[headers]] block will cover.
+for = "/*"
+  [headers.values]
+  Access-Control-Allow-Origin = "*"
