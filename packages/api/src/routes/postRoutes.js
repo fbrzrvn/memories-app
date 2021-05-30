@@ -7,7 +7,8 @@ const postRouter = Router();
 postRouter.get("/", postController.fetchPosts);
 postRouter.post("/create", auth, postController.createPost);
 postRouter.patch("/update/:id", auth, postController.updatePost);
-postRouter.delete("/delete/:id", postController.deletePost);
+postRouter.delete("/delete/:id", auth, postController.deletePost);
+postRouter.patch("/like/:id", auth, postController.likePost);
 
 module.exports = {
   postRouter: postRouter,
