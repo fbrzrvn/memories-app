@@ -1,7 +1,7 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Backend CI
+name: Node.js CI
 
 on:
   push:
@@ -31,3 +31,12 @@ jobs:
           yarn run lint:js
           yarn run lint:format:check
           yarn run test:ci:all
+
+      - name: Add Heroku Remote Origin
+        run:
+          git remote add heroku https://heroku:${{ secrets.HEROKU_API_TOKEN
+          }}@git.heroku.com/${{ secrets.HEROKU_BACKEND_APP_NAME }}.git
+      - name: Split the packages/api subtree
+        run: git subtree split --prefix packages/api -b split
+      - name: Deploy API to Heroku
+        run: git push -f heroku split:main

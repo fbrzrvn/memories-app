@@ -12,7 +12,7 @@ const baseConfig = {
     port: PORT,
   },
   client: {
-    url: process.env.CLIENT_URL,
+    url: process.env.CLIENT_URL || "http://localhost:3000",
   },
 };
 
