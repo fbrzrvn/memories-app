@@ -1,6 +1,6 @@
 {
   "name": "web",
-  "description": "monorepo template project web",
+  "description": "memories web app",
   "version": "0.1.0",
   "private": true,
   "scripts": {
