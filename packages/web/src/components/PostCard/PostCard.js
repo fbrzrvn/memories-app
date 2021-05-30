@@ -1,15 +1,15 @@
 import { Button } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
-import ThumbUpAltOutlined from "@material-ui/icons/ThumbUpAltOutlined";
 import moment from "moment";
 import { object } from "prop-types";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { authSelector } from "../../redux/auth/authSelector";
-import { deletePost, getPostId } from "../../redux/post/postActions";
+import { deletePost, getPostId, likePost } from "../../redux/post/postActions";
 import * as ROUTES from "../../routes";
+import LikePost from "./LikePost";
 import {
   Card,
   PostFooter,
@@ -56,16 +56,29 @@ const PostCard = ({ post }) => {
         <PostH2>{post.title}</PostH2>
         <PostFooter>
           {isAuthenticated && (
-            <Button size="small" color="primary">
-              <ThumbUpAltOutlined fontSize="small" />
-              &nbsp; Like
+            <Button
+              size="small"
+              color="primary"
+              disabled={!currentUser.user}
+              onClick={() => dispatch(likePost(post._id))}
+            >
+              <LikePost post={post} currentUser={currentUser} />
             </Button>
           )}
+          {/* <Button
+            size="small"
+            color="primary"
+            disabled={!currentUser.user}
+            onClick={() => dispatch(likePost(post._id))}
+          >
+            <LikePost post={post} currentUser={currentUser} />
+          </Button> */}
           {(currentUser?.user?.googleId === post?.author ||
             currentUser?.user?._id === post?.author) && (
             <Button
               size="small"
               color="primary"
+              disabled={!currentUser.user}
               onClick={() => dispatch(deletePost(post._id))}
             >
               <DeleteIcon fontSize="small" />
