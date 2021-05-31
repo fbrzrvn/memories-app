@@ -11,8 +11,8 @@ const Home = () => {
   const { posts } = useSelector(postSelector);
 
   useEffect(() => {
-    dispatch(fetchPosts());
-  }, [dispatch]);
+    posts.length === 0 && dispatch(fetchPosts());
+  }, [dispatch, posts.length]);
 
   return (
     <MainLayout>

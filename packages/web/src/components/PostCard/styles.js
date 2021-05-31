@@ -16,7 +16,6 @@ export const Card = styled.div`
 
 export const PostImg = styled.img`
   width: 250px;
-  height: 200px;
   aspect-ratio: 16/9;
   border-radius: 10px 10px 0 0;
   background: rgba(0, 0, 0, 0.9);

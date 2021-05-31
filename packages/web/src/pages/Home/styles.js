@@ -1,11 +1,12 @@
 import styled from "styled-components";
 
 export const MainWrapper = styled.div`
-  display: inline-flex;
-  flex-wrap: wrap;
-  gap: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 250px);
+  grid-gap: 16px;
+  justify-content: center;
   align-items: center;
   @media screen and (max-width: 968px) {
-    justify-content: center;
+    margin-bottom: 50px;
   }
 `;

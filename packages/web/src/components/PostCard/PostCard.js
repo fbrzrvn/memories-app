@@ -65,14 +65,6 @@ const PostCard = ({ post }) => {
               <LikePost post={post} currentUser={currentUser} />
             </Button>
           )}
-          {/* <Button
-            size="small"
-            color="primary"
-            disabled={!currentUser.user}
-            onClick={() => dispatch(likePost(post._id))}
-          >
-            <LikePost post={post} currentUser={currentUser} />
-          </Button> */}
           {(currentUser?.user?.googleId === post?.author ||
             currentUser?.user?._id === post?.author) && (
             <Button
