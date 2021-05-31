@@ -9,17 +9,19 @@
       "login": "fab-rvn",
       "name": "Fabrizio Ervini",
       "avatar_url": "https://avatars.githubusercontent.com/u/66378887?v=4",
-      "profile": "https://faberdev.netlify.app/",
+      "profile": "https://fabrizioervini.com/",
       "contributions": [
         "code",
-        "test",
+        "content",
+        "data",
+        "design",
         "documentation",
       ]
     },
   ],
   "contributorsPerLine": 7,
-  "projectName": "",
-  "projectOwner": "",
+  "projectName": "memories-app",
+  "projectOwner": "fab-rvn",
   "repoType": "github",
   "repoHost": "https://github.com",
   "skipCi": true

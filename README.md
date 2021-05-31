@@ -1,4 +1,4 @@
-# Monorepo template for fullstack projects.
+# Memories app build using MERN stack.
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 
@@ -6,10 +6,13 @@
 
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-## Template
+## The project
 
-This is a monorepo created with Yarn workspaces. The packages are `api` and
-`web`.
+A simple social media app that allows users to post interesting events that
+happened in their lives.
+
+Was build like a monorepo created with Yarn workspaces. The packages are `api`
+and `web`.
 
 The `web` package will be run by default in the following url:
 `http://localhost:3000`.
@@ -43,7 +46,7 @@ Thanks goes to these wonderful people
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://faberdev.netlify.app/"><img src="https://avatars.githubusercontent.com/u/66378887?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Fabrizio Ervini</b></sub></a><br /> <a href="https://github.com/fab-rvn/monorepo/commits?author=fab-rvn" title="Code">💻</a> <a href="https://github.com/fab-rvn/monorepo/commits?author=fab-rvn" title="Tests">⚠️</a> <a href="https://github.com/fab-rvn/monorepo/commits?author=fab-rvn" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://faberdev.netlify.app/"><img src="https://avatars.githubusercontent.com/u/66378887?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Fabrizio Ervini</b></sub></a><br /> <a href="https://github.com/fab-rvn/memories-app/commits?author=fab-rvn" title="Code">💻</a> <a href="#content-fab-rvn" title="Content">🖋</a> <a href="#data-fab-rvn" title="Data">🔣</a> <a href="#design-fab-rvn" title="Design">🎨</a> <a href="#documentation-fab-rvn" title="Documentation">📖</a></td>
   </tr>
 </table>
 
