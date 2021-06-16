@@ -5,6 +5,7 @@ export const postInitialState = {
   isLoading: false,
   error: null,
   posts: [],
+  post: null,
   currentPostId: null,
 };
 
@@ -37,6 +38,12 @@ const postReducer = (state = postInitialState, action) => {
         isLoading: false,
         isLoaded: true,
         posts: action.payload,
+      };
+    }
+    case postTypes.FETCH_POST_BY_ID: {
+      return {
+        ...state,
+        post: action.payload,
       };
     }
     case postTypes.GET_POST_ID: {

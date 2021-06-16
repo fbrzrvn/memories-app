@@ -2,6 +2,7 @@ export const POST_REQUEST = "POST_REQUEST";
 export const POST_ERROR = "POST_ERROR";
 export const POST_SUCCESS = "POST_SUCCESS";
 export const FETCH_SUCCESS = "FETCH_SUCCESS";
+export const FETCH_POST_BY_ID = "FETCH_POST_BY_ID";
 
 export const GET_POST_ID = "GET_POST_ID";
 export const RESET_POST_ID = "RESET_POST_ID";

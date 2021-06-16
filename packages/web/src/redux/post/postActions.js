@@ -52,6 +52,19 @@ export const ResetPostId = () => ({
   type: postTypes.RESET_POST_ID,
 });
 
+export const fetchPost = (id) => async (dispatch) => {
+  dispatch(postRequest());
+  try {
+    const { data } = await API.getPost(id);
+    dispatch({
+      type: postTypes.FETCH_POST_BY_ID,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch(postError(error.message));
+  }
+};
+
 export const updatePost = (id, post) => async (dispatch) => {
   dispatch(postRequest());
   try {
