@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import PostCard from "../../components/PostCard";
+import PostsCard from "../../components/PostsCard";
 import MainLayout from "../../layout/MainLayout";
 import { fetchPosts } from "../../redux/post/postActions";
 import { postSelector } from "../../redux/post/postSelector";
@@ -18,7 +18,7 @@ const Home = () => {
     <MainLayout>
       <MainWrapper>
         {posts.map((post) => (
-          <PostCard key={post._id} post={post} />
+          <PostsCard key={post._id} post={post} />
         ))}
       </MainWrapper>
     </MainLayout>

@@ -14,7 +14,7 @@ import {
   likePost,
 } from "../../redux/post/postActions";
 import * as ROUTES from "../../routes";
-import LikePost from "./LikePost";
+import LikePost from "../LikePost";
 import {
   Card,
   PostFooter,
@@ -27,7 +27,7 @@ import {
   PostSpan,
 } from "./styles";
 
-const PostCard = ({ post }) => {
+const PostsCard = ({ post }) => {
   const { isAuthenticated, currentUser } = useSelector(authSelector);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -93,8 +93,8 @@ const PostCard = ({ post }) => {
   );
 };
 
-PostCard.propTypes = {
+PostsCard.propTypes = {
   post: object.isRequired,
 };
 
-export default PostCard;
+export default PostsCard;
