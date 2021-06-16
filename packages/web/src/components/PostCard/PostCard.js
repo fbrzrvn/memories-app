@@ -7,7 +7,12 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { authSelector } from "../../redux/auth/authSelector";
-import { deletePost, getPostId, likePost } from "../../redux/post/postActions";
+import {
+  deletePost,
+  fetchPost,
+  getPostId,
+  likePost,
+} from "../../redux/post/postActions";
 import * as ROUTES from "../../routes";
 import LikePost from "./LikePost";
 import {
@@ -27,7 +32,7 @@ const PostCard = ({ post }) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const handleClick = (postId) => {
+  const handleUpdateClick = (postId) => {
     dispatch(getPostId(postId));
     history.push(ROUTES.UPDATE);
   };
@@ -45,7 +50,7 @@ const PostCard = ({ post }) => {
           <Button
             style={{ color: "#F5F6F7" }}
             size="small"
-            onClick={() => handleClick(post._id)}
+            onClick={() => handleUpdateClick(post._id)}
           >
             <MoreVertIcon />
           </Button>
@@ -53,7 +58,12 @@ const PostCard = ({ post }) => {
       </PostOverlay2>
       <PostInfo>
         <PostP>{post.tags.map((tag) => `#${tag} `)}</PostP>
-        <PostH2>{post.title}</PostH2>
+        <PostH2
+          to={`/${post._id}`}
+          onClick={() => dispatch(fetchPost(post._id))}
+        >
+          {post.title}
+        </PostH2>
         <PostFooter>
           {isAuthenticated && (
             <Button

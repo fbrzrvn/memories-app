@@ -1,4 +1,5 @@
 export const HOME = "/";
+export const POST = "/:id";
 export const SEARCH = "/search";
 export const CREATE = "/create";
 export const UPDATE = "/update";

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { COLOR } from "../../styles/colors";
 
@@ -58,10 +59,12 @@ export const PostP = styled.p`
   font-weight: 600;
 `;
 
-export const PostH2 = styled.h2`
+export const PostH2 = styled(Link)`
+  color: ${COLOR.text};
   font-size: 32px;
   font-weight: 400;
   margin: 8px 0 16px;
+  text-decoration: none;
 `;
 
 export const PostFooter = styled.div`
