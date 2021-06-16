@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
-import PostCard from "../../components/PostCard";
+import PostsCard from "../../components/PostsCard";
 import { postSelector } from "../../redux/post/postSelector";
 import * as ROUTES from "../../routes";
 import {
@@ -61,7 +61,7 @@ const Search = () => {
             <PostWrapper>
               {findResult.length > 0 &&
                 findResult.map((post) => (
-                  <PostCard key={post._id} post={post} />
+                  <PostsCard key={post._id} post={post} />
                 ))}
             </PostWrapper>
           </>
