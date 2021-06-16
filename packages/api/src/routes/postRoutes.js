@@ -5,6 +5,7 @@ const { postController } = require("../controllers");
 const postRouter = Router();
 
 postRouter.get("/", postController.fetchPosts);
+postRouter.get("/:id", postController.fetchPost);
 postRouter.post("/create", auth, postController.createPost);
 postRouter.patch("/update/:id", auth, postController.updatePost);
 postRouter.delete("/delete/:id", auth, postController.deletePost);

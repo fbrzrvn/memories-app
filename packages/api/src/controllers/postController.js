@@ -25,6 +25,16 @@ const fetchPosts = async (req, res) => {
   }
 };
 
+const fetchPost = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const post = await Post.findById(id);
+    res.status(200).json(post);
+  } catch (error) {
+    res.status(400).json({ message: `No post was found with id: ${id}` });
+  }
+};
+
 const updatePost = async (req, res) => {
   const { id } = req.params;
   const { name, title, description, tags, media } = req.body;
@@ -86,4 +96,11 @@ const likePost = async (req, res) => {
   res.status(200).json(likedPost);
 };
 
-module.exports = { createPost, fetchPosts, updatePost, deletePost, likePost };
+module.exports = {
+  createPost,
+  fetchPosts,
+  updatePost,
+  deletePost,
+  likePost,
+  fetchPost,
+};
