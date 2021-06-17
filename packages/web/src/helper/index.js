@@ -25,3 +25,18 @@ export const countReadingTime = (title, content) => {
   const readingTime = totalWords / 200;
   return readingTime.toFixed();
 };
+
+export const foundExistingPostByTags = (tags, posts) => {
+  const reccomendedPostByTag = [];
+  posts.forEach((p) => {
+    for (const tag of p.tags) {
+      if (tags.includes(tag)) {
+        const existingPost = reccomendedPostByTag.find(
+          (rp) => rp._id === p._id,
+        );
+        !existingPost && reccomendedPostByTag.push(p);
+      }
+    }
+  });
+  return reccomendedPostByTag;
+};
