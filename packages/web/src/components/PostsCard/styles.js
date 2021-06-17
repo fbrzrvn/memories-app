@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { COLOR } from "../../styles/colors";
 
-export const Card = styled.div`
+export const Card = styled.article`
   background: #fff;
   display: flex;
   flex-direction: column;
@@ -16,7 +16,9 @@ export const Card = styled.div`
 `;
 
 export const PostImg = styled.img`
-  width: 250px;
+  width: 100%;
+  max-width: 250%;
+  height: auto;
   aspect-ratio: 16/9;
   border-radius: 10px 10px 0 0;
   background: rgba(0, 0, 0, 0.9);
@@ -49,14 +51,15 @@ export const PostInfo = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  width: 250px;
+  width: 100%;
   padding: 8px 16px 0;
 `;
 
 export const PostP = styled.p`
-  color: ${COLOR.text};
-  font-size: 14px;
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 15px;
   font-weight: 600;
+  line-height: 1.5;
 `;
 
 export const PostH2 = styled(Link)`
@@ -65,6 +68,10 @@ export const PostH2 = styled(Link)`
   font-weight: 400;
   margin: 8px 0 16px;
   text-decoration: none;
+  @media screen and (max-width: 768px) {
+    font-size: 24px;
+    white-space: nowrap;
+  }
 `;
 
 export const PostFooter = styled.div`

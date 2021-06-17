@@ -5,12 +5,11 @@ import { COLOR } from "../../styles/colors";
 export const PostWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 32px auto;
-  padding: 16px;
+  margin: 100px auto;
+  padding: 0 16px;
   border-radius: 10px;
   @media screen and (max-width: 575px) {
-    margin: auto;
-    padding: 24px 0;
+    padding: 0;
   }
 `;
 
@@ -49,7 +48,7 @@ export const PostHeader = styled.div`
   flex-direction: column;
   margin: 16px 24px 44px;
   @media screen and (max-width: 575px) {
-    margin: 12px;
+    margin: 12px 0;
   }
 `;
 
@@ -85,12 +84,12 @@ export const PostHero = styled.div`
   display: flex;
   margin-inline: 24px;
   @media screen and (max-width: 575px) {
-    margin-inline: 12px;
+    margin-inline: 12px 0;
   }
 `;
 
 export const PostMedia = styled.img`
-  aspect-ratio: 21/9;
+  aspect-ratio: 16/9;
   height: auto;
   width: 730px;
   max-width: 100%;
@@ -99,9 +98,9 @@ export const PostMedia = styled.img`
 `;
 
 export const PostContent = styled.div`
-  margin: 12px 24px 32px;
+  margin: 12px 24px 80px;
   @media screen and (max-width: 575px) {
-    margin: 12px;
+    margin: 12px 12px 80px;
   }
 `;
 
@@ -119,12 +118,7 @@ export const PostP = styled.div`
   font-weight: 400;
 `;
 
-export const PostFooter = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 24px 8px;
+/* margin: 0 24px 8px;
   @media screen and (max-width: 575px) {
     margin: 12px;
-  }
-`;
+  } */
