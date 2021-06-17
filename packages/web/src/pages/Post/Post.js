@@ -25,9 +25,7 @@ const Post = () => {
 
   return (
     <>
-      <MainLayout>
-        <PostDetails post={post} />
-      </MainLayout>
+      <MainLayout>{post && <PostDetails post={post} />}</MainLayout>
       <PostRecommended reccomendedPosts={reccomendedPosts} />
     </>
   );
