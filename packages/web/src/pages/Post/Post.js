@@ -17,6 +17,8 @@ const Post = () => {
     dispatch(fetchPost(id));
   }, [dispatch, id]);
 
+  if (!post) return false;
+
   const { tags } = post;
   const filteredPosts = posts.filter((p) =>
     p._id !== post._id ? p.tags : null,
