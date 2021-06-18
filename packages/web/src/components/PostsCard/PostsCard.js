@@ -18,13 +18,13 @@ import LikePost from "../LikePost";
 import {
   Card,
   PostFooter,
-  PostH2,
   PostImg,
   PostInfo,
   PostOverlay,
   PostOverlay2,
   PostP,
   PostSpan,
+  PostTitleLink,
 } from "./styles";
 
 const PostsCard = ({ post }) => {
@@ -58,12 +58,12 @@ const PostsCard = ({ post }) => {
       </PostOverlay2>
       <PostInfo>
         <PostP>{post.tags.map((tag) => `#${tag} `)}</PostP>
-        <PostH2
+        <PostTitleLink
           to={`/${post._id}`}
           onClick={() => dispatch(fetchPost(post._id))}
         >
           {post.title}
-        </PostH2>
+        </PostTitleLink>
         <PostFooter>
           {isAuthenticated && (
             <Button

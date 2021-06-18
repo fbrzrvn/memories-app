@@ -28,7 +28,9 @@ const Post = () => {
   return (
     <>
       <MainLayout>{post && <PostDetails post={post} />}</MainLayout>
-      <PostRecommended reccomendedPosts={reccomendedPosts} />
+      {reccomendedPosts.length > 0 && (
+        <PostRecommended reccomendedPosts={reccomendedPosts} />
+      )}
     </>
   );
 };

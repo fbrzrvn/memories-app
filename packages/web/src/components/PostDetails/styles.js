@@ -19,7 +19,7 @@ export const PostAuthor = styled.div`
   margin: 16px 24px;
   height: 72px;
   @media screen and (max-width: 575px) {
-    margin: 16px;
+    margin: 0 0 16px;
     height: 44px;
   }
 `;
@@ -61,6 +61,9 @@ export const PostTitle = styled.h2`
   @media screen and (max-width: 575px) {
     font-size: 44px;
   }
+  @media screen and (max-width: 375px) {
+    font-size: 38px;
+  }
 `;
 
 export const PostInfo = styled.div`
@@ -84,15 +87,12 @@ export const PostHero = styled.div`
   display: flex;
   margin-inline: 24px;
   @media screen and (max-width: 575px) {
-    margin-inline: 12px 0;
+    margin-inline: 0;
   }
 `;
 
 export const PostMedia = styled.img`
-  aspect-ratio: 16/9;
-  height: auto;
-  width: 730px;
-  max-width: 100%;
+  width: 100%;
   display: block;
   margin: 0 auto;
 `;
@@ -100,7 +100,7 @@ export const PostMedia = styled.img`
 export const PostContent = styled.div`
   margin: 12px 24px 80px;
   @media screen and (max-width: 575px) {
-    margin: 12px 12px 80px;
+    margin: 12px 0 80px;
   }
 `;
 
@@ -117,8 +117,3 @@ export const PostP = styled.div`
   font-size: 20px;
   font-weight: 400;
 `;
-
-/* margin: 0 24px 8px;
-  @media screen and (max-width: 575px) {
-    margin: 12px;
-  } */

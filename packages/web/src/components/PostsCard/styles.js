@@ -62,7 +62,7 @@ export const PostP = styled.p`
   line-height: 1.5;
 `;
 
-export const PostH2 = styled(Link)`
+export const PostTitleLink = styled(Link)`
   color: ${COLOR.text};
   font-size: 32px;
   font-weight: 400;
@@ -70,7 +70,6 @@ export const PostH2 = styled(Link)`
   text-decoration: none;
   @media screen and (max-width: 768px) {
     font-size: 24px;
-    white-space: nowrap;
   }
 `;
 

@@ -2,6 +2,7 @@ import { array } from "prop-types";
 import React from "react";
 import PostsCard from "../PostsCard";
 import {
+  PostRecommendedContainer,
   PostRecommendedGrid,
   PostRecommendedH2,
   PostRecommendedWrap,
@@ -9,14 +10,16 @@ import {
 
 const PostRecommended = ({ reccomendedPosts }) => {
   return (
-    <PostRecommendedWrap>
-      <PostRecommendedH2>You may also like:</PostRecommendedH2>
-      <PostRecommendedGrid>
-        {reccomendedPosts.map((rp) => (
-          <PostsCard key={rp._id} post={rp} />
-        ))}
-      </PostRecommendedGrid>
-    </PostRecommendedWrap>
+    <PostRecommendedContainer>
+      <PostRecommendedWrap>
+        <PostRecommendedH2>You may also like:</PostRecommendedH2>
+        <PostRecommendedGrid>
+          {reccomendedPosts.map((rp) => (
+            <PostsCard key={rp._id} post={rp} />
+          ))}
+        </PostRecommendedGrid>
+      </PostRecommendedWrap>
+    </PostRecommendedContainer>
   );
 };
 
