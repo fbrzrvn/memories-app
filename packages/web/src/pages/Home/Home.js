@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Footer from "../../components/Footer";
 import PostsCard from "../../components/PostsCard";
 import MainLayout from "../../layout/MainLayout";
 import { fetchPosts } from "../../redux/post/postActions";
@@ -15,13 +16,16 @@ const Home = () => {
   }, [dispatch, posts.length]);
 
   return (
-    <MainLayout>
-      <MainWrapper>
-        {posts.map((post) => (
-          <PostsCard key={post._id} post={post} />
-        ))}
-      </MainWrapper>
-    </MainLayout>
+    <>
+      <MainLayout>
+        <MainWrapper>
+          {posts.map((post) => (
+            <PostsCard key={post._id} post={post} />
+          ))}
+        </MainWrapper>
+      </MainLayout>
+      <Footer />
+    </>
   );
 };
 
