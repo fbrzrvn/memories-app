@@ -43,12 +43,14 @@ const postReducer = (state = postInitialState, action) => {
     case postTypes.FETCH_POST_BY_ID: {
       return {
         ...state,
+        isLoading: false,
         post: action.payload,
       };
     }
     case postTypes.GET_POST_ID: {
       return {
         ...state,
+        isLoading: false,
         currentPostId: action.payload,
       };
     }
