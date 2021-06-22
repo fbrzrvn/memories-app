@@ -5,7 +5,6 @@ import { COLOR } from "../../styles/colors";
 export const PostWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 100px auto;
   padding: 0 16px;
   border-radius: 10px;
   @media screen and (max-width: 575px) {

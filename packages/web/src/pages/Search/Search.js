@@ -55,19 +55,15 @@ const Search = () => {
           <ResultH2>Type to start searching...</ResultH2>
         ) : (
           <>
-            <ResultH2>
-              {findResult.length > 0
-                ? ` ${
-                    findResult.length
-                  } result found for ${searchQuery.toUpperCase()}`
-                : "No result was found."}
-            </ResultH2>
-            <MainWrapper>
-              {findResult.length > 0 &&
-                findResult.map((post) => (
+            {findResult.length > 0 ? (
+              <MainWrapper>
+                {findResult.map((post) => (
                   <PostsCard key={post._id} post={post} />
                 ))}
-            </MainWrapper>
+              </MainWrapper>
+            ) : (
+              <ResultH2>No result was found.</ResultH2>
+            )}
           </>
         )}
       </ResultContainer>

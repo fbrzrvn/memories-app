@@ -1,17 +1,16 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { COLOR } from "../../styles/colors";
 
 export const Card = styled.article`
-  background: #fff;
+  position: relative;
   display: flex;
   flex-direction: column;
-  padding-bottom: 8px;
-  margin-top: 32px;
+  height: 100%;
+  overflow: visible;
+  padding-bottom: 42px;
   border-radius: 10px;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
-  position: relative;
-  cursor: pointer;
+  background: #fff;
   transition: all 0.2 ease-in-out;
 `;
 
@@ -44,7 +43,7 @@ export const PostOverlay2 = styled.div`
   flex-direction: column;
   position: absolute;
   top: 16px;
-  right: 0;
+  right: 8px;
 `;
 
 export const PostInfo = styled.div`
@@ -53,6 +52,7 @@ export const PostInfo = styled.div`
   flex-direction: column;
   width: 100%;
   padding: 8px 16px 0;
+  cursor: pointer;
 `;
 
 export const PostP = styled.p`
@@ -62,19 +62,22 @@ export const PostP = styled.p`
   line-height: 1.5;
 `;
 
-export const PostTitleLink = styled(Link)`
+export const PostTitle = styled.h2`
   color: ${COLOR.text};
   font-size: 32px;
   font-weight: 400;
   margin: 8px 0 16px;
-  text-decoration: none;
   @media screen and (max-width: 768px) {
     font-size: 24px;
+    font-weight: 500;
   }
 `;
 
 export const PostFooter = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  padding: 0 16px;
 `;

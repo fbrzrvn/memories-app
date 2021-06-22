@@ -3,7 +3,7 @@ import { COLOR } from "../../styles/colors";
 
 export const PostRecommendedContainer = styled.div`
   width: 100%;
-  padding: 100px 24px;
+  padding: 100px 12px;
   background-color: ${COLOR.navbar};
 `;
 
@@ -23,6 +23,7 @@ export const PostRecommendedGrid = styled.div`
   grid-gap: 16px;
   justify-content: center;
   align-items: center;
+  padding: 24px 0;
   @media screen and (max-width: 375px) {
     grid-template-columns: repeat(auto-fit, 230px);
   }

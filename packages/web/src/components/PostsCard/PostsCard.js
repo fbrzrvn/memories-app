@@ -24,13 +24,18 @@ import {
   PostOverlay2,
   PostP,
   PostSpan,
-  PostTitleLink,
+  PostTitle,
 } from "./styles";
 
 const PostsCard = ({ post }) => {
   const { isAuthenticated, currentUser } = useSelector(authSelector);
   const history = useHistory();
   const dispatch = useDispatch();
+
+  const handleClick = (postId) => {
+    history.push(`/${postId}`);
+    dispatch(fetchPost(postId));
+  };
 
   const handleUpdateClick = (postId) => {
     dispatch(getPostId(postId));
@@ -56,39 +61,34 @@ const PostsCard = ({ post }) => {
           </Button>
         )}
       </PostOverlay2>
-      <PostInfo>
+      <PostInfo onClick={() => handleClick(post._id)}>
         <PostP>{post.tags.map((tag) => `#${tag} `)}</PostP>
-        <PostTitleLink
-          to={`/${post._id}`}
-          onClick={() => dispatch(fetchPost(post._id))}
-        >
-          {post.title}
-        </PostTitleLink>
-        <PostFooter>
-          {isAuthenticated && (
-            <Button
-              size="small"
-              color="primary"
-              disabled={!currentUser.user}
-              onClick={() => dispatch(likePost(post._id))}
-            >
-              <LikePost post={post} currentUser={currentUser} />
-            </Button>
-          )}
-          {(currentUser?.user?.googleId === post?.author ||
-            currentUser?.user?._id === post?.author) && (
-            <Button
-              size="small"
-              color="primary"
-              disabled={!currentUser.user}
-              onClick={() => dispatch(deletePost(post._id))}
-            >
-              <DeleteIcon fontSize="small" />
-              &nbsp; Delete
-            </Button>
-          )}
-        </PostFooter>
+        <PostTitle>{post.title}</PostTitle>
       </PostInfo>
+      <PostFooter>
+        {isAuthenticated && (
+          <Button
+            size="small"
+            color="primary"
+            disabled={!currentUser.user}
+            onClick={() => dispatch(likePost(post._id))}
+          >
+            <LikePost post={post} currentUser={currentUser} />
+          </Button>
+        )}
+        {(currentUser?.user?.googleId === post?.author ||
+          currentUser?.user?._id === post?.author) && (
+          <Button
+            size="small"
+            color="primary"
+            disabled={!currentUser.user}
+            onClick={() => dispatch(deletePost(post._id))}
+          >
+            <DeleteIcon fontSize="small" />
+            &nbsp; Delete
+          </Button>
+        )}
+      </PostFooter>
     </Card>
   );
 };

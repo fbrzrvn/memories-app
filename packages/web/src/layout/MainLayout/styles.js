@@ -5,7 +5,7 @@ export const MainContainer = styled.div`
   background: ${COLOR.background};
   display: flex;
   flex-direction: column;
-  padding: 0 24px;
+  padding: 50px 24px;
   max-width: 1100px;
   margin: auto;
 `;
