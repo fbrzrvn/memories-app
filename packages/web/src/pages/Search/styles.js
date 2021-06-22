@@ -75,35 +75,14 @@ export const SearchInput = styled.input`
 export const ResultContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   padding: 50px 24px;
+  margin: auto;
+  max-width: 1100px;
 `;
 
 export const ResultH2 = styled.h2`
   color: ${COLOR.text};
   font-size: 42px;
   font-weight: 300;
-`;
-
-export const PostWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  grid-gap: 16px;
-  margin: 24px auto;
-  max-width: 1100px;
-`;
-
-export const ResultWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-around;
-  margin: 16px auto;
-  width: 400px;
-  @media screen and (max-width: 576px) {
-    width: 100%;
-  }
+  margin: auto;
 `;

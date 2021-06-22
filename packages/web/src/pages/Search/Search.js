@@ -3,11 +3,11 @@ import { useSelector } from "react-redux";
 import PostsCard from "../../components/PostsCard";
 import { postSelector } from "../../redux/post/postSelector";
 import * as ROUTES from "../../routes";
+import { MainWrapper } from "../Home/styles";
 import {
   Nav,
   NavContainer,
   NavLogo,
-  PostWrapper,
   ResultContainer,
   ResultH2,
   SearchInput,
@@ -25,8 +25,10 @@ const Search = () => {
   });
 
   useEffect(() => {
-    const foundPost = posts.filter((post) =>
-      post.title.toLowerCase().includes(searchQuery.toLowerCase()),
+    const foundPost = posts.filter(
+      (post) =>
+        post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        post.tags.join(",").toLowerCase().includes(searchQuery.toLowerCase()),
     );
     setFindResult(foundPost);
   }, [posts, searchQuery]);
@@ -39,8 +41,10 @@ const Search = () => {
           <SearchWrap>
             <SearchInput
               type="search"
-              placeholder="Search by title"
+              name="search"
+              placeholder="Search post by title or tags"
               ref={inputRef}
+              value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </SearchWrap>
@@ -48,22 +52,22 @@ const Search = () => {
       </Nav>
       <ResultContainer>
         {!searchQuery ? (
-          <ResultH2>Search for something...</ResultH2>
+          <ResultH2>Type to start searching...</ResultH2>
         ) : (
           <>
             <ResultH2>
               {findResult.length > 0
                 ? ` ${
                     findResult.length
-                  } result for ${searchQuery.toUpperCase()}`
+                  } result found for ${searchQuery.toUpperCase()}`
                 : "No result was found."}
             </ResultH2>
-            <PostWrapper>
+            <MainWrapper>
               {findResult.length > 0 &&
                 findResult.map((post) => (
                   <PostsCard key={post._id} post={post} />
                 ))}
-            </PostWrapper>
+            </MainWrapper>
           </>
         )}
       </ResultContainer>
