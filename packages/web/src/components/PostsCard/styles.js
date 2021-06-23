@@ -7,7 +7,7 @@ export const Card = styled.article`
   flex-direction: column;
   height: 100%;
   overflow: visible;
-  padding-bottom: 42px;
+  padding-bottom: ${({ isAuthenticated }) => isAuthenticated && "42px"};
   border-radius: 10px;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
   background: #fff;

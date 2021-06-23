@@ -43,7 +43,7 @@ const PostsCard = ({ post }) => {
   };
 
   return (
-    <Card>
+    <Card isAuthenticated={isAuthenticated}>
       <PostImg src={post.media} alt={post.title} />
       <PostOverlay>
         <PostSpan>{post.name}</PostSpan>
