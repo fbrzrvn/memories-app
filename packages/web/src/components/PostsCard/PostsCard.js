@@ -33,7 +33,7 @@ const PostsCard = ({ post }) => {
   const dispatch = useDispatch();
 
   const handleClick = (postId) => {
-    history.push(`/${postId}`);
+    history.push(`/posts/${post._id}`);
     dispatch(fetchPost(postId));
   };
 
