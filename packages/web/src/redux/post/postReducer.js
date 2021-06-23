@@ -37,7 +37,9 @@ const postReducer = (state = postInitialState, action) => {
         ...state,
         isLoading: false,
         isLoaded: true,
-        posts: action.payload,
+        posts: action.payload.data,
+        currentPage: action.payload.currentPage,
+        numberOfPages: action.payload.numberOfPages,
       };
     }
     case postTypes.FETCH_POST_BY_ID: {

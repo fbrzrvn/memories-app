@@ -28,16 +28,16 @@ export const createPost = (post) => async (dispatch) => {
   dispatch(resetPostState());
 };
 
-export const fetchSuccess = (posts) => ({
-  type: postTypes.FETCH_SUCCESS,
-  payload: posts,
-});
-
-export const fetchPosts = () => async (dispatch) => {
+export const fetchPosts = (page) => async (dispatch) => {
   dispatch(postRequest());
   try {
-    const { data } = await API.getPosts();
-    dispatch(fetchSuccess(data));
+    const {
+      data: { data, currentPage, numberOfPages },
+    } = await API.getPosts(page);
+    dispatch({
+      type: postTypes.FETCH_SUCCESS,
+      payload: { data, currentPage, numberOfPages },
+    });
   } catch (error) {
     dispatch(postError(error.message));
   }
