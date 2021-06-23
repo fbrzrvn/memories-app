@@ -40,15 +40,13 @@ const Navbar = ({ toggleNavbar }) => {
   return (
     <Nav>
       <NavContainer>
-        <NavLogo to="/">Memories</NavLogo>
+        <NavLogo to={ROUTES.HOME}>Memories</NavLogo>
         <MobileIcon onClick={toggleNavbar}>
           <AiOutlineMenu />
         </MobileIcon>
         <NavMenu>
           <NavItem>
-            <NavbarLink to={ROUTES.HOME} exact>
-              Home
-            </NavbarLink>
+            <NavbarLink to={ROUTES.POSTS}>Home</NavbarLink>
           </NavItem>
           <NavItem>
             <NavbarLink to={ROUTES.CREATE}>Create</NavbarLink>
@@ -66,7 +64,6 @@ const Navbar = ({ toggleNavbar }) => {
               </Avatar>
             </NavItem>
           )}
-          {/* <NavItem>{currentUser?.user?.name}</NavItem> */}
           <NavbarBtn>
             <Button primary onClick={handleClick}>
               {isAuthenticated ? "Logout" : "Sign In"}

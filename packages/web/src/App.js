@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import SignIn from "./pages/Auth/SignIn";
 import SignUp from "./pages/Auth/SignUp";
 import { CreatePost, UpdatePost } from "./pages/FormPost";
@@ -20,7 +20,12 @@ const App = () => {
         <Route path={ROUTES.CREATE} component={CreatePost} />
         <Route path={ROUTES.SEARCH} component={Search} />
         <Route path={ROUTES.POST} component={Post} />
-        <Route path={ROUTES.HOME} component={Home} />
+        <Route path={ROUTES.POSTS} component={Home} />
+        <Route
+          path={ROUTES.HOME}
+          exact
+          component={() => <Redirect to={ROUTES.POSTS} />}
+        />
       </Switch>
     </>
   );

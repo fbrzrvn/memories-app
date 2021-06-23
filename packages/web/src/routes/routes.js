@@ -1,7 +1,8 @@
 export const HOME = "/";
-export const POST = "/:id";
-export const SEARCH = "/search";
-export const CREATE = "/create";
-export const UPDATE = "/update";
+export const POSTS = "/posts";
+export const POST = "/posts/:id";
+export const SEARCH = "/posts/search";
+export const CREATE = "/posts/create";
+export const UPDATE = "/posts/update";
 export const SIGN_UP = "/sign-up";
 export const SIGN_IN = "/sign-in";
