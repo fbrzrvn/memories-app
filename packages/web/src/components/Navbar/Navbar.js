@@ -1,6 +1,7 @@
 import { Avatar } from "@material-ui/core";
+import decode from "jwt-decode";
 import { func } from "prop-types";
-import React from "react";
+import React, { useEffect } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -27,6 +28,14 @@ const Navbar = ({ toggleNavbar }) => {
   const handleClick = () => {
     isAuthenticated ? dispatch(signOut()) : history.push(ROUTES.SIGN_IN);
   };
+
+  useEffect(() => {
+    const { token } = currentUser;
+    if (token) {
+      const decodedToken = decode(token);
+      decodedToken.exp * 1000 < new Date().getTime() && dispatch(signOut());
+    }
+  }, [currentUser, dispatch]);
 
   return (
     <Nav>
