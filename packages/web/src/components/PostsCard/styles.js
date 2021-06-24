@@ -16,7 +16,7 @@ export const Card = styled.article`
 
 export const PostImg = styled.img`
   width: 100%;
-  max-width: 250%;
+  max-width: 300px;
   height: auto;
   aspect-ratio: 16/9;
   border-radius: 10px 10px 0 0;

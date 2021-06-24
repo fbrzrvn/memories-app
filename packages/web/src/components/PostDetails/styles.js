@@ -94,6 +94,9 @@ export const PostMedia = styled.img`
   width: 100%;
   display: block;
   margin: 0 auto;
+  @media screen and (max-width: 575px) {
+    height: 200px;
+  }
 `;
 
 export const PostContent = styled.div`
