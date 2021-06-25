@@ -12,8 +12,6 @@ const Pagination = ({ page }) => {
     <PaginationWrap
       count={numberOfPages}
       page={page || 1}
-      variant="outlined"
-      shape="rounded"
       renderItem={(item) => (
         <PaginationBtnLink
           {...item}

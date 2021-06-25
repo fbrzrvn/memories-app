@@ -92,11 +92,10 @@ export const PostHero = styled.div`
 
 export const PostMedia = styled.img`
   width: 100%;
+  height: auto;
+  aspect-ratio: 16/9;
   display: block;
   margin: 0 auto;
-  @media screen and (max-width: 575px) {
-    height: 200px;
-  }
 `;
 
 export const PostContent = styled.div`
