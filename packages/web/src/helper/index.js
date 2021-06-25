@@ -21,9 +21,11 @@ export const formatPostDate = (date) => {
 };
 
 export const countReadingTime = (title, content) => {
-  const totalWords = title.length + content.length;
+  const totalTitleWords = title.split(" ").length;
+  const totalDescriptionWords = content.split(",").length;
+  const totalWords = totalTitleWords + totalDescriptionWords;
   const readingTime = totalWords / 200;
-  return readingTime.toFixed();
+  return Math.ceil(readingTime);
 };
 
 export const foundExistingPostByTags = (tags, posts) => {
