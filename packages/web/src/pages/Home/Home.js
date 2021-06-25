@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import Footer from "../../components/Footer";
 import Pagination from "../../components/Pagination";
 import PostsCard from "../../components/PostsCard";
 import SpinnerWrap from "../../components/Spinner";
@@ -24,22 +23,17 @@ const Home = () => {
     page && dispatch(fetchPosts(page));
   }, [dispatch, page]);
 
-  return (
-    <>
-      {isLoading ? (
-        <SpinnerWrap />
-      ) : (
-        <MainLayout>
-          <MainWrapper>
-            {posts.map((post) => (
-              <PostsCard key={post._id} post={post} />
-            ))}
-          </MainWrapper>
-          <Pagination page={Number(page)} />
-        </MainLayout>
-      )}
-      <Footer />
-    </>
+  return isLoading ? (
+    <SpinnerWrap />
+  ) : (
+    <MainLayout>
+      <MainWrapper>
+        {posts.map((post) => (
+          <PostsCard key={post._id} post={post} />
+        ))}
+      </MainWrapper>
+      <Pagination page={Number(page)} />
+    </MainLayout>
   );
 };
 

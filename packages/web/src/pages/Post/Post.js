@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import Footer from "../../components/Footer";
 import PostDetails from "../../components/PostDetails";
 import PostRecommended from "../../components/PostRecommended";
 import Spinner from "../../components/Spinner";
@@ -35,7 +34,6 @@ const Post = () => {
       {reccomendedPosts.length > 0 && (
         <PostRecommended reccomendedPosts={reccomendedPosts} />
       )}
-      <Footer />
     </>
   );
 };
