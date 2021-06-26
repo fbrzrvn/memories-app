@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import { COLOR } from "../../styles/colors";
 
 export const FooterContainer = styled.footer`
   height: 80px;
-  background-color: ${COLOR.footer};
+  background-color: ${({ theme }) => theme.footer};
 `;
 
 export const FooterWrap = styled.div`

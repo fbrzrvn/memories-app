@@ -1,5 +1,5 @@
+import { Button } from "@material-ui/core";
 import styled from "styled-components";
-import { COLOR } from "../../styles/colors";
 
 export const Card = styled.article`
   position: relative;
@@ -10,7 +10,7 @@ export const Card = styled.article`
   padding-bottom: ${({ isAuthenticated }) => isAuthenticated && "42px"};
   border-radius: 10px;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
-  background: #fff;
+  background: ${({ theme }) => theme.navbar};
   transition: all 0.2 ease-in-out;
 `;
 
@@ -32,7 +32,7 @@ export const PostOverlay = styled.div`
 `;
 
 export const PostSpan = styled.span`
-  color: ${COLOR.background};
+  color: #fff;
   font-size: 14px;
   font-weight: 500;
   margin-bottom: 4px;
@@ -56,20 +56,19 @@ export const PostInfo = styled.div`
 `;
 
 export const PostP = styled.p`
-  color: rgba(0, 0, 0, 0.7);
+  color: ${({ theme }) => theme.primary};
   font-size: 15px;
   font-weight: 600;
   line-height: 1.5;
 `;
 
 export const PostTitle = styled.h2`
-  color: ${COLOR.text};
+  color: ${({ theme }) => theme.text};
   font-size: 32px;
   font-weight: 400;
   margin: 8px 0 16px;
   @media screen and (max-width: 768px) {
-    font-size: 24px;
-    font-weight: 500;
+    font-size: 28px;
   }
 `;
 
@@ -80,4 +79,11 @@ export const PostFooter = styled.div`
   bottom: 8px;
   width: 100%;
   padding: 0 16px;
+`;
+
+export const PostFooterButton = styled(Button)`
+  && {
+    color: ${({ theme }) => theme.textSecondary};
+    font-family: inherit;
+  }
 `;

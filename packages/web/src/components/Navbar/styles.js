@@ -1,9 +1,8 @@
 import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { COLOR } from "../../styles/colors";
 
 export const Nav = styled.nav`
-  background: ${COLOR.navbar};
+  background: ${({ theme }) => theme.navbar};
   height: 80px;
   display: flex;
   justify-content: center;
@@ -27,7 +26,7 @@ export const NavContainer = styled.div`
 `;
 
 export const NavLogo = styled(Link)`
-  color: ${COLOR.text};
+  color: ${({ theme }) => theme.text};
   display: flex;
   justify-self: flex-start;
   align-items: center;
@@ -47,7 +46,7 @@ export const MobileIcon = styled.div`
     right: 0;
     transform: translate(-100%, 87%);
     font-size: 1.8rem;
-    color: ${COLOR.text};
+    color: ${({ theme }) => theme.text};
     cursor: pointer;
   }
 `;
@@ -71,7 +70,7 @@ export const NavItem = styled.li`
 `;
 
 export const NavbarLink = styled(NavLink)`
-  color: ${COLOR.text};
+  color: ${({ theme }) => theme.text};
   display: flex;
   align-items: center;
   font-weight: 500;
@@ -82,14 +81,23 @@ export const NavbarLink = styled(NavLink)`
   cursor: pointer;
   transition: all 300ms ease-in-out;
   &:hover {
-    color: ${COLOR.deepPurple700};
+    color: ${({ theme }) => theme.primary};
     transition: all 300ms ease-in-out;
   }
   &.active {
-    border-bottom: 3px solid ${COLOR.deepPurple500};
+    border-bottom: 3px solid ${({ theme }) => theme.primary};
   }
 `;
 
 export const NavbarBtn = styled.div`
   margin-left: 16px;
+`;
+
+export const ToggleBtnWrap = styled.div`
+  cursor: pointer;
+`;
+
+export const ToggleBtn = styled.img`
+  height: 32px;
+  width: 32px;
 `;

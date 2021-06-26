@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { COLOR } from "../../styles/colors";
 
 export const SearchContainer = styled.div`
   display: flex;
@@ -17,18 +16,18 @@ export const SearchContainer = styled.div`
 `;
 
 export const SearchInput = styled.input`
-  color: ${COLOR.text};
-  background-color: ${COLOR.background};
+  color: ${({ theme }) => theme.text};
+  background-color: ${({ theme }) => theme.background};
   box-shadow: inset 0.5px 0.5px 1px rgba(0, 0, 0, 0.7);
   border-radius: 10px;
-  border: 1px solid ${COLOR.textSecondary};
+  border: 1px solid ${({ theme }) => theme.textSecondary};
   margin: auto;
   padding: 0.5em 1em;
   font-weight: 500;
   overflow: hidden;
   outline: none;
   &::placeholder {
-    color: ${COLOR.textSecondary};
+    color: ${({ theme }) => theme.textSecondary};
     opacity: 0.8;
   }
   &:focus,
@@ -40,6 +39,6 @@ export const SearchInput = styled.input`
 export const SearchIcon = styled.div`
   position: absolute;
   right: 0.5em;
-  color: ${COLOR.text};
+  color: ${({ theme }) => theme.text};
   cursor: pointer;
 `;

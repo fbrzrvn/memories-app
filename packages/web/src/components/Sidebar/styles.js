@@ -1,10 +1,9 @@
 import { AiOutlineClose } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { COLOR } from "../../styles/colors";
 
 export const SidebarContainer = styled.aside`
-  background: ${COLOR.background};
+  background: ${({ theme }) => theme.background};
   display: grid;
   align-items: center;
   z-index: 100;
@@ -18,7 +17,7 @@ export const SidebarContainer = styled.aside`
 `;
 
 export const CloseIcon = styled(AiOutlineClose)`
-  color: ${COLOR.text};
+  color: ${({ theme }) => theme.text};
 `;
 
 export const Icon = styled.div`
@@ -32,7 +31,7 @@ export const Icon = styled.div`
 `;
 
 export const SidebarWrapper = styled.div`
-  color: ${COLOR.text};
+  color: ${({ theme }) => theme.text};
   position: relative;
 `;
 
@@ -41,8 +40,6 @@ export const SidebarMenu = styled.ul`
   grid-template-columns: 1fr;
   grid-template-rows: repeat(5, 80px);
   text-align: center;
-  margin-top: 2em;
-
   @media screen and(max-width: 480px) {
     grid-template-rows: repeat(5, 60px);
   }
@@ -54,12 +51,12 @@ export const SidebarLink = styled(Link)`
   justify-content: center;
   font-size: 1.5rem;
   text-decoration: none;
-  color: ${COLOR.text};
+  color: ${({ theme }) => theme.text};
   cursor: pointer;
-  transition: all 200ms ease-in-out;
+  transition: all 300ms ease-in-out;
   &:hover {
-    color: ${COLOR.deepPurple500};
-    transition: all 200ms ease-in-out;
+    color: ${({ theme }) => theme.navbarLink};
+    transition: all 300ms ease-in-out;
   }
 `;
 
@@ -67,4 +64,10 @@ export const SidebarBtn = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+`;
+
+export const SidebarBtnToggle = styled.img`
+  height: 32px;
+  width: 32px;
 `;

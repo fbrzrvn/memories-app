@@ -1,5 +1,4 @@
 import styled, { keyframes } from "styled-components";
-import { COLOR } from "../../styles/colors";
 
 const rotate = keyframes`
   from {
@@ -27,8 +26,8 @@ export const SpinnerLoader = styled.div`
   justify-content: center;
   height: 80px;
   width: 80px;
-  border: 4px solid ${COLOR.navbar};
-  border-top: 4px solid ${COLOR.deepPurple500};
+  border: 4px solid ${({ theme }) => theme.navbar};
+  border-top: 4px solid ${({ theme }) => theme.primary};
   border-radius: 50%;
   animation: ${rotate} 2s linear infinite;
   /*Animation code for older Chrome, Safari, Opera*/

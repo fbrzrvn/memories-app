@@ -2,31 +2,31 @@ import styled from "styled-components";
 import { COLOR } from "../../styles/colors";
 
 export const Container = styled.div`
-  background: ${COLOR.background};
   display: flex;
   align-items: center;
   justify-content: center;
+  background: ${({ theme }) => theme.background};
 `;
 
 export const FormWrapper = styled.div`
-  margin: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin: auto;
 `;
 
 export const FormContent = styled.div`
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  height: 100%;
   @media screen and (max-width: 480px) {
     padding: 24px 0;
   }
 `;
 
 export const FormH1 = styled.h1`
-  color: ${COLOR.deepPurple500};
+  color: ${({ theme }) => `${theme.primary}`};
   font-size: 42px;
   font-weight: 700;
   text-align: center;
@@ -37,18 +37,18 @@ export const FormH1 = styled.h1`
 `;
 
 export const FormWrap = styled.form`
+  display: grid;
+  height: auto;
   width: 100%;
   max-width: 400px;
-  height: auto;
-  z-index: 1;
-  display: grid;
   margin: 0 auto;
+  z-index: 1;
 `;
 
 export const FormLabel = styled.label`
   margin-bottom: 8px;
   font-size: 14px;
-  color: ${COLOR.text};
+  color: ${({ theme }) => theme.text};
 `;
 
 export const FormInput = styled.input`
@@ -60,7 +60,7 @@ export const FormInput = styled.input`
   border: ${({ error }) => error && `1px solid ${COLOR.danger700}`};
   &:active,
   &:focus {
-    outline: ${({ error }) => !error && `1px solid ${COLOR.deepPurple300}`};
+    outline: ${({ error, theme }) => !error && `1px solid ${theme.primary}`};
   }
 `;
 
@@ -74,7 +74,7 @@ export const FormTextarea = styled.textarea`
   border: ${({ error }) => error && `1px solid ${COLOR.danger700}`};
   &:active,
   &:focus {
-    outline: ${({ error }) => !error && `1px solid ${COLOR.deepPurple300}`};
+    outline: ${({ error, theme }) => !error && `1px solid ${theme.primary}`};
   }
 `;
 
@@ -90,7 +90,7 @@ export const LinkWrap = styled.div`
   & * {
     text-decoration: none;
     font-size: 14px;
-    color: ${COLOR.textSecondary};
+    color: ${({ theme }) => theme.textSecondary};
   }
   @media screen and (max-width: 480px) {
     text-align: center;

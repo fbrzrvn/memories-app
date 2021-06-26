@@ -1,4 +1,3 @@
-import { Button } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import moment from "moment";
@@ -18,6 +17,7 @@ import LikePost from "../LikePost";
 import {
   Card,
   PostFooter,
+  PostFooterButton,
   PostImg,
   PostInfo,
   PostOverlay,
@@ -52,13 +52,13 @@ const PostsCard = ({ post }) => {
       <PostOverlay2>
         {(currentUser?.user?.googleId === post?.author ||
           currentUser?.user?._id === post?.author) && (
-          <Button
+          <PostFooterButton
             style={{ color: "#F5F6F7" }}
             size="small"
             onClick={() => handleUpdateClick(post._id)}
           >
             <MoreVertIcon />
-          </Button>
+          </PostFooterButton>
         )}
       </PostOverlay2>
       <PostInfo onClick={() => handleClick(post._id)}>
@@ -67,26 +67,24 @@ const PostsCard = ({ post }) => {
       </PostInfo>
       <PostFooter>
         {isAuthenticated && (
-          <Button
+          <PostFooterButton
             size="small"
-            color="primary"
             disabled={!currentUser.user}
             onClick={() => dispatch(likePost(post._id))}
           >
             <LikePost post={post} currentUser={currentUser} />
-          </Button>
+          </PostFooterButton>
         )}
         {(currentUser?.user?.googleId === post?.author ||
           currentUser?.user?._id === post?.author) && (
-          <Button
+          <PostFooterButton
             size="small"
-            color="primary"
             disabled={!currentUser.user}
             onClick={() => dispatch(deletePost(post._id))}
           >
             <DeleteIcon fontSize="small" />
             &nbsp; Delete
-          </Button>
+          </PostFooterButton>
         )}
       </PostFooter>
     </Card>

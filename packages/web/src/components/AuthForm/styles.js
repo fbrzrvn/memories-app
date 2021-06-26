@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { COLOR } from "../../styles/colors";
 
 export const Container = styled.div`
-  background: ${COLOR.background};
+  background: ${({ theme }) => theme.background};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -32,7 +32,7 @@ export const FormContent = styled.div`
 `;
 
 export const FormH1 = styled.h1`
-  color: ${COLOR.deepPurple500};
+  color: ${({ theme }) => theme.primary};
   font-size: 48px;
   font-weight: 700;
   text-align: center;
@@ -58,7 +58,7 @@ export const FormWrap = styled.form`
 export const FormLabel = styled.label`
   margin-bottom: 8px;
   font-size: 14px;
-  color: ${COLOR.text};
+  color: ${({ theme }) => theme.text};
 `;
 
 export const FormInput = styled.input`
@@ -80,7 +80,7 @@ export const LinkWrap = styled.div`
   & * {
     text-decoration: none;
     font-size: 14px;
-    color: ${COLOR.textSecondary};
+    color: ${({ theme }) => theme.textSecondary};
   }
   @media screen and (max-width: 480px) {
     text-align: center;
@@ -103,7 +103,7 @@ export const ErrorMsg = styled.p`
 `;
 
 export const GoogleBtn = styled.button`
-  background: ${COLOR.background};
+  background: ${({ theme }) => theme.background};
   color: ${COLOR.deepPurple400};
   border: 1px solid ${COLOR.deepPurple400};
   border-radius: 10px;
@@ -121,7 +121,7 @@ export const GoogleBtn = styled.button`
     transition: all 300ms ease-in-out;
     border: 1px solid ${COLOR.deepPurple700};
     color: ${COLOR.deepPurple700};
-    background: ${COLOR.navbar};
+    background: ${({ theme }) => theme.navbar};
   }
 `;
 

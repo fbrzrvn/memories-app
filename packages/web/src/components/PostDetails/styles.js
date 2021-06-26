@@ -1,6 +1,5 @@
 import { Avatar } from "@material-ui/core";
 import styled from "styled-components";
-import { COLOR } from "../../styles/colors";
 
 export const PostWrapper = styled.div`
   display: flex;
@@ -38,7 +37,7 @@ export const PostAuthorName = styled.p`
   font-size: 18px;
   font-weight: 500;
   line-height: 1.5;
-  color: rgba(0, 0, 0, 0.7);
+  color: ${({ theme }) => theme.tags};
   margin-left: 16px;
 `;
 
@@ -52,7 +51,7 @@ export const PostHeader = styled.div`
 `;
 
 export const PostTitle = styled.h2`
-  color: ${COLOR.text};
+  color: ${({ theme }) => theme.text};
   font-size: 62px;
   font-weight: 300;
   line-height: 1.1;
@@ -75,7 +74,7 @@ export const PostSmall = styled.small`
   font-weight: 400;
   line-height: 1.5;
   white-space: nowrap;
-  color: rgba(0, 0, 0, 0.54);
+  color: ${({ theme }) => theme.border};
   margin: ${({ dot }) => dot && "0 4px"};
   @media screen and (max-width: 575px) {
     font-size: 14px;
@@ -109,7 +108,7 @@ export const PostTags = styled.p`
   font-size: 18px;
   font-weight: 600;
   line-height: 1.5;
-  color: ${COLOR.deepPurple400};
+  color: ${({ theme }) => theme.primary};
   margin-bottom: 32px;
 `;
 

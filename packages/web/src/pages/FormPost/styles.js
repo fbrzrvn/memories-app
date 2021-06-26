@@ -11,7 +11,7 @@ export const Container = styled.div`
   padding: 32px;
   margin: 24px auto;
   border-radius: 10px;
-  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 1px 1px 5px ${({ theme }) => theme.border};
   @media screen and (max-width: 480px) {
     box-shadow: none;
   }
@@ -26,7 +26,7 @@ export const Card = styled.div`
   height: 100%;
   margin: 24px auto;
   border-radius: 10px;
-  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 1px 1px 5px ${({ theme }) => theme.border};
   @media screen and (max-width: 480px) {
     width: 100%;
     padding: 24px 0;
@@ -35,6 +35,7 @@ export const Card = styled.div`
 
 export const CardTitle = styled.h1`
   color: ${COLOR.deepPurple500};
+  color: ${({ theme }) => theme.primary};
   font-size: 32px;
   text-align: center;
   margin-bottom: 16px;
@@ -54,7 +55,7 @@ export const LinkWrap = styled.div`
   & * {
     text-decoration: none;
     font-size: 14px;
-    color: ${COLOR.textSecondary};
+    color: ${({ theme }) => theme.textSecondary};
   }
   @media screen and (max-width: 480px) {
     text-align: center;
@@ -65,14 +66,14 @@ export const NavbarLink = styled(Link)`
   margin-right: 16px;
   text-transform: uppercase;
   text-decoration: none;
-  color: ${COLOR.deepPurple500};
+  color: ${({ theme }) => theme.primary};
   cursor: pointer;
   transition: all 300ms ease-in-out;
   &:hover {
-    color: ${COLOR.deepPurple400};
+    color: ${({ theme }) => theme.NavbarLink};
     transition: all 300ms ease-in-out;
   }
   &.active {
-    border-bottom: 3px solid ${COLOR.deepPurple400};
+    border-bottom: 3px solid ${({ theme }) => theme.primary};
   }
 `;

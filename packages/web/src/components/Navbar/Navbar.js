@@ -1,10 +1,12 @@
 import { Avatar } from "@material-ui/core";
 import decode from "jwt-decode";
-import { func } from "prop-types";
+import { func, string } from "prop-types";
 import React, { useEffect } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import LightThemeIcon from "../../assets/wi-day-sunny.svg";
+import DarkThemeIcon from "../../assets/wi-night-clear.svg";
 import { signOut } from "../../redux/auth/authActions";
 import { authSelector } from "../../redux/auth/authSelector";
 import * as ROUTES from "../../routes";
@@ -18,15 +20,22 @@ import {
   NavItem,
   NavLogo,
   NavMenu,
+  ToggleBtn,
+  ToggleBtnWrap,
 } from "./styles";
 
-const Navbar = ({ toggleNavbar }) => {
+const Navbar = ({ toggleNavbar, theme, toggleTheme }) => {
   const { isAuthenticated, currentUser } = useSelector(authSelector);
   const history = useHistory();
   const dispatch = useDispatch();
 
   const handleClick = () => {
     isAuthenticated ? dispatch(signOut()) : history.push(ROUTES.SIGN_IN);
+  };
+
+  const handleClickToggle = () => {
+    toggleTheme();
+    window.location.reload();
   };
 
   useEffect(() => {
@@ -46,13 +55,24 @@ const Navbar = ({ toggleNavbar }) => {
         </MobileIcon>
         <NavMenu>
           <NavItem>
-            <NavbarLink to={ROUTES.POSTS}>Home</NavbarLink>
+            <NavbarLink to={ROUTES.POSTS} exact>
+              Home
+            </NavbarLink>
           </NavItem>
           <NavItem>
             <NavbarLink to={ROUTES.CREATE}>Create</NavbarLink>
           </NavItem>
           <NavItem>
             <NavbarLink to={ROUTES.SEARCH}>Search</NavbarLink>
+          </NavItem>
+          <NavItem>
+            <ToggleBtnWrap onClick={handleClickToggle}>
+              {theme === "dark" ? (
+                <ToggleBtn src={LightThemeIcon} alt="light-theme" />
+              ) : (
+                <ToggleBtn src={DarkThemeIcon} alt="dark-theme" />
+              )}
+            </ToggleBtnWrap>
           </NavItem>
           {isAuthenticated && (
             <NavItem>
@@ -76,6 +96,8 @@ const Navbar = ({ toggleNavbar }) => {
 };
 
 Navbar.propTypes = {
+  theme: string.isRequired,
+  toggleTheme: func.isRequired,
   toggleNavbar: func.isRequired,
 };
 
