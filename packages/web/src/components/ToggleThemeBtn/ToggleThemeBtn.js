@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import LightThemeIcon from "../../assets/wi-day-sunny.svg";
 import DarkThemeIcon from "../../assets/wi-night-clear.svg";
@@ -11,14 +11,21 @@ const ToggleThemeBtn = () => {
   const dispatch = useDispatch();
   const { theme } = useSelector(themeSelector);
   const toggle = theme === DARK ? LIGHT : DARK;
+  const [isAnimate, setIsAnimate] = useState(false);
+
+  const handleClick = () => {
+    dispatch(changeTheme(toggle));
+    setIsAnimate(true);
+    setTimeout(() => setIsAnimate(false), 1000);
+  };
 
   return (
-    <ToggleBtnWrap onClick={() => dispatch(changeTheme(toggle))}>
-      {theme === DARK ? (
-        <ToggleBtn src={LightThemeIcon} alt="light-theme" />
-      ) : (
-        <ToggleBtn src={DarkThemeIcon} alt="dark-theme" />
-      )}
+    <ToggleBtnWrap onClick={handleClick}>
+      <ToggleBtn
+        src={theme === DARK ? LightThemeIcon : DarkThemeIcon}
+        alt={theme === DARK ? "light-theme" : "dark-theme"}
+        isAnimate={isAnimate}
+      />
     </ToggleBtnWrap>
   );
 };
