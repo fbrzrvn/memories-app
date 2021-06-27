@@ -66,8 +66,3 @@ export const SidebarBtn = styled.div`
   justify-content: center;
   cursor: pointer;
 `;
-
-export const SidebarBtnToggle = styled.img`
-  height: 32px;
-  width: 32px;
-`;

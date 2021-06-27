@@ -92,12 +92,3 @@ export const NavbarLink = styled(NavLink)`
 export const NavbarBtn = styled.div`
   margin-left: 16px;
 `;
-
-export const ToggleBtnWrap = styled.div`
-  cursor: pointer;
-`;
-
-export const ToggleBtn = styled.img`
-  height: 32px;
-  width: 32px;
-`;

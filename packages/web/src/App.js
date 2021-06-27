@@ -1,7 +1,6 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
-import { ThemeProvider } from "styled-components";
-import useTheme from "./hooks/useTheme";
+import Theme from "./components/Theme";
 import SignIn from "./pages/Auth/SignIn";
 import SignUp from "./pages/Auth/SignUp";
 import { CreatePost, UpdatePost } from "./pages/FormPost";
@@ -9,15 +8,10 @@ import Home from "./pages/Home";
 import Post from "./pages/Post";
 import Search from "./pages/Search";
 import * as ROUTES from "./routes";
-import { DarkTheme, GlobalStyles, LightTheme } from "./styles/globals";
 
 const App = () => {
-  const [theme] = useTheme();
-  const themeMode = theme === "dark" ? DarkTheme : LightTheme;
-
   return (
-    <ThemeProvider theme={themeMode}>
-      <GlobalStyles />
+    <Theme>
       <Switch>
         <Route path={ROUTES.SIGN_IN} component={SignIn} />
         <Route path={ROUTES.SIGN_UP} component={SignUp} />
@@ -31,7 +25,7 @@ const App = () => {
           component={() => <Redirect to={ROUTES.POSTS} />}
         />
       </Switch>
-    </ThemeProvider>
+    </Theme>
   );
 };
 
