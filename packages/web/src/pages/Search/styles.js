@@ -1,16 +1,15 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { COLOR } from "../../styles/colors";
 
 export const Nav = styled.nav`
-  background: ${COLOR.navbar};
-  height: 80px;
+  position: sticky;
+  top: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 80px;
   font-size: 1rem;
-  position: sticky;
-  top: 0;
+  background: ${({ theme }) => theme.navbar};
   z-index: 10;
 `;
 
@@ -29,13 +28,13 @@ export const NavContainer = styled.div`
 `;
 
 export const NavLogo = styled(Link)`
-  color: ${COLOR.text};
   display: flex;
   justify-self: flex-start;
   align-items: center;
   font-size: 1.5rem;
   font-weight: 700;
   text-decoration: none;
+  color: ${({ theme }) => theme.text};
   margin-left: 24px;
   cursor: pointer;
   @media screen and (max-width: 576px) {
@@ -52,10 +51,10 @@ export const SearchWrap = styled.div`
 `;
 
 export const SearchInput = styled.input`
-  color: ${COLOR.text};
-  background-color: ${COLOR.background};
+  color: ${({ theme }) => theme.text};
+  background-color: ${({ theme }) => theme.background};
   box-shadow: inset 0.5px 0.5px 1px rgba(0, 0, 0, 0.7);
-  border: 1px solid ${COLOR.textSecondary};
+  border: 1px solid ${({ theme }) => theme.textSecondary};
   border-radius: 10px;
   width: 100%;
   margin: auto;
@@ -63,7 +62,7 @@ export const SearchInput = styled.input`
   font-weight: 500;
   outline: none;
   &::placeholder {
-    color: ${COLOR.textSecondary};
+    color: ${({ theme }) => theme.textSecondary};
     opacity: 0.8;
   }
   &:focus,
@@ -81,7 +80,7 @@ export const ResultContainer = styled.div`
 `;
 
 export const ResultH2 = styled.h2`
-  color: ${COLOR.text};
+  color: ${({ theme }) => theme.text};
   font-size: 42px;
   font-weight: 300;
   margin: auto;
