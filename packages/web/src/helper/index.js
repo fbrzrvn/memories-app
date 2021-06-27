@@ -22,7 +22,7 @@ export const formatPostDate = (date) => {
 
 export const countReadingTime = (title, content) => {
   const totalTitleWords = title.split(" ").length;
-  const totalDescriptionWords = content.split(",").length;
+  const totalDescriptionWords = content.split(" ").length;
   const totalWords = totalTitleWords + totalDescriptionWords;
   const readingTime = totalWords / 200;
   return Math.ceil(readingTime);
