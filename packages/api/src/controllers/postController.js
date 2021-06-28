@@ -43,7 +43,8 @@ const fetchPost = async (req, res) => {
   const { id } = req.params;
   try {
     const post = await Post.findById(id);
-    res.status(200).json(post);
+    const relatedPosts = await Post.find({ tags: { $in: post.tags } });
+    res.status(200).json({ data: post, relatedPosts: relatedPosts });
   } catch (error) {
     res.status(400).json({ message: `No post was found with id: ${id}` });
   }

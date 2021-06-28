@@ -4,14 +4,13 @@ import { useParams } from "react-router-dom";
 import PostDetails from "../../components/PostDetails";
 import PostRecommended from "../../components/PostRecommended";
 import Spinner from "../../components/Spinner";
-import { foundExistingPostByTags } from "../../helper";
 import MainLayout from "../../layout/MainLayout";
 import { fetchPost } from "../../redux/post/postActions";
 import { postSelector } from "../../redux/post/postSelector";
 
 const Post = () => {
   const { id } = useParams();
-  const { post, posts, isLoading } = useSelector(postSelector);
+  const { isLoading, post, relatedPosts } = useSelector(postSelector);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -20,19 +19,13 @@ const Post = () => {
 
   if (!post) return false;
 
-  const { tags } = post;
-  const filteredPosts = posts.filter((p) =>
-    p._id !== post._id ? p.tags : null,
-  );
-  const reccomendedPosts = foundExistingPostByTags(tags, filteredPosts);
-
   return isLoading ? (
     <Spinner />
   ) : (
     <>
       <MainLayout>{post && <PostDetails post={post} />}</MainLayout>
-      {reccomendedPosts.length > 0 && (
-        <PostRecommended reccomendedPosts={reccomendedPosts} />
+      {relatedPosts.length > 0 && (
+        <PostRecommended reccomendedPosts={relatedPosts} />
       )}
     </>
   );

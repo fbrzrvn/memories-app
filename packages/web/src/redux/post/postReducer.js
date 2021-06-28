@@ -46,7 +46,10 @@ const postReducer = (state = postInitialState, action) => {
       return {
         ...state,
         isLoading: false,
-        post: action.payload,
+        post: action.payload.data,
+        relatedPosts: action.payload.relatedPosts.filter(
+          (post) => post._id !== action.payload.data._id,
+        ),
       };
     }
     case postTypes.GET_POST_ID: {

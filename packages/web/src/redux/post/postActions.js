@@ -55,10 +55,12 @@ export const ResetPostId = () => ({
 export const fetchPost = (id) => async (dispatch) => {
   dispatch(postRequest());
   try {
-    const { data } = await API.getPost(id);
+    const {
+      data: { data, relatedPosts },
+    } = await API.getPost(id);
     dispatch({
       type: postTypes.FETCH_POST_BY_ID,
-      payload: data,
+      payload: { data, relatedPosts },
     });
   } catch (error) {
     dispatch(postError(error.message));
