@@ -1,7 +1,7 @@
 import styled, { keyframes } from "styled-components";
 
 const rotate = keyframes`
-  from {
+ from {
     transform: rotate(0deg);
     -webkit-transform: rotate(0deg);
     -moz-transform: rotate(0deg);
@@ -26,8 +26,8 @@ export const SpinnerLoader = styled.div`
   justify-content: center;
   height: 80px;
   width: 80px;
-  border: 4px solid ${({ theme }) => theme.navbar};
-  border-top: 4px solid ${({ theme }) => theme.primary};
+  border: 4px solid ${({ theme }) => theme.primary};
+  border-top: 4px solid ${({ theme }) => theme.navbar};
   border-radius: 50%;
   animation: ${rotate} 2s linear infinite;
   /*Animation code for older Chrome, Safari, Opera*/
