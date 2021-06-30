@@ -6,21 +6,21 @@ const spin = keyframes`
     opacity: 0;
     -webkit-transform: rotate(0deg);
     -moz-transform: rotate(0deg);
-    -webkit-transform: opacity(0);
-    -moz-transform: opacity(0);
+    -webkit-opacity: opacity(0);
+    -moz-opacity: opacity(0);
   }
   50% {
     opacity: 0.5;
-    -webkit-transform: opacity(0.5);
-    -moz-transform: opacity(0.5);
+    -webkit-opacity: opacity(0.5);
+    -moz-opacity: opacity(0.5);
   }
   100% {
     transform: rotate(360deg);
     opacity: 1;
     -webkit-transform: rotate(360deg);
     -moz-transform: rotate(360deg);
-    -webkit-transform: opacity(1);
-    -moz-transform: opacity(1);
+    -webkit-opacity: opacity(1);
+    -moz-opacity: opacity(1);
   }
 `;
 

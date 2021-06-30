@@ -5,8 +5,6 @@ export const Card = styled.article`
   position: relative;
   display: flex;
   flex-direction: column;
-  height: 100%;
-  overflow: visible;
   padding-bottom: ${({ isAuthenticated }) => isAuthenticated && "42px"};
   border-radius: 10px;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
@@ -17,7 +15,7 @@ export const Card = styled.article`
 export const PostImg = styled.img`
   width: 100%;
   max-width: 300px;
-  height: auto;
+  height: 150px;
   aspect-ratio: 16/9;
   border-radius: 10px 10px 0 0;
   background: rgba(0, 0, 0, 0.9);
@@ -47,9 +45,6 @@ export const PostOverlay2 = styled.div`
 `;
 
 export const PostInfo = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
   width: 100%;
   padding: 8px 16px 0;
   cursor: pointer;
