@@ -46,12 +46,12 @@ const PostsCard = ({ post }) => {
     <Card isAuthenticated={isAuthenticated}>
       <PostImg src={post.media} alt={post.title} />
       <PostOverlay>
-        <PostSpan>{post.name}</PostSpan>
+        <PostSpan>{post?.author?.name}</PostSpan>
         <PostSpan>{moment(post.createdAt).fromNow()}</PostSpan>
       </PostOverlay>
       <PostOverlay2>
-        {(currentUser?.user?.googleId === post?.author ||
-          currentUser?.user?._id === post?.author) && (
+        {(currentUser?.user?.googleId === post?.author?._id ||
+          currentUser?.user?._id === post?.author?._id) && (
           <PostFooterButton
             style={{ color: "#F5F6F7" }}
             size="small"

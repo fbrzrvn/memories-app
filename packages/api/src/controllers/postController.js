@@ -27,7 +27,14 @@ const fetchPosts = async (req, res) => {
     const posts = await Post.find()
       .sort({ createdAt: -1 })
       .limit(LIMIT)
-      .skip(startIndex);
+      .skip(startIndex)
+      .populate({
+        path: "author",
+        select: {
+          name: 1,
+          email: 1,
+        },
+      });
 
     res.status(200).json({
       data: posts,
@@ -42,8 +49,16 @@ const fetchPosts = async (req, res) => {
 const fetchPost = async (req, res) => {
   const { id } = req.params;
   try {
-    const post = await Post.findById(id);
-    const relatedPosts = await Post.find({ tags: { $in: post.tags } });
+    const post = await Post.findById(id).populate({
+      path: "author",
+      select: {
+        name: 1,
+        email: 1,
+      },
+    });
+    const relatedPosts = await Post.find({ tags: { $in: post.tags } }).populate(
+      "author",
+    );
     res.status(200).json({ data: post, relatedPosts: relatedPosts });
   } catch (error) {
     res.status(400).json({ message: `No post was found with id: ${id}` });
@@ -52,7 +67,7 @@ const fetchPost = async (req, res) => {
 
 const updatePost = async (req, res) => {
   const { id } = req.params;
-  const { name, title, description, tags, media } = req.body;
+  const { title, description, tags, media } = req.body;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res
@@ -60,7 +75,7 @@ const updatePost = async (req, res) => {
       .json({ message: `No post was found with id: ${id}` });
   }
 
-  const updatedPost = { name, title, description, tags, media, _id: id };
+  const updatedPost = { title, description, tags, media, _id: id };
 
   await Post.findByIdAndUpdate(id, updatedPost, { new: true });
 

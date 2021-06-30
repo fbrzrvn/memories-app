@@ -19,11 +19,10 @@ const PostSchema = new mongoose.Schema(
       type: [String],
       default: [],
     },
-    name: {
-      type: String,
-    },
     author: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: "user",
     },
   },
   {

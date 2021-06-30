@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import FileBase from "react-file-base64";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { authSelector } from "../../redux/auth/authSelector";
 import {
   createPost,
   ResetPostId,
@@ -24,7 +23,6 @@ import {
 } from "./styles";
 
 const PostForm = ({ action }) => {
-  const { currentUser } = useSelector(authSelector);
   const { posts, currentPostId } = useSelector(postSelector);
   const currentPost = posts.find((post) => post._id === currentPostId);
 
@@ -33,7 +31,6 @@ const PostForm = ({ action }) => {
     description: "",
     media: "",
     tags: [],
-    name: currentUser.user.name.split(" ")[0],
   };
 
   const [formData, setFormData] = useState(initialState);

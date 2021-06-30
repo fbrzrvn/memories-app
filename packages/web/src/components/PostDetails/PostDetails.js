@@ -24,7 +24,7 @@ const PostDetails = ({ post }) => {
     <PostWrapper>
       <PostAuthor>
         <AuthorAvatar />
-        <PostAuthorName>{post.name}</PostAuthorName>
+        <PostAuthorName>{post.author.name}</PostAuthorName>
       </PostAuthor>
       <PostHeader>
         <PostTitle>{post.title}</PostTitle>
