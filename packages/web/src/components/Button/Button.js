@@ -1,19 +1,19 @@
 import styled from "styled-components";
-// import { COLOR } from "../../styles/colors";
 
 const Button = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 30px;
+  width: ${({ small }) => (small ? "120px" : "100%")};
+  margin: auto;
+  white-space: nowrap;
+  font-size: 16px;
+  border-radius: 10px;
+  border: ${({ theme }) => `1px solid ${theme.primary}`};
   background: ${({ primary, theme }) =>
     primary ? `${theme.primary}` : ` ${theme.background}}`};
-  color: ${({ primary, theme }) =>
-    primary ? `${theme.background}` : `${theme.primary}`};
-  padding: 12px 30px;
-  border: ${({ theme }) => `1px solid ${theme.primary}`};
-  border-radius: 10px;
-  font-size: 16px;
-  white-space: nowrap;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  color: ${({ primary, theme }) => (primary ? `#f5f6f7` : `${theme.primary}`)};
   outline: none;
   cursor: pointer;
   transition: all 300ms ease-in-out;
@@ -21,9 +21,8 @@ const Button = styled.button`
     transition: all 300ms ease-in-out;
     background: ${({ primary, theme }) =>
       primary ? `${theme.background}` : `${theme.primary}`};
-    /* color: ${({ theme }) => theme.background}; */
     color: ${({ primary, theme }) =>
-      primary ? `${theme.primary}` : `${theme.background}`};
+      primary ? `${theme.primary}` : `#f5f6f7`};
   }
 `;
 

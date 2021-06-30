@@ -10,7 +10,6 @@ import ToggleThemeBtn from "../ToggleThemeBtn";
 import {
   CloseIcon,
   Icon,
-  SidebarBtn,
   SidebarContainer,
   SidebarLink,
   SidebarMenu,
@@ -37,11 +36,9 @@ const Sidebar = ({ toggleNavbar, isOpen }) => {
           <SidebarLink to={ROUTES.CREATE}>Create</SidebarLink>
           <SidebarLink to={ROUTES.SEARCH}>Search</SidebarLink>
           <ToggleThemeBtn />
-          <SidebarBtn>
-            <Button primary onClick={handleClick}>
-              {isAuthenticated ? "Logout" : "Login"}
-            </Button>
-          </SidebarBtn>
+          <Button primary small onClick={handleClick}>
+            {isAuthenticated ? "Logout" : "Login"}
+          </Button>
         </SidebarMenu>
       </SidebarWrapper>
     </SidebarContainer>
