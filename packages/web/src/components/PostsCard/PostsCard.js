@@ -33,8 +33,8 @@ const PostsCard = ({ post }) => {
   const dispatch = useDispatch();
 
   const handleClick = (postId) => {
-    history.push(`/posts/${post._id}`);
     dispatch(fetchPost(postId));
+    history.push(`/posts/${postId}`);
   };
 
   const handleUpdateClick = (postId) => {
@@ -75,8 +75,8 @@ const PostsCard = ({ post }) => {
             <LikePost post={post} currentUser={currentUser} />
           </PostFooterButton>
         )}
-        {(currentUser?.user?.googleId === post?.author ||
-          currentUser?.user?._id === post?.author) && (
+        {(currentUser?.user?.googleId === post?.author?._id ||
+          currentUser?.user?._id === post?.author?._id) && (
           <PostFooterButton
             size="small"
             disabled={!currentUser.user}
