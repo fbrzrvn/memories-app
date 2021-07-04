@@ -1,4 +1,4 @@
-const { Post } = require("../models");
+const { Post, Comment } = require("../models");
 const mongoose = require("mongoose");
 
 const createPost = async (req, res) => {
@@ -49,13 +49,20 @@ const fetchPosts = async (req, res) => {
 const fetchPost = async (req, res) => {
   const { id } = req.params;
   try {
-    const post = await Post.findById(id).populate({
-      path: "author",
-      select: {
-        name: 1,
-        email: 1,
-      },
-    });
+    const post = await Post.findById(id)
+      .populate("author", "_id, name")
+      .populate({
+        path: "comments",
+        select: "-__v -id -createdAt -updatedAt",
+        options: { sort: { createdAt: -1 } },
+        populate: {
+          path: "author",
+          select: "_id name",
+        },
+      })
+      .select("-__v")
+      .lean()
+      .exec();
     const relatedPosts = await Post.find({ tags: { $in: post.tags } }).populate(
       "author",
     );
@@ -126,6 +133,33 @@ const likePost = async (req, res) => {
   res.status(200).json(likedPost);
 };
 
+const commentPost = async (req, res) => {
+  const commentData = req.body;
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res
+      .status(404)
+      .json({ message: `No post was found with id: ${id}` });
+  }
+
+  const post = await Post.findById(id);
+
+  const newComment = new Comment({
+    ...commentData,
+    author: req.userId,
+    post: post,
+  });
+
+  post.comments.push(newComment._id);
+
+  await post.save();
+  await newComment.save();
+
+  const commentedPost = await Post.findByIdAndUpdate(id, post, { new: true });
+  res.status(200).json(commentedPost);
+};
+
 module.exports = {
   createPost,
   fetchPosts,
@@ -133,4 +167,5 @@ module.exports = {
   deletePost,
   likePost,
   fetchPost,
+  commentPost,
 };
