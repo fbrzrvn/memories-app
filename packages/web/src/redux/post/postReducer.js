@@ -88,6 +88,12 @@ const postReducer = (state = postInitialState, action) => {
         posts: state.posts.filter((post) => post._id !== action.payload),
       };
     }
+    case postTypes.COMMENT_POST: {
+      return {
+        ...state,
+        post: action.payload,
+      };
+    }
     default:
       return state;
   }

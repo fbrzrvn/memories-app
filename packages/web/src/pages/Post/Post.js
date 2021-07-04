@@ -16,9 +16,11 @@ const Post = () => {
   const { isAuthenticated } = useSelector(authSelector);
   const dispatch = useDispatch();
 
+  const commentsCounter = post?.comments?.length;
+
   useEffect(() => {
     dispatch(fetchPost(id));
-  }, [dispatch, id]);
+  }, [dispatch, id, commentsCounter]);
 
   if (!post) return false;
 

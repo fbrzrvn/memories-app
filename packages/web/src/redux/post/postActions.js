@@ -111,7 +111,7 @@ export const commentPost = (id, comment) => async (dispatch) => {
   try {
     const { data } = await API.commentPost(id, comment);
     dispatch({
-      type: postTypes.UPDATE_POST,
+      type: postTypes.COMMENT_POST,
       payload: data,
     });
   } catch (error) {
