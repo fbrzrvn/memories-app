@@ -1,3 +1,4 @@
+import { func } from "prop-types";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import LightThemeIcon from "../../assets/wi-day-sunny.svg";
@@ -7,7 +8,7 @@ import { themeSelector } from "../../redux/theme/themeSelector";
 import { DARK, LIGHT } from "../../redux/theme/themeTypes";
 import { ToggleBtn, ToggleBtnWrap } from "./styles";
 
-const ToggleThemeBtn = () => {
+const ToggleThemeBtn = ({ toggleNavbar }) => {
   const dispatch = useDispatch();
   const { theme } = useSelector(themeSelector);
   const toggle = theme === DARK ? LIGHT : DARK;
@@ -16,7 +17,10 @@ const ToggleThemeBtn = () => {
   const handleClick = () => {
     dispatch(changeTheme(toggle));
     setIsAnimate(true);
-    setTimeout(() => setIsAnimate(false), 1000);
+    setTimeout(() => {
+      setIsAnimate(false);
+      toggleNavbar && toggleNavbar();
+    }, 1200);
   };
 
   return (
@@ -28,6 +32,14 @@ const ToggleThemeBtn = () => {
       />
     </ToggleBtnWrap>
   );
+};
+
+ToggleThemeBtn.propTypes = {
+  toggleNavbar: func,
+};
+
+ToggleThemeBtn.defaultProps = {
+  toggleNavbar: null,
 };
 
 export default ToggleThemeBtn;

@@ -35,7 +35,7 @@ const Sidebar = ({ toggleNavbar, isOpen }) => {
           <SidebarLink to={ROUTES.HOME}>Home</SidebarLink>
           <SidebarLink to={ROUTES.CREATE}>Create</SidebarLink>
           <SidebarLink to={ROUTES.SEARCH}>Search</SidebarLink>
-          <ToggleThemeBtn />
+          <ToggleThemeBtn toggleNavbar={toggleNavbar} />
           <Button primary small onClick={handleClick}>
             {isAuthenticated ? "Logout" : "Login"}
           </Button>
