@@ -28,14 +28,7 @@ const fetchPosts = async (req, res) => {
       .sort({ createdAt: -1 })
       .limit(LIMIT)
       .skip(startIndex)
-      .populate({
-        path: "author",
-        select: {
-          name: 1,
-          email: 1,
-        },
-      });
-
+      .populate({ path: "author", select: "_id, name" });
     res.status(200).json({
       data: posts,
       currentPage: Number(page),
@@ -48,24 +41,25 @@ const fetchPosts = async (req, res) => {
 
 const fetchPost = async (req, res) => {
   const { id } = req.params;
+  const LIMIT = 3;
   try {
     const post = await Post.findById(id)
-      .populate("author", "_id, name")
+      .populate({ path: "author", select: "_id, name" })
       .populate({
         path: "comments",
-        select: "-__v -id -createdAt -updatedAt",
+        select: "-__v -id -updatedAt",
         options: { sort: { createdAt: -1 } },
         populate: {
           path: "author",
-          select: "_id name",
+          select: "_id name createdAt",
         },
       })
       .select("-__v")
       .lean()
       .exec();
-    const relatedPosts = await Post.find({ tags: { $in: post.tags } }).populate(
-      "author",
-    );
+    const relatedPosts = await Post.find({ tags: { $in: post.tags } })
+      .populate({ path: "author", select: "_id, name" })
+      .limit(LIMIT);
     res.status(200).json({ data: post, relatedPosts: relatedPosts });
   } catch (error) {
     res.status(400).json({ message: `No post was found with id: ${id}` });
