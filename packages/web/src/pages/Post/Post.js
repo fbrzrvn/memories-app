@@ -32,7 +32,7 @@ const Post = () => {
       {relatedPosts.length > 0 && (
         <PostRecommended reccomendedPosts={relatedPosts} />
       )}
-      {isAuthenticated && <Comments post={post} />}
+      <Comments post={post} isAuthenticated={isAuthenticated} />
     </>
   );
 };

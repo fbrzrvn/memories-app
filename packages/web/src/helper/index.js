@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export const formatPostDate = (date) => {
   const months = [
     "Jan",
@@ -18,6 +20,14 @@ export const formatPostDate = (date) => {
   const day = date.slice(8, 10);
   const year = date.slice(0, 4);
   return `${month} ${day}, ${year}`;
+};
+
+export const formatCommentDate = (date) => {
+  const fdate = moment(date).fromNow();
+  const timeNum = fdate.split(" ")[0];
+  if (isNaN(Number(timeNum))) return fdate;
+  const timeType = fdate.split(" ")[1].charAt(0);
+  return `${timeNum}${timeType}`;
 };
 
 export const countReadingTime = (title, content) => {

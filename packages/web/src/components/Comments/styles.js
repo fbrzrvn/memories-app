@@ -13,26 +13,71 @@ export const CommentsContainer = styled.section`
 export const CommentsWrap = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 0 16px;
+  padding: 32px 16px;
   @media screen and (max-width: 575px) {
     padding: 0;
   }
 `;
 
-export const CommentsTitle = styled.h2`
-  font-size: 24px;
-  line-height: 25px;
-  margin-bottom: 28px;
+export const CommentsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+`;
+
+export const CommentCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid ${({ theme }) => theme.navbar};
+`;
+
+export const CommentHeader = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+`;
+
+export const CommentAuthor = styled.span`
+  color: ${({ theme }) => theme.text};
+  font-size: 13px;
+  font-weight: 700;
+`;
+
+export const CommentDivider = styled.span`
   color: ${({ theme }) => theme.textSecondary};
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 4px;
+`;
+
+export const CommentDate = styled.span`
+  color: ${({ theme }) => theme.textSecondary};
+  font-size: 13px;
+`;
+
+export const CommentBody = styled.p`
+  font-size: 18px;
+  line-height: 20px;
+  color: ${({ theme }) => theme.text};
 `;
 
 export const CommentsForm = styled.div`
   display: flex;
   width: 100%;
-  margin: 16px auto;
+  margin: 0 auto 16px;
   @media screen and (max-width: 575px) {
-    margin: 0 0 16px;
+    flex-direction: column;
   }
+`;
+
+export const CommentsTitle = styled.h2`
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 20px;
+  margin-bottom: 16px;
+  color: ${({ theme }) => theme.textSecondary};
 `;
 
 export const CommentsInput = styled.input`
@@ -41,6 +86,8 @@ export const CommentsInput = styled.input`
   margin-right: 8px;
   font-family: inherit;
   font-size: 16px;
+  font-weight: 500;
+  line-height: 18px;
   border-radius: 4px;
   border: none;
   border: ${({ error }) => error && `1px solid ${COLOR.danger700}`};
@@ -49,22 +96,8 @@ export const CommentsInput = styled.input`
   &:focus {
     outline: ${({ error }) => !error && `1px solid ${COLOR.deepPurple300}`};
   }
-`;
-
-export const CommentsWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-export const CommentCard = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 16px;
-  margin-bottom: 16px;
-  border-radius: 10px;
-  background: ${({ theme }) => theme.navbar};
-`;
-
-export const CommentAuthor = styled.div`
-  margin-bottom: 12px;
+  @media screen and (max-width: 575px) {
+    margin-right: 0;
+    margin-bottom: 16px;
+  }
 `;
