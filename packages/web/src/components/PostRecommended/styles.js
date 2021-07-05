@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const PostRecommendedContainer = styled.div`
   width: 100%;
   padding: 100px 12px;
-  background-color: ${({ theme }) => theme.navbar};
+  background-color: ${({ theme }) => theme.footer};
 `;
 
 export const PostRecommendedWrap = styled.div`

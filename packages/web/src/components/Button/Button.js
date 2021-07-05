@@ -8,6 +8,7 @@ const Button = styled.button`
   width: ${({ small }) => (small ? "120px" : "100%")};
   margin: auto;
   white-space: nowrap;
+  font-family: inherit;
   font-size: 16px;
   border-radius: 10px;
   border: ${({ theme }) => `1px solid ${theme.primary}`};
