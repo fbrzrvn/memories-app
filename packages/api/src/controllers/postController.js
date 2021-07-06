@@ -20,7 +20,7 @@ const fetchPosts = async (req, res) => {
   const { page } = req.query;
 
   try {
-    const LIMIT = 8;
+    const LIMIT = 9;
     // get the starting index of every page
     const startIndex = (Number(page) - 1) * LIMIT;
     const totalPosts = await Post.countDocuments({});
@@ -154,6 +154,38 @@ const commentPost = async (req, res) => {
   res.status(200).json(commentedPost);
 };
 
+const deleteComment = async (req, res) => {
+  const { postId, commentId } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(commentId)) {
+    return res
+      .status(404)
+      .json({ message: `No comment was found with id: ${commentId}` });
+  }
+
+  if (!mongoose.Types.ObjectId.isValid(postId)) {
+    return res
+      .status(404)
+      .json({ message: `No post was found with id: ${commentId}` });
+  }
+
+  const deleteComment = Comment.findByIdAndRemove(commentId);
+  const deletePostComment = Post.findByIdAndUpdate(postId, {
+    $pull: {
+      comments: {
+        $in: [commentId],
+      },
+    },
+  });
+
+  await Promise.all([
+    deleteComment.catch((error) => console.log(error)),
+    deletePostComment.catch((error) => console.log(error)),
+  ]);
+
+  res.status(200).json({ message: `Comment successfully deleted!` });
+};
+
 module.exports = {
   createPost,
   fetchPosts,
@@ -162,4 +194,5 @@ module.exports = {
   likePost,
   fetchPost,
   commentPost,
+  deleteComment,
 };
