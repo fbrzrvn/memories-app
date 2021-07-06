@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { COLOR } from "../../styles/colors";
 
 export const CommentsContainer = styled.section`
@@ -34,15 +34,17 @@ export const CommentCard = styled.div`
 `;
 
 export const CommentHeader = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 `;
 
 export const CommentAuthor = styled.span`
   color: ${({ theme }) => theme.text};
-  font-size: 13px;
   font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
 `;
 
 export const CommentDivider = styled.span`
@@ -54,13 +56,40 @@ export const CommentDivider = styled.span`
 
 export const CommentDate = styled.span`
   color: ${({ theme }) => theme.textSecondary};
-  font-size: 13px;
+  font-size: 14px;
+  line-height: 20px;
 `;
 
 export const CommentBody = styled.p`
   font-size: 18px;
   line-height: 20px;
   color: ${({ theme }) => theme.text};
+`;
+
+export const CommentDeleteButton = styled.button`
+  position: absolute;
+  right: 0;
+  bottom: 50%;
+  transform: translateY(50%);
+  border: none;
+  background: transparent;
+  color: ${({ theme }) => theme.textSecondary};
+  cursor: pointer;
+  ${(props) =>
+    props.disabled &&
+    css`
+      opacity: 0.5;
+      cursor: not-allowed;
+    `}
+  &:hover {
+    color: ${({ theme }) => theme.primary};
+    transition: color 0.3ms ease-in-out;
+    ${(props) =>
+      props.disabled &&
+      css`
+        color: ${({ theme }) => theme.textSecondary};
+      `}
+  }
 `;
 
 export const CommentsForm = styled.div`

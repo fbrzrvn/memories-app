@@ -1,16 +1,19 @@
+import { Delete as DeleteIcon } from "@material-ui/icons";
 import { bool, object } from "prop-types";
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { formatCommentDate } from "../../helper";
 import useWindowSize from "../../hooks/useWindowSize";
-import { commentPost } from "../../redux/post/postActions";
+import { authSelector } from "../../redux/auth/authSelector";
+import { commentPost, deleteComment } from "../../redux/post/postActions";
 import Button from "../Button";
 import {
   CommentAuthor,
   CommentBody,
   CommentCard,
   CommentDate,
+  CommentDeleteButton,
   CommentDivider,
   CommentHeader,
   CommentsContainer,
@@ -23,6 +26,7 @@ import {
 
 const Comments = ({ post, isAuthenticated }) => {
   const dispatch = useDispatch();
+  const { currentUser } = useSelector(authSelector);
   const [comment, setComment] = useState("");
   const { id } = useParams();
   const currentWidth = useWindowSize();
@@ -34,10 +38,10 @@ const Comments = ({ post, isAuthenticated }) => {
   return (
     <CommentsContainer>
       <CommentsWrap>
-        {post.comments.length > 0 && (
+        {post?.comments?.length > 0 && (
           <CommentsWrapper>
             <CommentsTitle>
-              {`${post.comments.length} comments to "${post.title}"`}
+              {`${post?.comments?.length} comments to "${post.title}"`}
             </CommentsTitle>
             {post.comments.map((c) => (
               <CommentCard key={c._id}>
@@ -45,6 +49,14 @@ const Comments = ({ post, isAuthenticated }) => {
                   <CommentAuthor>{c.author.name}</CommentAuthor>
                   <CommentDivider>·</CommentDivider>
                   <CommentDate>{formatCommentDate(c.createdAt)}</CommentDate>
+                  {currentUser?.user?._id === c?.author?._id && (
+                    <CommentDeleteButton
+                      type="button"
+                      onClick={() => dispatch(deleteComment(post._id, c._id))}
+                    >
+                      <DeleteIcon />
+                    </CommentDeleteButton>
+                  )}
                 </CommentHeader>
                 <CommentBody>{c.comment}</CommentBody>
               </CommentCard>
