@@ -10,5 +10,6 @@ export const UPDATE_POST = "UPDATE_POST";
 export const DELETE_POST = "DELETE_POST";
 export const LIKE_POST = "LIKE_POST";
 export const COMMENT_POST = "COMMENT_POST";
+export const COMMENT_DELETE = "COMMENT_DELETE";
 
 export const RESET_POST_STATE = "RESET_POST_STATE";

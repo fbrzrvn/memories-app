@@ -94,7 +94,7 @@ export const deletePost = (id) => async (dispatch) => {
 };
 
 export const likePost = (id) => async (dispatch) => {
-  dispatch(postRequest());
+  // dispatch(postRequest());
   try {
     const { data } = await API.likePost(id);
     dispatch({
@@ -113,6 +113,19 @@ export const commentPost = (id, comment) => async (dispatch) => {
     dispatch({
       type: postTypes.COMMENT_POST,
       payload: data,
+    });
+  } catch (error) {
+    dispatch(postError(error.message));
+  }
+};
+
+export const deleteComment = (postId, commentId) => async (dispatch) => {
+  dispatch(postRequest());
+  try {
+    await API.deleteComment(postId, commentId);
+    dispatch({
+      type: postTypes.COMMENT_DELETE,
+      payload: commentId,
     });
   } catch (error) {
     dispatch(postError(error.message));

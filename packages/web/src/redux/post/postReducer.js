@@ -94,6 +94,17 @@ const postReducer = (state = postInitialState, action) => {
         post: action.payload,
       };
     }
+    case postTypes.COMMENT_DELETE: {
+      return {
+        ...state,
+        isLoading: false,
+        isLoaded: true,
+        post: {
+          ...state.post,
+          comments: state.post.comments.filter((c) => c._id !== action.payload),
+        },
+      };
+    }
     default:
       return state;
   }
