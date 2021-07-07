@@ -122,7 +122,20 @@ const likePost = async (req, res) => {
     post.likes = post.likes.filter((id) => id !== String(req.userId));
   }
 
-  const likedPost = await Post.findByIdAndUpdate(id, post, { new: true });
+  const likedPost = await Post.findByIdAndUpdate(id, post, { new: true })
+    .populate({ path: "author", select: "_id, name" })
+    .populate({
+      path: "comments",
+      select: "-__v -id -updatedAt",
+      options: { sort: { createdAt: -1 } },
+      populate: {
+        path: "author",
+        select: "_id name createdAt",
+      },
+    })
+    .select("-__v")
+    .lean()
+    .exec();
 
   res.status(200).json(likedPost);
 };

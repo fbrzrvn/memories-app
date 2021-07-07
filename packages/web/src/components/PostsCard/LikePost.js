@@ -4,7 +4,8 @@ import { object } from "prop-types";
 import React from "react";
 
 const LikePost = ({ post, currentUser }) => {
-  return post?.likes?.find((like) => like === currentUser?._id) ? (
+  return post?.likes?.findIndex((likeId) => likeId === currentUser?._id) !==
+    -1 ? (
     <ThumbUpAltIcon />
   ) : (
     <ThumbUpAltOutlined />

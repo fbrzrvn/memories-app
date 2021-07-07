@@ -78,6 +78,7 @@ const postReducer = (state = postInitialState, action) => {
         posts: state.posts.map((post) =>
           post._id === action.payload._id ? action.payload : post,
         ),
+        post: action.payload,
       };
     }
     case postTypes.DELETE_POST: {
