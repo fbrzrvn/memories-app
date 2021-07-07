@@ -41,7 +41,7 @@ export const PostTitle = styled.h2`
   color: ${({ theme }) => theme.text};
   font-size: 32px;
   font-weight: 400;
-  margin: 8px 0 16px;
+  margin: 8px 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

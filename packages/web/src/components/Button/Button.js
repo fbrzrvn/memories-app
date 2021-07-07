@@ -10,6 +10,7 @@ const Button = styled.button`
   white-space: nowrap;
   font-family: inherit;
   font-size: 16px;
+  font-weight: 500;
   border-radius: 10px;
   border: ${({ theme }) => `1px solid ${theme.primary}`};
   background: ${({ primary, theme }) =>

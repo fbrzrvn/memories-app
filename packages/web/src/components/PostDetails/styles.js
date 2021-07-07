@@ -65,13 +65,13 @@ export const PostTitle = styled.h2`
 `;
 
 export const PostInfo = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
 `;
 
 export const PostSmall = styled.small`
   font-size: 16px;
-  font-weight: 400;
   line-height: 1.5;
   white-space: nowrap;
   color: ${({ theme }) => theme.border};
@@ -79,6 +79,11 @@ export const PostSmall = styled.small`
   @media screen and (max-width: 575px) {
     font-size: 14px;
   }
+`;
+
+export const PostActions = styled.div`
+  position: absolute;
+  right: 0;
 `;
 
 export const PostHero = styled.div`
@@ -98,9 +103,9 @@ export const PostMedia = styled.img`
 `;
 
 export const PostContent = styled.div`
-  margin: 12px 24px 80px;
+  margin: 0 24px 80px;
   @media screen and (max-width: 575px) {
-    margin: 12px 0 80px;
+    margin: 0 0 80px;
   }
 `;
 
@@ -109,11 +114,30 @@ export const PostTags = styled.p`
   font-weight: 600;
   line-height: 1.5;
   color: ${({ theme }) => theme.primary};
-  margin-bottom: 32px;
+  margin: 24px 0 16px;
 `;
 
 export const PostP = styled.div`
   line-height: 1.8;
-  font-size: 20px;
-  font-weight: 400;
+  letter-spacing: 0.00938em;
+  color: ${({ theme }) => theme.text};
+  & span.keyword {
+    color: #ff80bf;
+  }
+  & span.variable {
+    color: #9580ff;
+  }
+  & span.object {
+    color: #8be9fd;
+  }
+  & span.method {
+    color: #8aff80;
+  }
+  & img {
+    margin: 16px auto;
+    width: 100%;
+  }
+  & ul {
+    margin: 16px auto;
+  }
 `;
