@@ -72,7 +72,7 @@ export const PostSpan = styled.span`
 `;
 
 export const PostFooterActions = styled.div`
-  display: block;
+  display: ${({ reccomended }) => (reccomended ? "none" : "block")};
 `;
 
 export const PostFooterButton = styled.button`

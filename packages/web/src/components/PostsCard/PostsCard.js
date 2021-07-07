@@ -3,7 +3,7 @@ import {
   MoreVert as MoreVertIcon,
 } from "@material-ui/icons";
 import moment from "moment";
-import { object } from "prop-types";
+import { object, string } from "prop-types";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -25,7 +25,7 @@ import {
   PostTitle,
 } from "./styles";
 
-const PostsCard = ({ post }) => {
+const PostsCard = ({ post, type }) => {
   const { currentUser } = useSelector(authSelector);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -49,7 +49,7 @@ const PostsCard = ({ post }) => {
           <PostSpan>{post?.author?.name}</PostSpan>
           <PostSpan>{moment(post.createdAt).fromNow()}</PostSpan>
         </PostFooterAuthor>
-        <PostFooterActions>
+        <PostFooterActions reccomended={type}>
           <BtnIcon
             action={LIKE}
             post={post}
@@ -80,6 +80,10 @@ const PostsCard = ({ post }) => {
 
 PostsCard.propTypes = {
   post: object.isRequired,
+  type: string,
+};
+PostsCard.defaultProps = {
+  type: "",
 };
 
 export default PostsCard;

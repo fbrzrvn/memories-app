@@ -15,7 +15,7 @@ const PostRecommended = ({ reccomendedPosts }) => {
         <PostRecommendedH2>You may also like:</PostRecommendedH2>
         <PostRecommendedGrid>
           {reccomendedPosts.map((rp) => (
-            <PostsCard key={rp._id} post={rp} />
+            <PostsCard key={rp._id} post={rp} type="reccomended" />
           ))}
         </PostRecommendedGrid>
       </PostRecommendedWrap>
