@@ -57,6 +57,8 @@
     "@testing-library/react": "^11.2.3",
     "@testing-library/user-event": "^12.6.2",
     "axios": "^0.21.1",
+    "dompurify": "^2.3.0",
+    "html-react-parser": "^1.2.7",
     "jwt-decode": "^3.1.2",
     "moment": "^2.29.1",
     "normalizr": "^3.6.1",
