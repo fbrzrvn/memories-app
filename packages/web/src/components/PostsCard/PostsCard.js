@@ -8,20 +8,15 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { authSelector } from "../../redux/auth/authSelector";
-import {
-  deletePost,
-  fetchPost,
-  getPostId,
-  likePost,
-} from "../../redux/post/postActions";
-import * as ROUTES from "../../routes";
+import { fetchPost } from "../../redux/post/postActions";
+import { DELETE, LIKE, UPDATE } from "../../utils/constant";
+import BtnIcon from "../IconBtn";
 import LikePost from "./LikePost";
 import {
   Card,
   PostFooter,
   PostFooterActions,
   PostFooterAuthor,
-  PostFooterButton,
   PostHero,
   PostImg,
   PostInfo,
@@ -35,19 +30,14 @@ const PostsCard = ({ post }) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const handleGetClick = (postId) => {
+  const handleClick = (postId) => {
     dispatch(fetchPost(postId));
     history.push(`/posts/${postId}`);
   };
 
-  const handleUpdateClick = (postId) => {
-    dispatch(getPostId(postId));
-    history.push(ROUTES.UPDATE);
-  };
-
   return (
     <Card>
-      <PostHero onClick={() => handleGetClick(post._id)}>
+      <PostHero onClick={() => handleClick(post._id)}>
         <PostImg src={post.media} alt={post.title} />
         <PostInfo>
           <PostP>{post.tags.map((tag) => `#${tag} `)}</PostP>
@@ -60,27 +50,26 @@ const PostsCard = ({ post }) => {
           <PostSpan>{moment(post.createdAt).fromNow()}</PostSpan>
         </PostFooterAuthor>
         <PostFooterActions>
-          <PostFooterButton
-            disabled={!currentUser.user}
-            onClick={() => dispatch(likePost(post._id))}
-          >
-            <LikePost post={post} currentUser={currentUser.user} />
-          </PostFooterButton>
-          {(currentUser?.user?.googleId === post?.author?._id ||
-            currentUser?.user?._id === post?.author?._id) && (
+          <BtnIcon
+            action={LIKE}
+            post={post}
+            currentUser={currentUser}
+            icon={<LikePost post={post} currentUser={currentUser.user} />}
+          />
+          {currentUser?.user?._id === post?.author?._id && (
             <>
-              <PostFooterButton
-                disabled={!currentUser.user}
-                onClick={() => handleUpdateClick(post._id)}
-              >
-                <MoreVertIcon />
-              </PostFooterButton>
-              <PostFooterButton
-                disabled={!currentUser.user}
-                onClick={() => dispatch(deletePost(post._id))}
-              >
-                <DeleteIcon />
-              </PostFooterButton>
+              <BtnIcon
+                action={UPDATE}
+                post={post}
+                currentUser={currentUser}
+                icon={<MoreVertIcon />}
+              />
+              <BtnIcon
+                action={DELETE}
+                post={post}
+                currentUser={currentUser}
+                icon={<DeleteIcon />}
+              />
             </>
           )}
         </PostFooterActions>
