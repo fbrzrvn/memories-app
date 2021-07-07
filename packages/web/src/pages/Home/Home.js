@@ -21,7 +21,7 @@ const Home = () => {
 
   useEffect(() => {
     page && dispatch(fetchPosts(page));
-  }, [dispatch, page]);
+  }, [dispatch, page, posts.length]);
 
   return isLoading ? (
     <SpinnerWrap />
