@@ -121,6 +121,16 @@ export const PostP = styled.div`
   line-height: 1.8;
   letter-spacing: 0.00938em;
   color: ${({ theme }) => theme.text};
+  a {
+    font-weight: 500;
+    text-decoration: none;
+    color: ${({ theme }) => theme.navbarLink};
+    cursor: pointer;
+    transition: color 0.3ms ease-in-out;
+    &:hover {
+      color: ${({ theme }) => theme.primary};
+    }
+  }
   & span.keyword {
     color: #ff80bf;
   }

@@ -32,8 +32,8 @@ export const GlobalStyles = createGlobalStyle`
     margin: 16px 0;
     padding: 18px;
     border-radius: 6px;
-    background-color: ${({ theme }) => theme.navbar};
-    color: ${({ theme }) => theme.textSecondary};
+    background-color: ${COLOR.darkNavbar};
+    color: ${COLOR.darkTextSecondary};
   }
 
   & h2 {

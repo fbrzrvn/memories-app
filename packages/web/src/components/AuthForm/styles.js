@@ -56,12 +56,16 @@ export const FormWrap = styled.form`
 `;
 
 export const FormLabel = styled.label`
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 500;
   margin-bottom: 8px;
-  font-size: 14px;
   color: ${({ theme }) => theme.text};
 `;
 
 export const FormInput = styled.input`
+  font-family: inherit;
+  font-size: 16px;
   padding: 10px;
   margin-bottom: 24px;
   border: none;
@@ -80,6 +84,7 @@ export const LinkWrap = styled.div`
   & * {
     text-decoration: none;
     font-size: 14px;
+    font-weight: 600;
     color: ${({ theme }) => theme.textSecondary};
   }
   @media screen and (max-width: 480px) {

@@ -6,14 +6,13 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  max-width: 460px;
   width: 100%;
   padding: 32px;
-  margin: 24px auto;
   border-radius: 10px;
   box-shadow: 1px 1px 5px ${({ theme }) => theme.border};
   @media screen and (max-width: 480px) {
     box-shadow: none;
+    padding: 0;
   }
 `;
 
@@ -55,6 +54,7 @@ export const LinkWrap = styled.div`
   & * {
     text-decoration: none;
     font-size: 14px;
+    font-weight: 600;
     color: ${({ theme }) => theme.textSecondary};
   }
   @media screen and (max-width: 480px) {
