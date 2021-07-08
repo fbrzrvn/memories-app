@@ -7,7 +7,6 @@ import {
   resetAuthState,
   signUp,
   signUpError,
-  signUpSuccess,
 } from "../../redux/auth/authActions";
 import { authSelector } from "../../redux/auth/authSelector";
 import * as ROUTES from "../../routes";
@@ -50,8 +49,7 @@ const SignUpForm = () => {
 
   const googleSuccess = async (res) => {
     const user = res.profileObj;
-    const token = res.tokenId;
-    dispatch(signUpSuccess({ user, token }));
+    dispatch(signUp(user));
   };
 
   const googleFailure = () => {
@@ -70,31 +68,33 @@ const SignUpForm = () => {
           <FormWrap onSubmit={handleSubmit(onSubmit)}>
             <FormLabel>Fist Name</FormLabel>
             <FormInput
-              name="firstName"
+              name="givenName"
               type="text"
               placeholder="Enter your first name"
-              onChange={(e) => setValue("firstName", e.target.value)}
-              {...register("firstName", {
+              onChange={(e) => setValue("givenName", e.target.value)}
+              {...register("givenName", {
                 required: "Please enter your first name",
               })}
-              error={errors.firstName}
+              error={errors.givenName}
             />
-            {errors.firstName && (
-              <ErrorMsg>{errors.firstName.message}</ErrorMsg>
+            {errors.givenName && (
+              <ErrorMsg>{errors.givenName.message}</ErrorMsg>
             )}
 
             <FormLabel>Last Name</FormLabel>
             <FormInput
-              name="lastName"
+              name="familyName"
               type="text"
               placeholder="Enter your last name"
-              onChange={(e) => setValue("lastName", e.target.value)}
-              {...register("lastName", {
+              onChange={(e) => setValue("familyName", e.target.value)}
+              {...register("familyName", {
                 required: "Please enter your last name",
               })}
-              error={errors.lastName}
+              error={errors.familyName}
             />
-            {errors.lastName && <ErrorMsg>{errors.lastName.message}</ErrorMsg>}
+            {errors.familyName && (
+              <ErrorMsg>{errors.familyName.message}</ErrorMsg>
+            )}
 
             <FormLabel>Email</FormLabel>
             <FormInput

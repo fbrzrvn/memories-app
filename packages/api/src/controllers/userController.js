@@ -3,7 +3,14 @@ const jwt = require("jsonwebtoken");
 const { User } = require("../models");
 
 const signUp = async (req, res) => {
-  const { firstName, lastName, email, password, confirmPassword } = req.body;
+  const {
+    familyName,
+    givenName,
+    email,
+    password,
+    confirmPassword,
+    imageUrl,
+  } = req.body;
 
   try {
     const existingUser = await User.findOne({ email });
@@ -15,12 +22,11 @@ const signUp = async (req, res) => {
       return res.status(400).json({ message: "Password don't match!" });
     }
 
-    const hashPassword = await bcrypt.hash(password, 12);
-
     const user = await User.create({
-      name: `${firstName} ${lastName}`,
+      name: `${givenName} ${familyName}`,
       email: email,
-      password: hashPassword,
+      imageUrl: imageUrl,
+      password: (await bcrypt.hash(password, 12)) || "",
     });
 
     const token = jwt.sign(
@@ -43,12 +49,14 @@ const signIn = async (req, res) => {
       return res.status(404).json({ message: "User does not exist!" });
     }
 
-    const isValidPassword = await bcrypt.compare(
-      password,
-      existingUser.password,
-    );
-    if (!isValidPassword) {
-      return res.status(400).json({ message: "Invalid credentials." });
+    if (password) {
+      const isValidPassword = await bcrypt.compare(
+        password,
+        existingUser.password,
+      );
+      if (!isValidPassword) {
+        return res.status(400).json({ message: "Invalid credentials." });
+      }
     }
 
     const token = jwt.sign(

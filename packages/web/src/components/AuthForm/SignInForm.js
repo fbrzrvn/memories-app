@@ -7,7 +7,6 @@ import {
   resetAuthState,
   signIn,
   signUpError,
-  signUpSuccess,
 } from "../../redux/auth/authActions";
 import { authSelector } from "../../redux/auth/authSelector";
 import * as ROUTES from "../../routes";
@@ -50,8 +49,7 @@ const SignInForm = () => {
 
   const googleSuccess = async (res) => {
     const user = res.profileObj;
-    const token = res.tokenId;
-    dispatch(signUpSuccess({ user, token }));
+    dispatch(signIn(user));
   };
 
   const googleFailure = () => {
