@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { User } = require("../models");
+const sanitazeUser = require("../utils/sanitazeUser");
 
 const signUp = async (req, res) => {
   const {
@@ -35,7 +36,9 @@ const signUp = async (req, res) => {
       { expiresIn: "1h" },
     );
 
-    return res.status(201).json({ user: user, token });
+    const sanitazedUser = sanitazeUser(user);
+
+    return res.status(201).json({ user: sanitazedUser, token });
   } catch (error) {
     res.status(500).json({ message: "Something went wrong! Try again later." });
   }
@@ -65,7 +68,9 @@ const signIn = async (req, res) => {
       { expiresIn: "1h" },
     );
 
-    res.status(200).json({ user: existingUser, token });
+    const sanitazedUser = sanitazeUser(existingUser);
+
+    res.status(200).json({ user: sanitazedUser, token });
   } catch (error) {
     res.status(500).json({ message: "Something went wrong! Try again later." });
   }
