@@ -1,19 +1,25 @@
 import { node, object, string } from "prop-types";
 import React from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { deletePost, getPostId, likePost } from "../../redux/post/postActions";
 import * as ROUTES from "../../routes";
 import { DELETE, LIKE, UPDATE } from "../../utils/constant";
 import { BtnIcon } from "./styles";
 
 const IconBtn = ({ action, post, currentUser, icon }) => {
+  const { id } = useParams();
   const history = useHistory();
   const dispatch = useDispatch();
 
   const handleUpdateClick = (postId) => {
     dispatch(getPostId(postId));
     history.push(ROUTES.UPDATE);
+  };
+
+  const handleDeleteClick = (postId) => {
+    dispatch(deletePost(postId));
+    id !== undefined && history.push(ROUTES.POSTS);
   };
 
   const handleClick = (postId) => {
@@ -23,7 +29,7 @@ const IconBtn = ({ action, post, currentUser, icon }) => {
       case LIKE:
         return dispatch(likePost(postId));
       case DELETE:
-        return dispatch(deletePost(postId));
+        return handleDeleteClick(postId);
       default:
         return false;
     }
