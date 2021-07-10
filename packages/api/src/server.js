@@ -4,7 +4,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 
 const { config } = require("./config");
-const { userRouter, postRouter } = require("./routes");
+const { authRouter, userRouter, postRouter } = require("./routes");
 
 const app = express();
 
@@ -21,6 +21,7 @@ app.use(
   }),
 );
 
+app.use(authRouter);
 app.use(userRouter);
 app.use(postRouter);
 
