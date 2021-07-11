@@ -71,6 +71,7 @@ const SignInForm = () => {
               name="email"
               type="email"
               placeholder="Enter your email"
+              autoComplete="email"
               onChange={(e) => setValue("email", e.target.value)}
               {...register("email", {
                 pattern: {
@@ -87,6 +88,7 @@ const SignInForm = () => {
               name="password"
               type="password"
               placeholder="Enter your password"
+              autoComplete="current-password"
               onChange={(e) => setValue("password", e.target.value)}
               {...register("password", {
                 minLength: {

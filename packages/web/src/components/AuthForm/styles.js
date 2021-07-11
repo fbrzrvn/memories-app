@@ -66,10 +66,10 @@ export const FormLabel = styled.label`
 export const FormInput = styled.input`
   font-family: inherit;
   font-size: 16px;
-  padding: 10px;
+  padding: 12px 16px;
   margin-bottom: 24px;
   border: none;
-  border-radius: 4px;
+  border-radius: 10px;
   outline: ${({ error }) => error && `none`};
   border: ${({ error }) => error && `1px solid ${COLOR.danger700}`};
   &:active,

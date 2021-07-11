@@ -71,6 +71,7 @@ const SignUpForm = () => {
               name="givenName"
               type="text"
               placeholder="Enter your first name"
+              autoComplete="given-name"
               onChange={(e) => setValue("givenName", e.target.value)}
               {...register("givenName", {
                 required: "Please enter your first name",
@@ -86,6 +87,7 @@ const SignUpForm = () => {
               name="familyName"
               type="text"
               placeholder="Enter your last name"
+              autoComplete="family-name"
               onChange={(e) => setValue("familyName", e.target.value)}
               {...register("familyName", {
                 required: "Please enter your last name",
@@ -101,6 +103,7 @@ const SignUpForm = () => {
               name="email"
               type="text"
               placeholder="Enter your email"
+              autoComplete="email"
               onChange={(e) => setValue("email", e.target.value)}
               {...register("email", {
                 pattern: {
@@ -117,6 +120,7 @@ const SignUpForm = () => {
               name="password"
               type="password"
               placeholder="Enter your password"
+              autoComplete="new-password"
               onChange={(e) => setValue("password", e.target.value)}
               {...register("password", {
                 minLength: {
@@ -133,6 +137,7 @@ const SignUpForm = () => {
               name="confirmPassword"
               type="password"
               placeholder="Repeat your password"
+              autoComplete="new-password"
               onChange={(e) => setValue("confirmPassword", e.target.value)}
               {...register("confirmPassword", {
                 minLength: {

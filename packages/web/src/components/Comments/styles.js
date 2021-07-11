@@ -111,13 +111,12 @@ export const CommentsTitle = styled.h2`
 
 export const CommentsInput = styled.input`
   flex: 1;
-  padding: 10px;
+  padding: 12px 16px;
   margin-right: 8px;
   font-family: inherit;
   font-size: 16px;
-  font-weight: 500;
   line-height: 18px;
-  border-radius: 4px;
+  border-radius: 10px;
   border: none;
   border: ${({ error }) => error && `1px solid ${COLOR.danger700}`};
   outline: ${({ error }) => error && `none`};
