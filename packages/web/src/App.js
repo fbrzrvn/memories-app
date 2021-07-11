@@ -3,7 +3,7 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import Theme from "./components/Theme";
 import SignIn from "./pages/Auth/SignIn";
 import SignUp from "./pages/Auth/SignUp";
-import { CreatePost, UpdatePost } from "./pages/FormPost";
+import FormPost from "./pages/FormPost";
 import Home from "./pages/Home";
 import Post from "./pages/Post";
 import Search from "./pages/Search";
@@ -19,8 +19,8 @@ const App = () => {
         <Route path={ROUTES.ME} component={User} />
         <Route path={ROUTES.USER} component={User} />
         <Route path={ROUTES.SEARCH} component={Search} />
-        <Route path={ROUTES.UPDATE} component={UpdatePost} />
-        <Route path={ROUTES.CREATE} component={CreatePost} />
+        <Route path={ROUTES.UPDATE} component={FormPost} />
+        <Route path={ROUTES.CREATE} component={FormPost} />
         <Route path={ROUTES.POST} component={Post} />
         <Route path={ROUTES.POSTS} component={Home} exact />
         <Route

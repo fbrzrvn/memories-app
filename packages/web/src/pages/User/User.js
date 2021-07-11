@@ -15,7 +15,7 @@ const User = () => {
   const { posts, user, isLoading } = useSelector(userSelector);
   const dispatch = useDispatch();
 
-  const endPoint = getEndPoint(pathname);
+  const endPoint = getEndPoint("users", pathname);
 
   useEffect(() => {
     endPoint === "me"

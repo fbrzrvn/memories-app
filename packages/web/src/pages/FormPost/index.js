@@ -1,4 +1,3 @@
-import CreatePost from "./CreatePost";
-import UpdatePost from "./UpdatePost";
+import FormPost from "./FormPost";
 
-export { CreatePost, UpdatePost };
+export default FormPost;

@@ -38,8 +38,8 @@ export const countReadingTime = (title, content) => {
   return Math.ceil(readingTime);
 };
 
-export const getEndPoint = (url) => {
-  const regex = /\/users\/(.*)/;
+export const getEndPoint = (path, url) => {
+  const regex = `/${path}/(.*)`;
   const match = url?.match(regex);
   return match ? match[1] : "";
 };

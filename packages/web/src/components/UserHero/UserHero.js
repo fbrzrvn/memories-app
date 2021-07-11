@@ -41,8 +41,12 @@ const UserHero = ({ user, userPosts }) => {
 };
 
 UserHero.propTypes = {
-  user: object.isRequired,
+  user: object,
   userPosts: array.isRequired,
+};
+
+UserHero.defaultProps = {
+  user: {},
 };
 
 export default UserHero;
