@@ -19,15 +19,18 @@ const signUp = async (req, res) => {
       return res.status(400).json({ message: "User already exist!" });
     }
 
-    if (password !== confirmPassword) {
-      return res.status(400).json({ message: "Password don't match!" });
+    if (password && confirmPassword) {
+      if (password !== confirmPassword) {
+        return res.status(400).json({ message: "Password don't match!" });
+      }
+      var hashedPassword = await bcrypt.hash(password, 12);
     }
 
     const user = await User.create({
       name: `${givenName} ${familyName}`,
       email: email,
-      imageUrl: imageUrl,
-      password: (await bcrypt.hash(password, 12)) || "",
+      imageUrl: imageUrl || null,
+      password: hashedPassword || null,
     });
 
     const token = jwt.sign(
