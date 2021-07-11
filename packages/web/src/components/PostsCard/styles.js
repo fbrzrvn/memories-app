@@ -69,6 +69,11 @@ export const PostSpan = styled.span`
   color: ${({ theme }) => theme.textSecondary};
   font-size: 14px;
   font-weight: 500;
+  &:hover {
+    color: ${({ theme }) => theme.text};
+    cursor: ${({ spanLink }) => spanLink && "pointer"};
+    transition: color 300ms ease-in-out;
+  }
 `;
 
 export const PostFooterActions = styled.div`
@@ -90,7 +95,7 @@ export const PostFooterButton = styled.button`
     `}
   &:hover {
     color: ${({ theme }) => theme.primary};
-    transition: color 0.3ms ease-in-out;
+    transition: color 300ms ease-in-out;
     ${(props) =>
       props.disabled &&
       css`

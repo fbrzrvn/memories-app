@@ -8,4 +8,7 @@ export const MainContainer = styled.div`
   max-width: 1100px;
   min-height: calc(100vh - 160px);
   margin: auto;
+  @media screen and (max-width: 375px) {
+    padding: 50px 0;
+  }
 `;

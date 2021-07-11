@@ -26,20 +26,27 @@ export const AuthorAvatar = styled(Avatar)`
   && {
     height: 72px;
     width: 72px;
+    font-size: 32px;
+    font-weight: 500;
     @media screen and (max-width: 575px) {
       height: 40px;
       width: 40px;
+      font-size: 20px;
     }
   }
 `;
 
 export const PostAuthorName = styled.p`
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 24px;
   line-height: 1.5;
   text-decoration: none;
   color: ${({ theme }) => theme.tags};
   margin-left: 16px;
+  cursor: pointer;
+  @media screen and (max-width: 575px) {
+    font-size: 16px;
+    font-weight: 500;
+  }
 `;
 
 export const PostHeader = styled.div`
@@ -127,7 +134,7 @@ export const PostP = styled.div`
     text-decoration: none;
     color: ${({ theme }) => theme.navbarLink};
     cursor: pointer;
-    transition: color 0.3ms ease-in-out;
+    transition: color 300ms ease-in-out;
     &:hover {
       color: ${({ theme }) => theme.primary};
     }

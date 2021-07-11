@@ -4,8 +4,10 @@ import styled from "styled-components";
 export const AuthorHero = styled.div`
   display: flex;
   padding: 16px 32px;
+  margin-bottom: 50px;
   @media screen and (max-width: 768px) {
     flex-direction: column;
+    padding: 0 24px;
   }
 `;
 
@@ -52,9 +54,8 @@ export const AuthorSubtitle = styled.h5`
 `;
 
 export const AuthorStats = styled.div`
-  min-width: 300px;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
 `;
 
@@ -63,6 +64,9 @@ export const AuthorP = styled.p`
   font-weight: 600;
   text-align: center;
   padding: 8px 8px 4px;
+  @media screen and (max-width: 375px) {
+    padding: 8px 0 4px;
+  }
 `;
 
 export const AuthorSmall = styled.small`
@@ -72,4 +76,7 @@ export const AuthorSmall = styled.small`
   text-transform: uppercase;
   padding: 4px 8px;
   color: ${({ theme }) => theme.textSecondary};
+  @media screen and (max-width: 375px) {
+    font-size: 12px;
+  }
 `;

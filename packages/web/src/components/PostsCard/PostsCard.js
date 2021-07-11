@@ -52,7 +52,7 @@ const PostsCard = ({ post, type }) => {
       </PostHero>
       <PostFooter>
         <PostFooterAuthor>
-          <PostSpan onClick={() => handleUserClick(post?.author?._id)}>
+          <PostSpan spanLink onClick={() => handleUserClick(post?.author?._id)}>
             {post?.author?.name}
           </PostSpan>
           <PostSpan>{moment(post.createdAt).fromNow()}</PostSpan>

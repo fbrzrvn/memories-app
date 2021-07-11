@@ -83,7 +83,7 @@ export const CommentDeleteButton = styled.button`
     `}
   &:hover {
     color: ${({ theme }) => theme.primary};
-    transition: color 0.3ms ease-in-out;
+    transition: color 300ms ease-in-out;
     ${(props) =>
       props.disabled &&
       css`
