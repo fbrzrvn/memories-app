@@ -1,17 +1,18 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import PostCard from "../../components/PostsCard";
+import { SpinnerLoader } from "../../components/Spinner/styles";
+import UserCard from "../../components/UserCard";
 import UserHero from "../../components/UserHero";
 import { getEndPoint } from "../../helper";
 import MainLayout from "../../layout/MainLayout";
+import PostLayout from "../../layout/PostLayout";
 import { fetchCurrentUser, fetchUserById } from "../../redux/user/userActions";
 import { userSelector } from "../../redux/user/userSelector";
-import { PostsWrapper } from "./styles";
 
 const User = () => {
   const { pathname } = useLocation();
-  const { posts, user } = useSelector(userSelector);
+  const { posts, user, isLoading } = useSelector(userSelector);
   const dispatch = useDispatch();
 
   const endPoint = getEndPoint(pathname);
@@ -22,14 +23,16 @@ const User = () => {
       : dispatch(fetchUserById(endPoint));
   }, [dispatch, endPoint]);
 
-  return (
+  return isLoading ? (
+    <SpinnerLoader />
+  ) : (
     <MainLayout>
       <UserHero user={user} userPosts={posts} />
-      <PostsWrapper>
+      <PostLayout>
         {posts?.map((post) => (
-          <PostCard key={post._id} post={post} />
+          <UserCard key={post._id} post={post} />
         ))}
-      </PostsWrapper>
+      </PostLayout>
     </MainLayout>
   );
 };

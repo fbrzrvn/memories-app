@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import PostsCard from "../../components/PostsCard";
+import PostLayout from "../../layout/PostLayout";
 import { postSelector } from "../../redux/post/postSelector";
 import * as ROUTES from "../../routes";
-import { MainWrapper } from "../Home/styles";
 import {
   Nav,
   NavContainer,
@@ -56,11 +56,11 @@ const Search = () => {
         ) : (
           <>
             {findResult.length > 0 ? (
-              <MainWrapper>
+              <PostLayout>
                 {findResult.map((post) => (
                   <PostsCard key={post._id} post={post} />
                 ))}
-              </MainWrapper>
+              </PostLayout>
             ) : (
               <ResultH2>No result was found.</ResultH2>
             )}

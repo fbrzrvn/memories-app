@@ -5,9 +5,9 @@ import Pagination from "../../components/Pagination";
 import PostsCard from "../../components/PostsCard";
 import SpinnerWrap from "../../components/Spinner";
 import MainLayout from "../../layout/MainLayout";
+import PostLayout from "../../layout/PostLayout";
 import { fetchPosts } from "../../redux/post/postActions";
 import { postSelector } from "../../redux/post/postSelector";
-import { MainWrapper } from "./styles";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -27,11 +27,11 @@ const Home = () => {
     <SpinnerWrap />
   ) : (
     <MainLayout>
-      <MainWrapper>
+      <PostLayout>
         {posts.map((post) => (
           <PostsCard key={post._id} post={post} />
         ))}
-      </MainWrapper>
+      </PostLayout>
       <Pagination page={Number(page)} />
     </MainLayout>
   );
