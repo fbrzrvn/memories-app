@@ -1,4 +1,4 @@
-import { object } from "prop-types";
+import { array, object } from "prop-types";
 import React from "react";
 import {
   AuthorAvatar,
@@ -42,7 +42,7 @@ const UserHero = ({ user, userPosts }) => {
 
 UserHero.propTypes = {
   user: object.isRequired,
-  userPosts: object.isRequired,
+  userPosts: array.isRequired,
 };
 
 export default UserHero;

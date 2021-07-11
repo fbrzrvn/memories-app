@@ -27,4 +27,5 @@ export const deletePost = (id) => API.delete(`/posts/delete/${id}`);
 export const deleteComment = (postId, commentId) =>
   API.delete(`/posts/delete/${postId}/comment/${commentId}`);
 
-export const getUserPosts = () => API.get("/users/me");
+export const getUserById = (id) => API.get(`/users/${id}`);
+export const getCurrentUser = () => API.get("/users/me");

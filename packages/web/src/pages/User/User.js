@@ -1,23 +1,26 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import PostCard from "../../components/PostsCard";
 import UserHero from "../../components/UserHero";
+import { getEndPoint } from "../../helper";
 import MainLayout from "../../layout/MainLayout";
-import { authSelector } from "../../redux/auth/authSelector";
-import { fetchUserPosts } from "../../redux/user/userActions";
+import { fetchCurrentUser, fetchUserById } from "../../redux/user/userActions";
 import { userSelector } from "../../redux/user/userSelector";
 import { PostsWrapper } from "./styles";
 
 const User = () => {
+  const { pathname } = useLocation();
+  const { posts, user } = useSelector(userSelector);
   const dispatch = useDispatch();
-  const {
-    currentUser: { user },
-  } = useSelector(authSelector);
-  const { posts } = useSelector(userSelector);
+
+  const endPoint = getEndPoint(pathname);
 
   useEffect(() => {
-    dispatch(fetchUserPosts());
-  }, [dispatch]);
+    endPoint === "me"
+      ? dispatch(fetchCurrentUser())
+      : dispatch(fetchUserById(endPoint));
+  }, [dispatch, endPoint]);
 
   return (
     <MainLayout>

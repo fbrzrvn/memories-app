@@ -37,3 +37,9 @@ export const countReadingTime = (title, content) => {
   const readingTime = totalWords / 200;
   return Math.ceil(readingTime);
 };
+
+export const getEndPoint = (url) => {
+  const regex = /\/users\/(.*)/;
+  const match = url?.match(regex);
+  return match ? match[1] : "";
+};

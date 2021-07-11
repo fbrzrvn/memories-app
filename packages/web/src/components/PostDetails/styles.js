@@ -37,6 +37,7 @@ export const PostAuthorName = styled.p`
   font-size: 18px;
   font-weight: 500;
   line-height: 1.5;
+  text-decoration: none;
   color: ${({ theme }) => theme.tags};
   margin-left: 16px;
 `;

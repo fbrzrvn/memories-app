@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { authSelector } from "../../redux/auth/authSelector";
 import { fetchPost } from "../../redux/post/postActions";
+import { fetchUserById } from "../../redux/user/userActions";
 import { DELETE, LIKE, UPDATE } from "../../utils/constant";
 import BtnIcon from "../IconBtn";
 import LikePost from "./LikePost";
@@ -35,6 +36,11 @@ const PostsCard = ({ post, type }) => {
     history.push(`/posts/${postId}`);
   };
 
+  const handleUserClick = (userId) => {
+    dispatch(fetchUserById(userId));
+    history.push(`/users/${userId}`);
+  };
+
   return (
     <Card>
       <PostHero onClick={() => handleClick(post._id)}>
@@ -46,7 +52,9 @@ const PostsCard = ({ post, type }) => {
       </PostHero>
       <PostFooter>
         <PostFooterAuthor>
-          <PostSpan>{post?.author?.name}</PostSpan>
+          <PostSpan onClick={() => handleUserClick(post?.author?._id)}>
+            {post?.author?.name}
+          </PostSpan>
           <PostSpan>{moment(post.createdAt).fromNow()}</PostSpan>
         </PostFooterAuthor>
         <PostFooterActions reccomended={type}>

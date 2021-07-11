@@ -25,7 +25,8 @@ const userReducer = (state = userInitialState, action) => {
       return {
         ...state,
         isLoading: false,
-        posts: action.payload,
+        user: action.payload.user,
+        posts: action.payload.userPosts,
       };
     }
     default:

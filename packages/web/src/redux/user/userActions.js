@@ -13,10 +13,20 @@ export const fetchUserSuccess = (data) => ({
   payload: data,
 });
 
-export const fetchUserPosts = () => async (dispatch) => {
+export const fetchCurrentUser = () => async (dispatch) => {
   dispatch(fetchUserRequest());
   try {
-    const { data } = await API.getUserPosts();
+    const { data } = await API.getCurrentUser();
+    dispatch(fetchUserSuccess(data));
+  } catch (error) {
+    dispatch(fetchUserError(error.message));
+  }
+};
+
+export const fetchUserById = (id) => async (dispatch) => {
+  dispatch(fetchUserRequest());
+  try {
+    const { data } = await API.getUserById(id);
     dispatch(fetchUserSuccess(data));
   } catch (error) {
     dispatch(fetchUserError(error.message));

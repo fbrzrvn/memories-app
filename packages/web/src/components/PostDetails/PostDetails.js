@@ -6,9 +6,11 @@ import { sanitize } from "dompurify";
 import parse from "html-react-parser";
 import { object } from "prop-types";
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { countReadingTime, formatPostDate } from "../../helper";
 import { authSelector } from "../../redux/auth/authSelector";
+import { fetchUserById } from "../../redux/user/userActions";
 import { DELETE, LIKE, UPDATE } from "../../utils/constant";
 import BtnIcon from "../IconBtn";
 import LikePost from "../PostsCard/LikePost";
@@ -30,17 +32,28 @@ import {
 } from "./styles";
 
 const PostDetails = ({ post }) => {
+  const history = useHistory();
+  const dispatch = useDispatch();
   const { currentUser } = useSelector(authSelector);
   const readingTime = countReadingTime(post.title, post.description);
   const cleanHTML = sanitize(post.description, {
     USE_PROFILES: { html: true },
   });
 
+  const handleUserClick = (userId) => {
+    dispatch(fetchUserById(userId));
+    history.push(`/users/${userId}`);
+  };
+
   return (
     <PostWrapper>
       <PostAuthor>
-        <AuthorAvatar />
-        <PostAuthorName>{post.author.name}</PostAuthorName>
+        <AuthorAvatar src={post.author?.imageUrl} alt={post.author?.name}>
+          {post.author?.name.charAt(0).toUpperCase()}
+        </AuthorAvatar>
+        <PostAuthorName onClick={() => handleUserClick(post?.author?._id)}>
+          {post.author.name}
+        </PostAuthorName>
       </PostAuthor>
       <PostHeader>
         <PostTitle>{post.title}</PostTitle>

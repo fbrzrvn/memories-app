@@ -17,6 +17,7 @@ const App = () => {
         <Route path={ROUTES.SIGN_IN} component={SignIn} />
         <Route path={ROUTES.SIGN_UP} component={SignUp} />
         <Route path={ROUTES.ME} component={User} />
+        <Route path={ROUTES.USER} component={User} />
         <Route path={ROUTES.SEARCH} component={Search} />
         <Route path={ROUTES.UPDATE} component={UpdatePost} />
         <Route path={ROUTES.CREATE} component={CreatePost} />
