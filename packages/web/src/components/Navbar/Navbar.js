@@ -1,8 +1,7 @@
-import { Avatar } from "@material-ui/core";
 import decode from "jwt-decode";
 import { func } from "prop-types";
 import React, { useEffect } from "react";
-import { AiOutlineMenu } from "react-icons/ai";
+import { AiOutlineForm, AiOutlineMenu, AiOutlineSearch } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { signOut } from "../../redux/auth/authActions";
@@ -19,6 +18,7 @@ import {
   NavItem,
   NavLogo,
   NavMenu,
+  UserAvatar,
 } from "./styles";
 
 const Navbar = ({ toggleNavbar }) => {
@@ -47,31 +47,33 @@ const Navbar = ({ toggleNavbar }) => {
         </MobileIcon>
         <NavMenu>
           <NavItem>
-            <NavbarLink to={ROUTES.POSTS} exact>
-              Home
+            <NavbarLink to={ROUTES.SEARCH}>
+              <AiOutlineSearch />
             </NavbarLink>
           </NavItem>
-          <NavItem>
-            <NavbarLink to={ROUTES.CREATE}>Create</NavbarLink>
-          </NavItem>
-          <NavItem>
-            <NavbarLink to={ROUTES.SEARCH}>Search</NavbarLink>
-          </NavItem>
+          {currentUser.user && (
+            <NavItem>
+              <NavbarLink to={ROUTES.CREATE}>
+                <AiOutlineForm />
+              </NavbarLink>
+            </NavItem>
+          )}
           <NavItem>
             <ToggleThemeBtn />
           </NavItem>
           {isAuthenticated && (
             <NavItem>
-              <Avatar
-                alt={currentUser?.user?.name}
-                src={currentUser?.user?.imageUrl}
+              <UserAvatar
+                alt={currentUser.user?.name}
+                src={currentUser.user?.imageUrl}
+                onClick={() => history.push(ROUTES.ME)}
               >
-                {currentUser?.user?.name.charAt(0)}
-              </Avatar>
+                {currentUser.user?.name.charAt(0)}
+              </UserAvatar>
             </NavItem>
           )}
           <NavbarBtn>
-            <Button primary onClick={handleClick}>
+            <Button primary={!isAuthenticated} onClick={handleClick}>
               {isAuthenticated ? "Logout" : "Sign In"}
             </Button>
           </NavbarBtn>

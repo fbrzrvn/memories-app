@@ -40,10 +40,8 @@ export const SidebarMenu = styled.ul`
   align-items: center;
   justify-content: center;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(5, 80px);
-  @media screen and(max-width: 480px) {
-    grid-template-rows: repeat(5, 60px);
-  }
+  padding: 0;
+  grid-template-rows: repeat(6, 80px);
 `;
 
 export const SidebarLink = styled(Link)`

@@ -1,5 +1,7 @@
+import { Avatar } from "@material-ui/core";
 import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
+import { COLOR } from "../../styles/colors";
 
 export const Nav = styled.nav`
   background: ${({ theme }) => theme.navbar};
@@ -22,6 +24,7 @@ export const NavContainer = styled.div`
   height: 80px;
   width: 100%;
   max-width: 1100px;
+  padding: 0 24px;
   z-index: 1;
 `;
 
@@ -33,7 +36,6 @@ export const NavLogo = styled(Link)`
   font-size: 1.5rem;
   font-weight: 700;
   text-decoration: none;
-  margin-left: 24px;
   cursor: pointer;
 `;
 
@@ -52,10 +54,10 @@ export const MobileIcon = styled.div`
 `;
 
 export const NavMenu = styled.ul`
-  list-style: none;
   display: flex;
   align-items: center;
-  text-align: center;
+  list-style: none;
+  padding: 0;
   margin-right: 24px;
   @media screen and (max-width: 768px) {
     display: none;
@@ -74,6 +76,7 @@ export const NavbarLink = styled(NavLink)`
   display: flex;
   align-items: center;
   font-weight: 500;
+  font-size: 28px;
   text-transform: uppercase;
   text-decoration: none;
   padding: 0 10px;
@@ -86,6 +89,14 @@ export const NavbarLink = styled(NavLink)`
   }
   &.active {
     border-bottom: 3px solid ${({ theme }) => theme.primary};
+  }
+`;
+export const UserAvatar = styled(Avatar)`
+  && {
+    background-color: ${COLOR.deepPurple500};
+    border: 1px solid ${({ theme }) => theme.background};
+    font-size: 20px;
+    font-weight: 500;
   }
 `;
 

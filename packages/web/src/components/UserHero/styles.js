@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 export const AuthorHero = styled.div`
   display: flex;
+  align-items: center;
   padding: 16px 32px;
   margin-bottom: 50px;
   @media screen and (max-width: 768px) {
@@ -25,7 +26,7 @@ export const AuthorAvatar = styled(Avatar)`
   && {
     height: 72px;
     width: 72px;
-    @media screen and (max-width: 375px) {
+    @media screen and (max-width: 496px) {
       height: 44px;
       width: 44px;
     }
@@ -40,7 +41,7 @@ export const AuthorTitle = styled.h2`
   font-size: 32px;
   line-height: 1;
   margin: 0;
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 496px) {
     font-size: 22px;
   }
 `;
@@ -48,7 +49,7 @@ export const AuthorTitle = styled.h2`
 export const AuthorSubtitle = styled.h5`
   font-size: 20px;
   margin: 0;
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 496px) {
     font-size: 18px;
   }
 `;
@@ -56,25 +57,25 @@ export const AuthorSubtitle = styled.h5`
 export const AuthorStats = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  height: 100%;
 `;
 
 export const AuthorP = styled.p`
-  font-size: 22px;
   font-weight: 600;
+  font-size: 22px;
+  line-height: 28px;
   text-align: center;
-  padding: 8px 8px 4px;
   @media screen and (max-width: 375px) {
     padding: 8px 0 4px;
   }
 `;
 
 export const AuthorSmall = styled.small`
-  font-size: 15px;
   font-weight: 500;
+  font-size: 14px;
   letter-spacing: 0.2px;
   text-transform: uppercase;
-  padding: 4px 8px;
+  padding: 0 8px 0;
   color: ${({ theme }) => theme.textSecondary};
   @media screen and (max-width: 375px) {
     font-size: 12px;

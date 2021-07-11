@@ -66,11 +66,12 @@ export const PostFooterAuthor = styled.div`
 `;
 
 export const PostSpan = styled.span`
-  color: ${({ theme }) => theme.textSecondary};
-  font-size: 14px;
   font-weight: 500;
+  font-size: ${({ spanLink }) => (spanLink ? "16px" : "14px")};
+  text-transform: ${({ spanLink }) => spanLink && "capitalize"};
+  color: ${({ theme }) => theme.textSecondary};
   &:hover {
-    color: ${({ theme }) => theme.text};
+    color: ${({ theme, spanLink }) => spanLink && `${theme.primary}`};
     cursor: ${({ spanLink }) => spanLink && "pointer"};
     transition: color 300ms ease-in-out;
   }
