@@ -14,7 +14,7 @@ const Button = styled.button`
   border-radius: 10px;
   border: ${({ theme }) => `1px solid ${theme.primary}`};
   background: ${({ primary, theme }) =>
-    primary ? `${theme.primary}` : ` ${theme.background}}`};
+    primary ? `${theme.primary}` : "transparent"};
   color: ${({ primary, theme }) => (primary ? `#f5f6f7` : `${theme.primary}`)};
   outline: none;
   cursor: pointer;
@@ -22,7 +22,7 @@ const Button = styled.button`
   &:hover {
     transition: all 300ms ease-in-out;
     background: ${({ primary, theme }) =>
-      primary ? `${theme.background}` : `${theme.primary}`};
+      primary ? "transparent" : `${theme.primary}`};
     color: ${({ primary, theme }) =>
       primary ? `${theme.primary}` : `#f5f6f7`};
   }

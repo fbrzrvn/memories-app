@@ -108,13 +108,15 @@ export const ErrorMsg = styled.p`
 `;
 
 export const GoogleBtn = styled.button`
-  background: ${({ theme }) => theme.background};
-  color: ${COLOR.deepPurple400};
-  border: 1px solid ${COLOR.deepPurple400};
+  background: #efefef;
+  color: ${COLOR.deepPurple300};
+  border: 1px solid #efefef;
   border-radius: 10px;
   padding: 8px 30px;
   margin-top: 8px;
+  font-family: inherit;
   font-size: 16px;
+  font-weight: 500;
   white-space: nowrap;
   display: flex;
   align-items: center;
@@ -124,9 +126,9 @@ export const GoogleBtn = styled.button`
   transition: all 300ms ease-in-out;
   &:hover {
     transition: all 300ms ease-in-out;
-    border: 1px solid ${COLOR.deepPurple700};
-    color: ${COLOR.deepPurple700};
-    background: ${({ theme }) => theme.navbar};
+    background: ${COLOR.lightNavbar};
+    color: ${COLOR.deepPurple500};
+    border: 1px solid ${COLOR.deepPurple400};
   }
 `;
 
