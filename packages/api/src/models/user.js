@@ -24,6 +24,32 @@ const UserSchema = new mongoose.Schema(
     imageUrl: {
       type: String,
     },
+    username: {
+      type: String,
+      trim: true,
+      unique: true,
+    },
+    bio: {
+      type: String,
+    },
+    followers: {
+      type: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "user",
+        },
+      ],
+      default: [],
+    },
+    following: {
+      type: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "user",
+        },
+      ],
+      default: [],
+    },
   },
   {
     timestamps: true,

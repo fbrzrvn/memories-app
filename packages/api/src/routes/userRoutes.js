@@ -4,6 +4,7 @@ const { userController } = require("../controllers");
 
 const userRouter = Router();
 
+userRouter.post("/users/update", auth, userController.updateUserProfile);
 userRouter.get("/users/me", auth, userController.fetchCurrentUser);
 userRouter.get("/users/:id", userController.fetchUserById);
 

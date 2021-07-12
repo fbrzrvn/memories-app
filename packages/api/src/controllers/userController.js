@@ -16,7 +16,7 @@ const fetchCurrentUser = async (req, res) => {
     const user = await User.findById(id);
     const userPosts = await Post.find({ author: id }).populate({
       path: "author",
-      select: "_id, name",
+      select: "_id name username imageUrl",
     });
     const sanitazedUser = sanitazeUser(user);
     res.status(200).json({ user: sanitazedUser, userPosts });
@@ -36,7 +36,7 @@ const fetchUserById = async (req, res) => {
     const user = await User.findById(id);
     const userPosts = await Post.find({ author: id }).populate({
       path: "author",
-      select: "_id, name",
+      select: "_id name username imageUrl",
     });
     const sanitazedUser = sanitazeUser(user);
     res.status(200).json({ user: sanitazedUser, userPosts });
@@ -45,4 +45,21 @@ const fetchUserById = async (req, res) => {
   }
 };
 
-module.exports = { fetchCurrentUser, fetchUserById };
+const updateUserProfile = async (req, res) => {
+  const user = req.body;
+  if (!mongoose.Types.ObjectId.isValid(user._id)) {
+    return res
+      .status(404)
+      .json({ message: `No post was found with id: ${user._id}` });
+  }
+
+  const updatedUser = await User.findByIdAndUpdate(user._id, user, {
+    new: true,
+  });
+
+  const sanitazedUser = sanitazeUser(updatedUser);
+
+  res.status(200).json(sanitazedUser);
+};
+
+module.exports = { fetchCurrentUser, fetchUserById, updateUserProfile };

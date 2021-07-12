@@ -28,7 +28,7 @@ const fetchPosts = async (req, res) => {
       .sort({ createdAt: -1 })
       .limit(LIMIT)
       .skip(startIndex)
-      .populate({ path: "author", select: "_id name imageUrl" });
+      .populate({ path: "author", select: "_id name username imageUrl" });
     res.status(200).json({
       data: posts,
       currentPage: Number(page),
@@ -44,21 +44,21 @@ const fetchPost = async (req, res) => {
   const LIMIT = 3;
   try {
     const post = await Post.findById(id)
-      .populate({ path: "author", select: "_id name imageUrl" })
+      .populate({ path: "author", select: "_id name username bio imageUrl" })
       .populate({
         path: "comments",
         select: "-__v -id -updatedAt",
         options: { sort: { createdAt: -1 } },
         populate: {
           path: "author",
-          select: "_id name imageUrl",
+          select: "_id, name username bio imageUrl",
         },
       })
       .select("-__v")
       .lean()
       .exec();
     const relatedPosts = await Post.find({ tags: { $in: post.tags } })
-      .populate({ path: "author", select: "_id name imageUrl" })
+      .populate({ path: "author", select: "_id name username imageUrl" })
       .limit(LIMIT);
     res.status(200).json({ data: post, relatedPosts: relatedPosts });
   } catch (error) {
@@ -123,14 +123,14 @@ const likePost = async (req, res) => {
   }
 
   const likedPost = await Post.findByIdAndUpdate(id, post, { new: true })
-    .populate({ path: "author", select: "_id name imageUrl" })
+    .populate({ path: "author", select: "_id name username bio imageUrl" })
     .populate({
       path: "comments",
       select: "-__v -id -updatedAt",
       options: { sort: { createdAt: -1 } },
       populate: {
         path: "author",
-        select: "_id name imageUrl createdAt",
+        select: "_id, name username imageUrl createdAt",
       },
     })
     .select("-__v")
@@ -196,7 +196,7 @@ const deleteComment = async (req, res) => {
     deletePostComment.catch((error) => console.log(error)),
   ]);
 
-  res.status(200).json({ message: `Comment successfully deleted!` });
+  res.status(200).json({ message: "Comment successfully deleted!" });
 };
 
 module.exports = {
