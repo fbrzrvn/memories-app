@@ -7,6 +7,11 @@ export const Card = styled.article`
   border-radius: 10px;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
   background: ${({ theme }) => theme.navbar};
+  opacity: 0.9;
+  &:hover {
+    opacity: 1;
+    transition: all 300ms ease-in-out;
+  }
 `;
 
 export const PostHero = styled.div`
