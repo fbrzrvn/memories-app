@@ -42,3 +42,15 @@ export const updateUserProfile = (user) => async (dispatch) => {
     dispatch(fetchUserError(error.message));
   }
 };
+
+export const followUser = (id) => async (dispatch) => {
+  try {
+    const { data } = await API.followUser(id);
+    dispatch({
+      type: userTypes.UPDATE_USER,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch(fetchUserError(error.message));
+  }
+};

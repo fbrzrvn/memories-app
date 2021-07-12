@@ -62,4 +62,57 @@ const updateUserProfile = async (req, res) => {
   res.status(200).json(sanitazedUser);
 };
 
-module.exports = { fetchCurrentUser, fetchUserById, updateUserProfile };
+const followUser = async (req, res) => {
+  const userToFollowId = req.params.id;
+
+  if (!req.userId) {
+    return res.status(401).json({ message: "Unauthenticated" });
+  }
+  if (!mongoose.Types.ObjectId.isValid(userToFollowId)) {
+    return res
+      .status(404)
+      .json({ message: `No post was found with id: ${userToFollowId}` });
+  }
+
+  const currentUser = await User.findById(req.userId);
+  const userToFollow = await User.findById(userToFollowId);
+
+  const index = userToFollow.followers.findIndex(
+    (id) => String(id) === String(req.userId),
+  );
+  if (index === -1) {
+    userToFollow.followers.push(req.userId);
+  } else {
+    userToFollow.followers = userToFollow.followers.filter(
+      (id) => String(id) !== String(req.userId),
+    );
+  }
+
+  const currentUserIndex = currentUser.following.findIndex(
+    (id) => String(id) === String(userToFollowId),
+  );
+  if (currentUserIndex === -1) {
+    currentUser.following.push(userToFollowId);
+  } else {
+    currentUser.following = currentUser.following.filter(
+      (id) => String(id) !== String(userToFollowId),
+    );
+  }
+
+  const followedUser = await User.findByIdAndUpdate(
+    userToFollowId,
+    userToFollow,
+    { new: true },
+  );
+  await User.findByIdAndUpdate(req.userId, currentUser, { new: true });
+
+  const sanitazedUser = sanitazeUser(followedUser);
+  res.status(200).json(sanitazedUser);
+};
+
+module.exports = {
+  fetchCurrentUser,
+  fetchUserById,
+  updateUserProfile,
+  followUser,
+};

@@ -30,3 +30,4 @@ export const deleteComment = (postId, commentId) =>
 export const getUserById = (id) => API.get(`/users/${id}`);
 export const getCurrentUser = () => API.get("/users/me");
 export const updateUserProfile = (user) => API.post("/users/update", user);
+export const followUser = (id) => API.patch(`/users/follow/${id}`);

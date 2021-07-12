@@ -32,7 +32,8 @@ const userReducer = (state = userInitialState, action) => {
     case userTypes.UPDATE_USER: {
       return {
         ...state,
-        user: action.payload.data,
+        isLoading: false,
+        user: action.payload,
       };
     }
     default:
