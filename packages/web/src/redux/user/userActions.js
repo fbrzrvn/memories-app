@@ -32,3 +32,13 @@ export const fetchUserById = (id) => async (dispatch) => {
     dispatch(fetchUserError(error.message));
   }
 };
+
+export const updateUserProfile = (user) => async (dispatch) => {
+  dispatch(fetchUserRequest());
+  try {
+    const { data } = await API.updateUserProfile(user);
+    dispatch({ type: userTypes.UPDATE_USER, payload: data });
+  } catch (error) {
+    dispatch(fetchUserError(error.message));
+  }
+};

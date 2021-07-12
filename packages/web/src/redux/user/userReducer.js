@@ -29,6 +29,12 @@ const userReducer = (state = userInitialState, action) => {
         posts: action.payload.userPosts,
       };
     }
+    case userTypes.UPDATE_USER: {
+      return {
+        ...state,
+        user: action.payload.data,
+      };
+    }
     default:
       return state;
   }
