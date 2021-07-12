@@ -4,11 +4,11 @@ import styled from "styled-components";
 export const AuthorHero = styled.div`
   display: flex;
   align-items: center;
-  padding: 16px 32px;
   margin-bottom: 50px;
+  border: 2px solid red;
   @media screen and (max-width: 768px) {
     flex-direction: column;
-    padding: 0 24px;
+    padding: 0 16px;
   }
 `;
 
@@ -24,8 +24,8 @@ export const AuthorInfo = styled.div`
 
 export const AuthorAvatar = styled(Avatar)`
   && {
-    height: 72px;
-    width: 72px;
+    height: 100%;
+    width: 100%;
     @media screen and (max-width: 496px) {
       height: 44px;
       width: 44px;
@@ -38,7 +38,7 @@ export const AuthorHeaders = styled.div`
 `;
 
 export const AuthorTitle = styled.h2`
-  font-size: 32px;
+  font-size: 28px;
   line-height: 1;
   margin: 0;
   @media screen and (max-width: 496px) {
@@ -47,10 +47,9 @@ export const AuthorTitle = styled.h2`
 `;
 
 export const AuthorSubtitle = styled.h5`
-  font-size: 20px;
-  margin: 0;
+  font-size: 18px;
   @media screen and (max-width: 496px) {
-    font-size: 18px;
+    font-size: 16px;
   }
 `;
 

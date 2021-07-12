@@ -4,7 +4,6 @@ import styled from "styled-components";
 export const PostWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 0 16px;
   border-radius: 10px;
   @media screen and (max-width: 575px) {
     padding: 0;
@@ -14,10 +13,10 @@ export const PostWrapper = styled.div`
 export const PostAuthor = styled.div`
   display: flex;
   align-items: center;
-  margin: 16px 24px;
+  margin: 0 24px 16px;
   height: 72px;
   @media screen and (max-width: 575px) {
-    margin: 0 0 16px;
+    margin: 0 8px 16px;
     height: 44px;
   }
 `;
@@ -29,8 +28,8 @@ export const AuthorAvatar = styled(Avatar)`
     font-size: 32px;
     font-weight: 500;
     @media screen and (max-width: 575px) {
-      height: 40px;
-      width: 40px;
+      height: 44px;
+      width: 44px;
       font-size: 20px;
     }
   }
@@ -54,7 +53,7 @@ export const PostHeader = styled.div`
   flex-direction: column;
   margin: 16px 24px 44px;
   @media screen and (max-width: 575px) {
-    margin: 12px 0;
+    margin: 12px 8px;
   }
 `;
 
@@ -113,7 +112,7 @@ export const PostMedia = styled.img`
 export const PostContent = styled.div`
   margin: 0 24px 80px;
   @media screen and (max-width: 575px) {
-    margin: 0 0 80px;
+    margin: 0 8px 80px;
   }
 `;
 
