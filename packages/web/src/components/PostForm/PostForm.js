@@ -2,13 +2,15 @@ import { string } from "prop-types";
 import React, { useEffect, useState } from "react";
 import FileBase from "react-file-base64";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
+import { getEndPoint } from "../../helper";
 import {
   createPost,
-  ResetPostId,
+  resetPostId,
   updatePost,
 } from "../../redux/post/postActions";
 import { postSelector } from "../../redux/post/postSelector";
+import { ENDPOINT_UPDATE } from "../../utils/constant";
 import Button from "../Button";
 import {
   Container,
@@ -22,24 +24,32 @@ import {
   FormWrapper,
 } from "./styles";
 
+const initialState = {
+  title: "",
+  description: "",
+  media: "",
+  tags: [],
+};
+
 const PostForm = ({ action }) => {
-  const { posts, currentPostId } = useSelector(postSelector);
-  const currentPost = posts.find((post) => post._id === currentPostId);
-
-  const initialState = {
-    title: "",
-    description: "",
-    media: "",
-    tags: [],
-  };
-
-  const [formData, setFormData] = useState(initialState);
   const dispatch = useDispatch();
+  const [formData, setFormData] = useState(initialState);
+  const { posts, currentPostId } = useSelector(postSelector);
+  const { pathname } = useLocation();
   const history = useHistory();
 
+  const currentPost = posts.find((post) => post._id === currentPostId);
+  const endPoint = getEndPoint("posts", pathname);
+
   useEffect(() => {
-    if (currentPost) setFormData(currentPost);
-  }, [currentPost]);
+    if (currentPost && endPoint === ENDPOINT_UPDATE) setFormData(currentPost);
+  }, [currentPost, endPoint]);
+
+  const clear = () => {
+    setFormData(initialState);
+    dispatch(resetPostId());
+    history.push("/");
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -49,12 +59,6 @@ const PostForm = ({ action }) => {
       dispatch(updatePost(currentPostId, formData));
     }
     clear();
-  };
-
-  const clear = () => {
-    setFormData(initialState);
-    dispatch(ResetPostId());
-    history.push("/");
   };
 
   return (

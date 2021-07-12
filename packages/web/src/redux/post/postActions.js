@@ -48,7 +48,7 @@ export const getPostId = (postId) => ({
   payload: postId,
 });
 
-export const ResetPostId = () => ({
+export const resetPostId = () => ({
   type: postTypes.RESET_POST_ID,
 });
 

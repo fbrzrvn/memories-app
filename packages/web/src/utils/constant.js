@@ -5,3 +5,4 @@ export const DELETE = "DELETE";
 export const ACTION_CREATE = "Create";
 export const ACTION_UPDATE = "Update";
 export const ENDPOINT_CREATE = "create";
+export const ENDPOINT_UPDATE = "update";
