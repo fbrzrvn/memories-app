@@ -10,3 +10,4 @@ export const UPDATE = "/posts/update";
 
 export const USER = "/users/:id";
 export const ME = "/users/me";
+export const UPDATE_PROFILE = "/users/update";

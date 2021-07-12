@@ -4,6 +4,7 @@ import Theme from "./components/Theme";
 import SignIn from "./pages/Auth/SignIn";
 import SignUp from "./pages/Auth/SignUp";
 import FormPost from "./pages/FormPost";
+import FormUser from "./pages/FormUser";
 import Home from "./pages/Home";
 import Post from "./pages/Post";
 import Search from "./pages/Search";
@@ -16,6 +17,7 @@ const App = () => {
       <Switch>
         <Route path={ROUTES.SIGN_IN} component={SignIn} />
         <Route path={ROUTES.SIGN_UP} component={SignUp} />
+        <Route path={ROUTES.UPDATE_PROFILE} component={FormUser} />
         <Route path={ROUTES.ME} component={User} />
         <Route path={ROUTES.USER} component={User} />
         <Route path={ROUTES.SEARCH} component={Search} />
