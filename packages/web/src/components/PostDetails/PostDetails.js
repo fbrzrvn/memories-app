@@ -16,9 +16,10 @@ import BtnIcon from "../IconBtn";
 import LikePost from "../PostsCard/LikePost";
 import {
   AuthorAvatar,
+  AuthorName,
+  AuthorWrap,
   PostActions,
   PostAuthor,
-  PostAuthorName,
   PostContent,
   PostHeader,
   PostHero,
@@ -51,9 +52,10 @@ const PostDetails = ({ post }) => {
         <AuthorAvatar src={post.author?.imageUrl} alt={post.author?.name}>
           {post.author?.name.charAt(0).toUpperCase()}
         </AuthorAvatar>
-        <PostAuthorName onClick={() => handleUserClick(post?.author?._id)}>
-          {post.author.name}
-        </PostAuthorName>
+        <AuthorWrap onClick={() => handleUserClick(post?.author?._id)}>
+          <AuthorName>{post.author.username || post.author.name}</AuthorName>
+          <PostSmall>{post.author?.bio}</PostSmall>
+        </AuthorWrap>
       </PostAuthor>
       <PostHeader>
         <PostTitle>{post.title}</PostTitle>

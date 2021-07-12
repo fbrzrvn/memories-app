@@ -13,7 +13,7 @@ export const PostWrapper = styled.div`
 export const PostAuthor = styled.div`
   display: flex;
   align-items: center;
-  margin: 0 24px 16px;
+  margin-bottom: 16px;
   height: 72px;
   @media screen and (max-width: 575px) {
     margin: 0 8px 16px;
@@ -35,12 +35,15 @@ export const AuthorAvatar = styled(Avatar)`
   }
 `;
 
-export const PostAuthorName = styled.p`
+export const AuthorWrap = styled.div`
+  margin-left: 24px;
+`;
+
+export const AuthorName = styled.p`
   font-size: 24px;
   line-height: 1.5;
   text-decoration: none;
   color: ${({ theme }) => theme.tags};
-  margin-left: 16px;
   cursor: pointer;
   @media screen and (max-width: 575px) {
     font-size: 16px;

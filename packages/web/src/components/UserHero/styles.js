@@ -5,7 +5,6 @@ export const AuthorHero = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 50px;
-  border: 2px solid red;
   @media screen and (max-width: 768px) {
     flex-direction: column;
     padding: 0 16px;
@@ -14,21 +13,24 @@ export const AuthorHero = styled.div`
 
 export const AuthorInfo = styled.div`
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 120px 1fr;
   align-items: center;
   width: 100%;
   @media screen and (max-width: 768px) {
     margin-bottom: 32px;
   }
+  @media screen and (max-width: 496px) {
+    grid-template-columns: 80px 1fr;
+  }
 `;
 
 export const AuthorAvatar = styled(Avatar)`
   && {
-    height: 100%;
-    width: 100%;
+    width: 120px;
+    height: 120px;
     @media screen and (max-width: 496px) {
-      height: 44px;
-      width: 44px;
+      height: auto;
+      width: 100%;
     }
   }
 `;
@@ -47,16 +49,43 @@ export const AuthorTitle = styled.h2`
 `;
 
 export const AuthorSubtitle = styled.h5`
-  font-size: 18px;
+  font-size: 16px;
+  color: ${({ theme }) => theme.textSecondary};
   @media screen and (max-width: 496px) {
-    font-size: 16px;
+    font-size: 14px;
+  }
+`;
+
+export const AuthorActionBtn = styled.button`
+  padding: 8px 16px;
+  white-space: nowrap;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  border-radius: 10px;
+  border: 1px solid ${({ theme }) => theme.textSecondary};
+  color: ${({ theme }) => theme.text};
+  background: transparent;
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+  &:hover {
+    color: ${({ theme }) => theme.primary};
+    border: 1px solid transparent;
+    transition: all 300ms ease-in-out;
+  }
+  @media screen and (max-width: 768px) {
+    width: 100%;
   }
 `;
 
 export const AuthorStats = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   height: 100%;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const AuthorP = styled.p`
