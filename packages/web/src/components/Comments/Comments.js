@@ -2,13 +2,15 @@ import { Delete as DeleteIcon } from "@material-ui/icons";
 import { bool, object } from "prop-types";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { formatCommentDate } from "../../helper";
 import useWindowSize from "../../hooks/useWindowSize";
 import { authSelector } from "../../redux/auth/authSelector";
 import { commentPost, deleteComment } from "../../redux/post/postActions";
+import { fetchUserById } from "../../redux/user/userActions";
 import Button from "../Button";
 import {
+  AuthorAvatar,
   CommentAuthor,
   CommentBody,
   CommentCard,
@@ -29,24 +31,41 @@ const Comments = ({ post, isAuthenticated }) => {
   const { currentUser } = useSelector(authSelector);
   const [comment, setComment] = useState("");
   const { id } = useParams();
+  const history = useHistory();
   const currentWidth = useWindowSize();
+
+  const commentsCount = post?.comments?.length;
 
   const handleCommentClick = () => {
     comment && dispatch(commentPost(id, comment));
   };
 
+  const handleUserClick = (userId) => {
+    dispatch(fetchUserById(userId));
+    history.push(`/users/${userId}`);
+  };
+
   return (
     <CommentsContainer>
       <CommentsWrap>
-        {post?.comments?.length > 0 && (
+        {commentsCount > 0 && (
           <CommentsWrapper>
             <CommentsTitle>
-              {`${post?.comments?.length} comments to "${post.title}"`}
+              {`${
+                commentsCount > 1
+                  ? `${commentsCount} comments`
+                  : `${commentsCount} comment`
+              } to "${post.title}"`}
             </CommentsTitle>
             {post.comments.map((c) => (
               <CommentCard key={c._id}>
                 <CommentHeader>
-                  <CommentAuthor>{c.author.name}</CommentAuthor>
+                  <AuthorAvatar src={c.author.imageUrl} alt={c.author.name}>
+                    {c.author.name.charAt(0).toUpperCase()}
+                  </AuthorAvatar>
+                  <CommentAuthor onClick={() => handleUserClick(c.author._id)}>
+                    {c.author.name}
+                  </CommentAuthor>
                   <CommentDivider>·</CommentDivider>
                   <CommentDate>{formatCommentDate(c.createdAt)}</CommentDate>
                   {currentUser?.user?._id === c?.author?._id && (

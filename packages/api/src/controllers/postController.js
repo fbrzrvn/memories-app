@@ -51,7 +51,7 @@ const fetchPost = async (req, res) => {
         options: { sort: { createdAt: -1 } },
         populate: {
           path: "author",
-          select: "_id name createdAt",
+          select: "_id name imageUrl",
         },
       })
       .select("-__v")

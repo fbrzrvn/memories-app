@@ -1,3 +1,4 @@
+import { Avatar } from "@material-ui/core";
 import styled, { css } from "styled-components";
 import { COLOR } from "../../styles/colors";
 
@@ -5,15 +6,14 @@ export const CommentsContainer = styled.section`
   background: ${({ theme }) => theme.background};
   display: flex;
   flex-direction: column;
-  padding: 50px 24px;
+  padding: 100px 16px;
+  margin: 0 auto;
   max-width: 1100px;
-  margin: auto;
 `;
 
 export const CommentsWrap = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 32px 16px;
   @media screen and (max-width: 575px) {
     padding: 0;
   }
@@ -40,11 +40,27 @@ export const CommentHeader = styled.div`
   margin-bottom: 12px;
 `;
 
+export const AuthorAvatar = styled(Avatar)`
+  && {
+    height: 44px;
+    width: 44px;
+    font-weight: 500;
+    font-size: 20px;
+    margin-right: 8px;
+  }
+`;
+
 export const CommentAuthor = styled.span`
   color: ${({ theme }) => theme.text};
   font-weight: 700;
   font-size: 14px;
   line-height: 20px;
+  text-transform: capitalize;
+  cursor: pointer;
+  &:hover {
+    color: ${({ theme }) => theme.primary};
+    transition: color 300ms ease-in-out;
+  }
 `;
 
 export const CommentDivider = styled.span`
