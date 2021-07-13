@@ -1,7 +1,7 @@
 import { array, object } from "prop-types";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { authSelector } from "../../redux/auth/authSelector";
 import { followUser } from "../../redux/user/userActions";
 import * as ROUTES from "../../routes";
@@ -21,20 +21,22 @@ import {
 const UserHero = ({ user, userPosts }) => {
   const dispatch = useDispatch();
   const { currentUser } = useSelector(authSelector);
-  const { id } = useParams();
   const history = useHistory();
   const [isFollow, setIsFollow] = useState(
-    user?.following?.findIndex(
+    user.followers.findIndex(
       (userId) => String(userId) === String(currentUser.user._id),
     ) !== -1,
   );
 
-  const isMe = String(currentUser?.user?._id) === String(id);
+  const isMe = String(currentUser.user._id) === String(user._id);
 
   const handleClick = () => {
-    if (isMe) history.push(ROUTES.UPDATE_PROFILE);
-    dispatch(followUser(id));
-    setIsFollow(!isFollow);
+    if (isMe) {
+      history.push(ROUTES.UPDATE_PROFILE);
+    } else {
+      dispatch(followUser(user._id));
+      setIsFollow(!isFollow);
+    }
   };
 
   const followed = isFollow ? "Unfollow" : "Follow";
