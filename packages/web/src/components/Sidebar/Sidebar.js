@@ -17,7 +17,7 @@ import {
 } from "./styles";
 
 const Sidebar = ({ toggleNavbar, isOpen }) => {
-  const { isAuthenticated } = useSelector(authSelector);
+  const { isAuthenticated, currentUser } = useSelector(authSelector);
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -32,10 +32,14 @@ const Sidebar = ({ toggleNavbar, isOpen }) => {
       </Icon>
       <SidebarWrapper>
         <SidebarMenu>
-          <SidebarLink to={ROUTES.HOME}>Home</SidebarLink>
+          <SidebarLink to={ROUTES.POSTS}>Home</SidebarLink>
           <SidebarLink to={ROUTES.SEARCH}>Search</SidebarLink>
-          <SidebarLink to={ROUTES.ME}>Profile</SidebarLink>
-          <SidebarLink to={ROUTES.CREATE}>Create</SidebarLink>
+          {currentUser?.user && (
+            <>
+              <SidebarLink to={ROUTES.CREATE}>Create</SidebarLink>
+              <SidebarLink to={ROUTES.ME}>Profile</SidebarLink>
+            </>
+          )}
           <ToggleThemeBtn toggleNavbar={toggleNavbar} />
           <Button primary={!isAuthenticated} small onClick={handleClick}>
             {isAuthenticated ? "Logout" : "Login"}

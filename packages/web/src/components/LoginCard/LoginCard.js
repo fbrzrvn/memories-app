@@ -10,7 +10,7 @@ const LoginCard = () => {
   return (
     <Card>
       <CardTitle>Sign up to continue</CardTitle>
-      <CardBody>You&apos;ll need to sign in before upload any content</CardBody>
+      <CardBody>You&apos;ll must be a logged user to continue</CardBody>
       <Button primary onClick={() => history.push(ROUTES.SIGN_IN)}>
         Sign In
       </Button>

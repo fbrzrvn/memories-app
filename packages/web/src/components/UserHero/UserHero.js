@@ -20,7 +20,7 @@ import {
 
 const UserHero = ({ user, userPosts }) => {
   const dispatch = useDispatch();
-  const { currentUser } = useSelector(authSelector);
+  const { isAuthenticated, currentUser } = useSelector(authSelector);
   const history = useHistory();
   const [isFollow, setIsFollow] = useState(
     user?.followers?.findIndex(
@@ -48,7 +48,10 @@ const UserHero = ({ user, userPosts }) => {
         <AuthorHeaders>
           <AuthorTitle>{user?.username || user?.name}</AuthorTitle>
           <AuthorSubtitle>{user?.bio}</AuthorSubtitle>
-          <AuthorActionBtn onClick={() => handleClick()}>
+          <AuthorActionBtn
+            onClick={() => handleClick()}
+            disabled={!isAuthenticated}
+          >
             {isMe ? "Edit Profile" : followed}
           </AuthorActionBtn>
         </AuthorHeaders>

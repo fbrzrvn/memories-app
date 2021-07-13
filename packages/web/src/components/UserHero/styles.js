@@ -1,5 +1,5 @@
 import { Avatar } from "@material-ui/core";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const AuthorHero = styled.div`
   display: flex;
@@ -69,10 +69,23 @@ export const AuthorActionBtn = styled.button`
   background: transparent;
   cursor: pointer;
   transition: all 300ms ease-in-out;
+  ${(props) =>
+    props.disabled &&
+    css`
+      opacity: 0.5;
+      cursor: not-allowed;
+    `}
   &:hover {
     color: ${({ theme }) => theme.primary};
     border: 1px solid transparent;
     transition: all 300ms ease-in-out;
+    ${(props) =>
+      props.disabled &&
+      css`
+        opacity: 0.5;
+        color: inherit;
+        border: 1px solid ${({ theme }) => theme.textSecondary};
+      `}
   }
   @media screen and (max-width: 768px) {
     width: 100%;

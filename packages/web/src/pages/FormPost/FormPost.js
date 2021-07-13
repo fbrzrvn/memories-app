@@ -2,6 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import PostForm from "../../components/PostForm";
 import { getEndPoint } from "../../helper";
+import AuthErrorLayout from "../../layout/AuthErrorLayout";
 import FormLayout from "../../layout/FormLayout/FormLayout";
 import {
   ACTION_CREATE,
@@ -17,7 +18,9 @@ const FormPost = () => {
 
   return (
     <FormLayout>
-      <PostForm action={actionType} />
+      <AuthErrorLayout>
+        <PostForm action={actionType} />
+      </AuthErrorLayout>
     </FormLayout>
   );
 };
