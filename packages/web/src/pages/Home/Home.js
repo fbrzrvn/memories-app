@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import Pagination from "../../components/Pagination";
 import PostsCard from "../../components/PostsCard";
-import SpinnerWrap from "../../components/Spinner";
+import Spinner from "../../components/Spinner";
 import MainLayout from "../../layout/MainLayout";
 import PostLayout from "../../layout/PostLayout";
 import { fetchPosts } from "../../redux/post/postActions";
@@ -24,7 +24,7 @@ const Home = () => {
   }, [dispatch, page, posts.length]);
 
   return isLoading ? (
-    <SpinnerWrap />
+    <Spinner />
   ) : (
     <MainLayout>
       <PostLayout>

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import SpinnerWrap from "../../components/Spinner";
+import Spinner from "../../components/Spinner";
 import UserCard from "../../components/UserCard";
 import UserHero from "../../components/UserHero";
 import { getEndPoint } from "../../helper";
@@ -24,7 +24,7 @@ const User = () => {
   }, [dispatch, endPoint]);
 
   return isLoading ? (
-    <SpinnerWrap />
+    <Spinner />
   ) : (
     <MainLayout>
       <UserHero user={user} userPosts={posts} />
