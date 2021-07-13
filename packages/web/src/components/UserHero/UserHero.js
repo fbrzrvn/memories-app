@@ -23,18 +23,18 @@ const UserHero = ({ user, userPosts }) => {
   const { currentUser } = useSelector(authSelector);
   const history = useHistory();
   const [isFollow, setIsFollow] = useState(
-    user.followers.findIndex(
-      (userId) => String(userId) === String(currentUser.user._id),
+    user?.followers?.findIndex(
+      (userId) => String(userId) === String(currentUser?.user?._id),
     ) !== -1,
   );
 
-  const isMe = String(currentUser.user._id) === String(user._id);
+  const isMe = String(currentUser?.user?._id) === String(user?._id);
 
   const handleClick = () => {
     if (isMe) {
       history.push(ROUTES.UPDATE_PROFILE);
     } else {
-      dispatch(followUser(user._id));
+      dispatch(followUser(user?._id));
       setIsFollow(!isFollow);
     }
   };
